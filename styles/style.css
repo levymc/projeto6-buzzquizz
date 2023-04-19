@@ -5,6 +5,10 @@
     font-size: 16px;
     user-select: none;
 }
+main{
+    display: flex;
+    flex-direction: column;
+}
 
 
 /* SUPERIOR */
@@ -29,4 +33,12 @@
     font-size: 37px;
     line-height: 43px;
     color: #FFFFFF;
+}
+
+.container{
+    display: flex;
+    background-color: aquamarine;
+    margin: auto;
+    width: 72.9861111%;
+    height: 100vh;
 }
