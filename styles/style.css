@@ -53,6 +53,12 @@ main{
     border: 1px dashed #D5D5D5;
     border-radius: 5px;
 }
+.container-usuario h4{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 23px;
+}
 .container h3{
     margin-top: 4.8125em;
     font-size: 20px;
