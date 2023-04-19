@@ -51,7 +51,7 @@ main{
     padding-top: 4em;
     padding-bottom: 13.1875em;
 }
-.container-usuario{
+.container-usuario1{
     display: flex;
     justify-content: space-around;
     flex-direction: column;
@@ -61,7 +61,7 @@ main{
     border: 1px dashed #D5D5D5;
     border-radius: 5px;
 }
-.container-usuario h4{
+.container-usuario1 h4{
     text-align: center;
     font-style: normal;
     font-weight: 400;
