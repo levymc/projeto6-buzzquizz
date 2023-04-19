@@ -2,6 +2,7 @@
 /* TUDO */
 *{
     font-family: "Roboto", sans-serif;
+    font-size: 16px;
 }
 
 
@@ -14,7 +15,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 69px;
+    height: 4.3125em;
     width: 100vw;
     
     background-color: #EC362D;
