@@ -46,8 +46,9 @@ main{
     padding-top: 4.8125em;
 }
 .container-usuario{
+    display: flex;
     margin-top: 4.8125em;
-    height: 11.3125em;
+    height: 14em;
     background: #FAFAFA;
     border: 1px dashed #D5D5D5;
     border-radius: 5px;
@@ -57,4 +58,14 @@ main{
     font-size: 20px;
     line-height: 23px;
     font-weight: 700;
+    margin-bottom: 0.2em;
+}
+.container-todos{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5em;
+}
+img{
+    width: 32.8%;
 }
