@@ -23,7 +23,7 @@ h3{
     position: fixed;
     top: 0px;
     left: 0px;
-
+    z-index: 9999;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -43,28 +43,32 @@ h3{
 }
 
 /* PRINCIPAL */
+main{
+    background-color: #FAFAFA;
+}
 .container{
     display: flex;
+    position: relative;
+    gap: 2em;
     flex-direction: column;
-    background-color: aquamarine;
+    /* background-color: aquamarine; */
     margin: auto;
     width: 72.9861111%;
     height: auto;
     padding-top: 4em;
     padding-bottom: 13.1875em;
 }
-.container-usuario{
+.container-usuario1{
     display: flex;
     justify-content: space-around;
     flex-direction: column;
     align-items: center;
     margin-top: 4em;
     height: 10em;
-    background: #FAFAFA;
     border: 1px dashed #D5D5D5;
     border-radius: 5px;
 }
-.container-usuario h4{
+.container-usuario1 h4{
     text-align: center;
     font-style: normal;
     font-weight: 400;
@@ -83,11 +87,12 @@ h3{
     border-radius: 50px;
 }
 .container h3{
-    margin-top: 4em;
+    /* position: absolute;
+    top: 17em;
+    left: 1em; */
     font-size: 20px;
     line-height: 23px;
     font-weight: 700;
-    margin-bottom: 0.2em;
 }
 .container-todos{
     display: flex;
@@ -96,20 +101,28 @@ h3{
     gap: 0.5em;
 }
 .quiz{
-    background-image: url("../img/preg.svg");
-    background-size: cover;
     width: 21.25em;
+    position: relative;
     height: 11.3125em;
     display: flex;
     align-items: flex-end;
     justify-content: center;
     cursor: pointer;
 }
+.quiz img{
+    width: 21.25em;
+    height: 11.3125em;
+    z-index: 2;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.1%, #000000 100%), url(image.png);
+    border-radius: 5px;
+}
 .quiz h4{
-    display: flex;
-    align-items: center;
-    width: 88.53%;
-    height: 29.84%;
+    z-index: 3;
+    position: absolute;
+    /* width: 88.53%;
+    height: 29.84%; */
+    bottom: 1em;
+    left: 1em;
     font-weight: lighter;
     font-size: 17px;
     line-height: 22px;
@@ -182,4 +195,18 @@ h3{
 }
 .conteudo-pergunta h3{
     margin-bottom: 1.6em;
+}
+
+@media screen and (max-width: 1100px) {
+    .todosQuiz{
+        left: 2%;
+        width: 21.25em;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    .container-todos{
+        align-items: center;
+        flex-direction: column;
+    }
 }
