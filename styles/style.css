@@ -94,25 +94,33 @@ main{
     gap: 0.5em;
 }
 .quiz{
-    background-image: url("../img/preg.svg");
-    background-size: cover;
     width: 21.25em;
+    position: relative;
     height: 11.3125em;
     display: flex;
     align-items: flex-end;
     justify-content: center;
     cursor: pointer;
 }
+.quiz img{
+    width: 21.25em;
+    height: 11.3125em;
+    z-index: 2;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.1%, #000000 100%), url(image.png);
+    border-radius: 5px;
+}
 .quiz h4{
-    display: flex;
-    align-items: center;
-    width: 88.53%;
-    height: 29.84%;
+    z-index: 3;
+    position: absolute;
+    /* width: 88.53%;
+    height: 29.84%; */
+    bottom: 1em;
+    left: 1em;
     font-weight: lighter;
     font-size: 17px;
     line-height: 22px;
     color: #FFFFFF;
-    margin-bottom: 0.2em;
+    /* margin-bottom: 0.2em; */
 }
 
 @media screen and (max-width: 1100px) {
