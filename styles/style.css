@@ -96,19 +96,20 @@ main{
 
 .container-usuario2{
     /* display: flex; */
-    padding-left: 2em;;
+    /* padding-left: 2em;; */
     justify-content: space-around;
     flex-direction: column;
-    align-items: start;
+    /* align-items: start; */
     margin-top: 4em;
     height: auto;
     gap: 0.5em;
 }
 .cabecalhoUserQuizzes{
+    
     margin-top: 0.25em;
     display: flex;
     gap: 1em;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
 }
 .cabecalhoUserQuizzes h4{
