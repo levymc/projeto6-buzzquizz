@@ -18,7 +18,7 @@ let renderizarTela1 = () => {
             <div class="container-usuario2 esconder">
                 <div class="cabecalhoUserQuizzes">
                     <h4>Seus Quizzes</h4>
-                    <div class="btn-addUserQuiz"><img src="./img/plussimbol.svg" alt="+"></div>
+                    <div class="btn-addUserQuiz" onclick="recarregaPagina()"><img src="./img/plussimbol.svg" alt="+"></div>
                 </div>
                 <div class="userQuizzes">
                     <div class="quiz"><img src="./img/preg.svg" alt="preguiça"><h4>O quanto você é de boas?</h4></div>
@@ -36,7 +36,6 @@ let renderizarTela1 = () => {
 }
 
 let recarregaPagina = () => {
-    // location.href = "index.html";
     window.location.reload();
 }
 
@@ -67,17 +66,17 @@ let criarQuizz = () => {
     container1.classList.add('esconder');
     container2.classList.remove('esconder');
     container2.classList.add('mostrar');
-    Swal.fire({
-        title:"Aguarde....",
-        showConfirmButton: true,
-        confirmButtonColor: '#007bff',
-        icon:"warning",
-        confirmButtonText: "Ok",
-        showCloseButton: true,
-    })
-
+    // Swal.fire({
+    //     title:"Aguarde....",
+    //     showConfirmButton: true,
+    //     confirmButtonColor: '#007bff',
+    //     icon:"warning",
+    //     confirmButtonText: "Ok",
+    //     showCloseButton: true,
+    // })
 }
 
-// Inicializando funções
 
+
+// Inicializando funções
 recebeQuizzes();
