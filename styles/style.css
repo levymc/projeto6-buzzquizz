@@ -93,23 +93,18 @@ main{
     border: 1px dashed #EC362D;
     border-radius: 50px;
 }
+
 .container-usuario2{
     /* display: flex; */
     justify-content: space-around;
     flex-direction: column;
-    align-items: center;
+    align-items: start;
     margin-top: 4em;
     height: auto;
-    border: 1px dashed #D5D5D5;
-    border-radius: 5px;
-}
-.container-usuario2{
-    display: flex;
-    flex-direction: column;
-    /* justify-content: flex-start; */
-    align-items: start;
+    gap: 0.5em;
 }
 .cabecalhoUserQuizzes{
+    margin-top: 0.25em;
     display: flex;
     gap: 1em;
     justify-content: center;
@@ -125,9 +120,6 @@ main{
     align-items: center;
 }
 .container h3{
-    /* position: absolute;
-    top: 17em;
-    left: 1em; */
     font-size: 20px;
     line-height: 23px;
     font-weight: 700;
