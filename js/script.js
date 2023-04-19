@@ -16,10 +16,10 @@ let renderizarTela1 = () => {
                 <h4>Você não criou nenhum <br />quizz ainda :(</h4>
                     <div class="btn-criarQuizz" onclick="renderizarTela3()">Criar Quizz</div>
             </div>
-            <div class="container-usuario2 esconder">
+            <div class="container-usuario2 esconder ">
                 <div class="cabecalhoUserQuizzes">
                     <h4>Seus Quizzes</h4>
-                    <div class="btn-addUserQuiz" onclick="recarregaPagina()"><img src="./img/plussimbol.svg" alt="+"></div>
+                    <div class="btn-addUserQuiz" onclick="renderizarTela3()"><img src="./img/plussimbol.svg" alt="+"></div>
                 </div>
                 <div class="userQuizzes">
                     <div class="quiz"><img src="./img/preg.svg" alt="preguiça"><h4>O quanto você é de boas?</h4></div>
@@ -48,7 +48,7 @@ let renderizarTela3 = () => {
             <input type="text" id="qntPerguntas" placeholder="Quantidade de perguntas do quizz">
             <input type="text" id="qntNiveis" placeholder="Quantidade de níveis do quizz">
         </div>
-        <button class="btn1-criarQuiz" onclick="aguarde()">Prosseguir pra criar perguntas</button>
+        <button class="btn1-criarQuiz" onclick="btnCriarQuiz1()">Prosseguir pra criar perguntas</button>
     </div>
     `;
 
@@ -99,6 +99,21 @@ let aguarde = () => {
     })
 }
 
+let btnCriarQuiz1 = () => {
+    const tituloQuiz = document.querySelector("#tituloQuiz");
+    const urlQuiz = document.querySelector("#urlQuiz");
+    const qntPerguntas = document.querySelector("#qntPerguntas");
+    const qntNiveis = document.querySelector("#qntNiveis");
+
+    let infoCriarQuiz = {
+        title : tituloQuiz.value,
+        url : urlQuiz.value,
+        qntPerguntas : qntPerguntas.value,
+        qntNiveis : qntNiveis.value
+    };
+    console.log(infoCriarQuiz);
+    aguarde();
+}
 
 // Inicializando funções
 recebeQuizzes();
