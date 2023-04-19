@@ -1,8 +1,13 @@
+// Declarando o token do axios
 axios.defaults.headers.common['Authorization'] = 'C57BZDyeqoO9fanyGKeKwmBW';
 
+
+// Declarando variáveis globais
 let divPrincipal = document.querySelector(".container-todos");
 let divQuiz = document.querySelector(".quiz")
 
+
+// Seção de Funções
 let renderizaQuizzes = (listaQuizzes) => {
     // divPrincipal.innerHTML = "";
     listaQuizzes.forEach(quiz => {
@@ -22,5 +27,16 @@ let recebeQuizzes = () => {
     })
 }
 
+let criarQuizz = () => {
+    Swal.fire({
+        title:"Aguarde....",
+        showConfirmButton: true,
+        confirmButtonColor: '#007bff',
+        icon:"warning",
+        confirmButtonText: "Ok",
+        showCloseButton: true,
+    })
+}
 
+// Inicializando funções
 recebeQuizzes()
