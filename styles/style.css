@@ -172,14 +172,24 @@ main{
 }
 
 /*TELA 3*/
+
 .tela3{
     width: 72.9861111%;
+    padding-top: 4em;
     margin-left: auto;
     margin-right: auto;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
-
+.tela3 h3{
+    margin-bottom: 1em;
+}
+.criacao-infos{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
 .criacao-perguntas{
     display: flex;
     flex-direction: column;

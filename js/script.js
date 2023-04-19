@@ -41,12 +41,13 @@ let renderizarTela3 = () => {
     container.innerHTML = '';
     container.innerHTML += `
     <div class="tela3">
+        <h3>Comece pelo começo</h3>
         <div class="criacao-infos">
-        <input type="text" id="titulo" placeholder="Texto da pergunta">
-        <input type="text" id="titulo" placeholder="Texto da pergunta">
-        <input type="text" id="titulo" placeholder="Texto da pergunta">
-        <input type="text" id="titulo" placeholder="Texto da pergunta">
-        <input type="text" id="titulo" placeholder="Texto da pergunta">
+            <input type="text" id="titulo" placeholder="Texto da pergunta">
+            <input type="text" id="titulo" placeholder="Texto da pergunta">
+            <input type="text" id="titulo" placeholder="Texto da pergunta">
+            <input type="text" id="titulo" placeholder="Texto da pergunta">
+            <input type="text" id="titulo" placeholder="Texto da pergunta">
         </div>
     </div>
     `;
