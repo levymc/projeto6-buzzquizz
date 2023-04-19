@@ -5,18 +5,17 @@ axios.defaults.headers.common['Authorization'] = 'C57BZDyeqoO9fanyGKeKwmBW';
 // Declarando variáveis globais
 let container = document.querySelector(".container")
 let divQuiz = document.querySelector(".quiz")
-const container1 = document.querySelector('.container-usuario1');
-const container2 = document.querySelector('.container-usuario2');
+
 
 // Seção de Funções
 
 let renderizarTela1 = () => {
     container.innerHTML = '';
-    container.innerHTML = `<div class="container-usuario1">
+    container.innerHTML = `<div class="container-usuario1 mostrar">
                 <h4>Você não criou nenhum <br />quizz ainda :(</h3>
                     <div class="btn-criarQuizz" onclick="criarQuizz()">Criar Quizz</div>
             </div>
-            <div class="container-usuario2"></div>
+            <div class="container-usuario2 esconder">AAAAAAAAAAAAAAAAAAAAAAAAA</div>
             <div class="todosQuiz"><h3>Todos os Quizzes</h3></div>
             <div class="container-todos">
                 <div class="quiz"><img src="./img/preg.svg" alt=""><h4>O quanto você é de boas?</h4></div>
@@ -24,7 +23,8 @@ let renderizarTela1 = () => {
                 <div class="quiz"><img src="./img/preg.svg" alt=""><h4>O quanto você é de boas?</h4></div>
                 <div class="quiz"><img src="./img/preg.svg" alt=""><h4>O quanto você é de boas?</h4></div>
             </div>`
-            
+}
+
 let recarregaPagina = () => {
     // location.href = "index.html";
     window.location.reload();
@@ -49,6 +49,9 @@ let recebeQuizzes = () => {
     })
 }
 
+renderizarTela1();
+const container1 = document.querySelector('.container-usuario1');
+const container2 = document.querySelector('.container-usuario2');
 let criarQuizz = () => {
     container1.classList.remove('mostrar');
     container1.classList.add('esconder');
@@ -66,5 +69,5 @@ let criarQuizz = () => {
 }
 
 // Inicializando funções
-renderizarTela1();
+
 recebeQuizzes();
