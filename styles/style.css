@@ -81,6 +81,7 @@ main{
     display: flex;
     align-items: flex-end;
     justify-content: center;
+    cursor: pointer;
 }
 .quiz h4{
     display: flex;
