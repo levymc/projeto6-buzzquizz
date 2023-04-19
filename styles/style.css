@@ -163,15 +163,12 @@ main{
 .quiz h4{
     z-index: 3;
     position: absolute;
-    /* width: 88.53%;
-    height: 29.84%; */
     bottom: 1em;
     left: 1em;
     font-weight: lighter;
     font-size: 17px;
     line-height: 22px;
     color: #FFFFFF;
-    /* margin-bottom: 5em; */
 }
 
 /*TELA 3*/

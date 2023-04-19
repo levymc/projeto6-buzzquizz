@@ -5,6 +5,7 @@ axios.defaults.headers.common['Authorization'] = 'C57BZDyeqoO9fanyGKeKwmBW';
 // Declarando variáveis globais
 let container = document.querySelector(".container")
 let divQuiz = document.querySelector(".quiz")
+let criacaoInfos = document.querySelector(".criacao-infos")
 
 
 // Seção de Funções
@@ -13,7 +14,7 @@ let renderizarTela1 = () => {
     container.innerHTML = '';
     container.innerHTML = `<div class="container-usuario1 mostrar">
                 <h4>Você não criou nenhum <br />quizz ainda :(</h4>
-                    <div class="btn-criarQuizz" onclick="criarQuizz()">Criar Quizz</div>
+                    <div class="btn-criarQuizz" onclick="renderizarTela3()">Criar Quizz</div>
             </div>
             <div class="container-usuario2 esconder">
                 <div class="cabecalhoUserQuizzes">
@@ -34,6 +35,24 @@ let renderizarTela1 = () => {
                 <div class="quiz"><img src="./img/preg.svg" alt=""><h4>O quanto você é de boas?</h4></div>
             </div>`
 }
+
+
+let renderizarTela3 = () => {
+    container.innerHTML = '';
+    container.innerHTML += `
+    <div class="tela3">
+        <div class="criacao-infos">
+        <input type="text" id="titulo" placeholder="Texto da pergunta">
+        <input type="text" id="titulo" placeholder="Texto da pergunta">
+        <input type="text" id="titulo" placeholder="Texto da pergunta">
+        <input type="text" id="titulo" placeholder="Texto da pergunta">
+        <input type="text" id="titulo" placeholder="Texto da pergunta">
+        </div>
+    </div>
+    `;
+
+}
+
 
 let recarregaPagina = () => {
     window.location.reload();
