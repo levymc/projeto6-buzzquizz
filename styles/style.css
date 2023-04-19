@@ -35,10 +35,26 @@ main{
     color: #FFFFFF;
 }
 
+/* PRINCIPAL */
 .container{
     display: flex;
+    flex-direction: column;
     background-color: aquamarine;
     margin: auto;
     width: 72.9861111%;
     height: 100vh;
+    padding-top: 4.8125em;
+}
+.container-usuario{
+    margin-top: 4.8125em;
+    height: 11.3125em;
+    background: #FAFAFA;
+    border: 1px dashed #D5D5D5;
+    border-radius: 5px;
+}
+.container h3{
+    margin-top: 4.8125em;
+    font-size: 20px;
+    line-height: 23px;
+    font-weight: 700;
 }
