@@ -12,10 +12,16 @@ let divQuiz = document.querySelector(".quiz")
 let renderizarTela1 = () => {
     container.innerHTML = '';
     container.innerHTML = `<div class="container-usuario1 mostrar">
-                <h4>Você não criou nenhum <br />quizz ainda :(</h3>
+                <h4>Você não criou nenhum <br />quizz ainda :(</h4>
                     <div class="btn-criarQuizz" onclick="criarQuizz()">Criar Quizz</div>
             </div>
-            <div class="container-usuario2 esconder">AAAAAAAAAAAAAAAAAAAAAAAAA</div>
+            <div class="container-usuario2 esconder">
+                <div class="cabecalhoUserQuizzes">
+                    <h4>Seus Quizzes</h4>
+                    <div class="btn-addUserQuiz">+</div>
+                </div>
+                <div class="quiz"><img src="./img/preg.svg" alt=""><h4>O quanto você é de boas?</h4></div>
+            </div>
             <div class="todosQuiz"><h3>Todos os Quizzes</h3></div>
             <div class="container-todos">
                 <div class="quiz"><img src="./img/preg.svg" alt=""><h4>O quanto você é de boas?</h4></div>
@@ -51,7 +57,7 @@ let recebeQuizzes = () => {
 
 renderizarTela1();
 const container1 = document.querySelector('.container-usuario1');
-const container2 = document.querySelector('.container-usuario2');
+const container2 = document.querySelector('.container-usuario2'); // Modificar para a tela 3 depois!
 let criarQuizz = () => {
     container1.classList.remove('mostrar');
     container1.classList.add('esconder');
