@@ -43,12 +43,12 @@ let renderizarTela3 = () => {
     <div class="tela3">
         <h3>Comece pelo começo</h3>
         <div class="criacao-infos">
-            <input type="text" id="titulo" placeholder="Texto da pergunta">
-            <input type="text" id="titulo" placeholder="Texto da pergunta">
-            <input type="text" id="titulo" placeholder="Texto da pergunta">
-            <input type="text" id="titulo" placeholder="Texto da pergunta">
-            <input type="text" id="titulo" placeholder="Texto da pergunta">
+            <input type="text" id="tituloQuiz" placeholder="Título do seu quizz">
+            <input type="text" id="urlQuiz" placeholder="URL da imagem do seu quizz">
+            <input type="text" id="qntPerguntas" placeholder="Quantidade de perguntas do quizz">
+            <input type="text" id="qntNiveis" placeholder="Quantidade de níveis do quizz">
         </div>
+        <button class="btn1-criarQuiz" onclick="aguarde()">Prosseguir pra criar perguntas</button>
     </div>
     `;
 
@@ -86,16 +86,18 @@ let criarQuizz = () => {
     container1.classList.add('esconder');
     container2.classList.remove('esconder');
     container2.classList.add('mostrar');
-    // Swal.fire({
-    //     title:"Aguarde....",
-    //     showConfirmButton: true,
-    //     confirmButtonColor: '#007bff',
-    //     icon:"warning",
-    //     confirmButtonText: "Ok",
-    //     showCloseButton: true,
-    // })
 }
 
+let aguarde = () => {
+    Swal.fire({
+        title:"Aguarde....",
+        showConfirmButton: true,
+        confirmButtonColor: '#007bff',
+        icon:"warning",
+        confirmButtonText: "Ok",
+        showCloseButton: true,
+    })
+}
 
 
 // Inicializando funções
