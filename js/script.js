@@ -9,6 +9,11 @@ const container1 = document.querySelector('.container-usuario1');
 const container2 = document.querySelector('.container-usuario2');
 
 // Seção de Funções
+let recarregaPagina = () => {
+    // location.href = "index.html";
+    window.location.reload();
+}
+
 let renderizaQuizzes = (listaQuizzes) => {
     // divPrincipal.innerHTML = "";
     listaQuizzes.forEach(quiz => {
