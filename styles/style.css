@@ -36,10 +36,13 @@ main{
 }
 
 /* PRINCIPAL */
+main{
+    background-color: #FAFAFA;
+}
 .container{
     display: flex;
     flex-direction: column;
-    background-color: aquamarine;
+    /* background-color: aquamarine; */
     margin: auto;
     width: 72.9861111%;
     height: auto;
@@ -53,7 +56,6 @@ main{
     align-items: center;
     margin-top: 4em;
     height: 10em;
-    background: #FAFAFA;
     border: 1px dashed #D5D5D5;
     border-radius: 5px;
 }
