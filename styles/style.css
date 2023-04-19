@@ -78,4 +78,16 @@ main{
     background-size: cover;
     width: 21.25em;
     height: 11.3125em;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+.quiz h4{
+    text-align: start;
+    width: 88.5294118%;
+    font-weight: lighter;
+    font-size: 17px;
+    line-height: 22px;
+    color: #FFFFFF;
+    margin-bottom: 3%;
 }
