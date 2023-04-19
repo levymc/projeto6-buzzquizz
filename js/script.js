@@ -4,11 +4,11 @@ axios.defaults.headers.common['Authorization'] = 'C57BZDyeqoO9fanyGKeKwmBW';
 
 // Declarando variáveis globais
 let container = document.querySelector(".container")
-let divPrincipal = document.querySelector(".container-todos");
 let divQuiz = document.querySelector(".quiz")
 
 
 // Seção de Funções
+
 let renderizarTela1 = () => {
     container.innerHTML = '';
     container.innerHTML = `<div class="container-usuario1">
@@ -23,10 +23,10 @@ let renderizarTela1 = () => {
                 <div class="quiz"><img src="./img/preg.svg" alt=""><h4>O quanto você é de boas?</h4></div>
                 <div class="quiz"><img src="./img/preg.svg" alt=""><h4>O quanto você é de boas?</h4></div>
             </div>`
-    recebeQuizzes();
 }
 
 let renderizaQuizzes = (listaQuizzes) => {
+    let divPrincipal = document.querySelector(".container-todos");
     // divPrincipal.innerHTML = "";
     listaQuizzes.forEach(quiz => {
         console.log(quiz);
@@ -34,7 +34,6 @@ let renderizaQuizzes = (listaQuizzes) => {
         // divQuiz.style.backgroundImage = `url("../img/unnamed.png")`;
     });
 }
-
 
 let recebeQuizzes = () => {
     axios.get("https://mock-api.driven.com.br/api/vm/buzzquizz/quizzes").then(response => {
@@ -58,3 +57,4 @@ let criarQuizz = () => {
 
 // Inicializando funções
 renderizarTela1();
+recebeQuizzes();
