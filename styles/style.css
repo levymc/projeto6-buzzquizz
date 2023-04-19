@@ -42,26 +42,41 @@ main{
     background-color: aquamarine;
     margin: auto;
     width: 72.9861111%;
-    height: 100vh;
-    padding-top: 4.8125em;
+    height: auto;
+    padding-top: 4em;
     padding-bottom: 13.1875em;
 }
 .container-usuario{
     display: flex;
-    margin-top: 4.8125em;
-    height: 14em;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 4em;
+    height: 10em;
     background: #FAFAFA;
     border: 1px dashed #D5D5D5;
     border-radius: 5px;
 }
 .container-usuario h4{
+    text-align: center;
     font-style: normal;
     font-weight: 400;
+    color: #B9B9B9;
     font-size: 20px;
     line-height: 23px;
 }
+.btn-criarQuizz{
+    color: #EC362D;
+    cursor: pointer;
+    padding: 0.5em;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 25px;
+    border: 1px dashed #EC362D;
+    border-radius: 50px;
+}
 .container h3{
-    margin-top: 4.8125em;
+    margin-top: 4em;
     font-size: 20px;
     line-height: 23px;
     font-weight: 700;
