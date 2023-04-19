@@ -44,6 +44,7 @@ main{
     width: 72.9861111%;
     height: 100vh;
     padding-top: 4.8125em;
+    padding-bottom: 13.1875em;
 }
 .container-usuario{
     display: flex;
@@ -69,9 +70,12 @@ main{
 .container-todos{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
     gap: 0.5em;
 }
-img{
-    width: 32.8%;
+.quiz{
+    background-image: url("../img/preg.svg");
+    background-size: cover;
+    width: 21.25em;
+    height: 11.3125em;
 }
