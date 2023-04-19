@@ -60,7 +60,7 @@ main{
     flex-direction: column;
     /* background-color: aquamarine; */
     margin: auto;
-    width: 72.9861111%;
+    width: 80%;
     height: auto;
     padding-top: 4em;
     padding-bottom: 13.1875em;
@@ -96,6 +96,7 @@ main{
 
 .container-usuario2{
     /* display: flex; */
+    padding-left: 2em;;
     justify-content: space-around;
     flex-direction: column;
     align-items: start;
@@ -110,7 +111,20 @@ main{
     justify-content: center;
     align-items: center;
 }
+.cabecalhoUserQuizzes h4{
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+}
+.userQuizzes{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 0.5em;
+}
 .btn-addUserQuiz{
+    cursor: pointer;
     width: 2em;
     height: 2em;
     background-color: #EC362D;

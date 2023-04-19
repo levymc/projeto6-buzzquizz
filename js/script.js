@@ -18,9 +18,13 @@ let renderizarTela1 = () => {
             <div class="container-usuario2 esconder">
                 <div class="cabecalhoUserQuizzes">
                     <h4>Seus Quizzes</h4>
-                    <div class="btn-addUserQuiz"><img src="./img/plussimbol.svg" alt=""></div>
+                    <div class="btn-addUserQuiz"><img src="./img/plussimbol.svg" alt="+"></div>
                 </div>
-                <div class="quiz"><img src="./img/preg.svg" alt="preguiça"><h4>O quanto você é de boas?</h4></div>
+                <div class="userQuizzes">
+                    <div class="quiz"><img src="./img/preg.svg" alt="preguiça"><h4>O quanto você é de boas?</h4></div>
+                    <div class="quiz"><img src="./img/preg.svg" alt="preguiça"><h4>O quanto você é de boas?</h4></div>
+                    <div class="quiz"><img src="./img/preg.svg" alt="preguiça"><h4>O quanto você é de boas?</h4></div>
+                </div>
             </div>
             <div class="todosQuiz"><h3>Todos os Quizzes</h3></div>
             <div class="container-todos">
