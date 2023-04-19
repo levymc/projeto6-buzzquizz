@@ -36,6 +36,12 @@ main{
 }
 
 /* PRINCIPAL */
+.esconder {
+    display: none;
+}
+.mostrar {
+    display: flex;
+}
 main{
     background-color: #FAFAFA;
 }
@@ -52,7 +58,7 @@ main{
     padding-bottom: 13.1875em;
 }
 .container-usuario1{
-    display: flex;
+    /* display: flex; */
     justify-content: space-around;
     flex-direction: column;
     align-items: center;
@@ -78,6 +84,16 @@ main{
     line-height: 25px;
     border: 1px dashed #EC362D;
     border-radius: 50px;
+}
+.container-usuario2{
+    /* display: flex; */
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 4em;
+    height: 10em;
+    border: 1px dashed #D5D5D5;
+    border-radius: 5px;
 }
 .container h3{
     /* position: absolute;

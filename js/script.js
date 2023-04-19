@@ -5,7 +5,8 @@ axios.defaults.headers.common['Authorization'] = 'C57BZDyeqoO9fanyGKeKwmBW';
 // Declarando variáveis globais
 let divPrincipal = document.querySelector(".container-todos");
 let divQuiz = document.querySelector(".quiz")
-
+const container1 = document.querySelector('.container-usuario1');
+const container2 = document.querySelector('.container-usuario2');
 
 // Seção de Funções
 let renderizaQuizzes = (listaQuizzes) => {
@@ -28,6 +29,10 @@ let recebeQuizzes = () => {
 }
 
 let criarQuizz = () => {
+    container1.classList.remove('mostrar');
+    container1.classList.add('esconder');
+    container2.classList.remove('esconder');
+    container2.classList.add('mostrar');
     Swal.fire({
         title:"Aguarde....",
         showConfirmButton: true,
@@ -36,6 +41,7 @@ let criarQuizz = () => {
         confirmButtonText: "Ok",
         showCloseButton: true,
     })
+
 }
 
 // Inicializando funções
