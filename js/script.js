@@ -23,6 +23,7 @@ let renderizarTela1 = () => {
                 <div class="quiz"><img src="./img/preg.svg" alt=""><h4>O quanto você é de boas?</h4></div>
                 <div class="quiz"><img src="./img/preg.svg" alt=""><h4>O quanto você é de boas?</h4></div>
             </div>`
+    recebeQuizzes();
 }
 
 let renderizaQuizzes = (listaQuizzes) => {
