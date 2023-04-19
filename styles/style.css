@@ -219,19 +219,19 @@ main{
     display: flex;
     flex-direction: column;
 }
-.conteudo-pergunta input{
+input{
     border: 1px solid #D1D1D1;
     border-radius: 5px;
     padding: 1em;
     margin-bottom: 0.875em;
 }
-.conteudo-pergunta input::placeholder{
+input::placeholder{
     font-style: italic;
     font-weight: 400;
     font-size: 19px;
     color: #BABABA;
 }
-.conteudo-pergunta input[type=url]{
+input[type=url]{
     margin-bottom: 2em;
 }
 .conteudo-pergunta h3{
