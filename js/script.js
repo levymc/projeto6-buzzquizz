@@ -105,7 +105,6 @@ let btnCriarQuiz1 = () => {
     const qntPerguntas = document.querySelector("#qntPerguntas").value;
     const qntNiveis = document.querySelector("#qntNiveis").value;
     let titleChecked, urlChecked, qntPerguntasChecked, qntNiveisChecked;
-    let validationState = "OK";
 
     titleChecked = tituloQuiz != '' && tituloQuiz != null && tituloQuiz != undefined && tituloQuiz.trim().length >= 20 || tituloQuiz.trim().length <= 64 ? true : false;
     // console.log(titleChecked)
