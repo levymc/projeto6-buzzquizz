@@ -97,8 +97,7 @@ let recebeQuizzes = () => {
     })
 }
 
-// renderizarTela1();
-renderizarTela3_3();
+
 const container1 = document.querySelector('.container-usuario1');
 const container2 = document.querySelector('.container-usuario2'); // Modificar para a tela 3 depois!
 let criarQuizz = () => {
@@ -162,7 +161,9 @@ let btnCriarQuiz1 = () => {
 
 
 // Inicializando funções
-// recebeQuizzes()
+recebeQuizzes()
+renderizarTela1();
+// renderizarTela3_3();
 
 function renderizarTela3perguntas() {
     container.innerHTML = '';
