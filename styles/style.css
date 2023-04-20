@@ -58,11 +58,12 @@ main{
     position: relative;
     gap: 1em;
     flex-direction: column;
+    align-items: center;
     /* background-color: aquamarine; */
     margin: auto;
     width: 80%;
     height: auto;
-    padding-top: 4em;
+    padding-top: 6em;
     padding-bottom: 13.1875em;
 }
 .container-usuario1{
@@ -228,11 +229,17 @@ main{
     padding-top: 1.85em;
     margin-bottom: 1.5em;
 }
-.expandida{
+.nome-pergunta:hover{
+    cursor: pointer;
+}
+.expandida .nome-pergunta img{
+    display: none;
+}
+.expandida .conteudo-pergunta{
     display: flex;
 }
 .escondida .nome-pergunta img{
-    display: none;
+    display: flex;
 }
 .escondida .conteudo-pergunta{
     display: none;

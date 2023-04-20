@@ -132,6 +132,7 @@ let btnCriarQuiz1 = () => {
         };
         console.log(infoCriarQuiz);
         aguarde();
+        renderizarTela3perguntas();
     } else if (!titleChecked){
         alert("Título");
         renderizarTela3();
@@ -153,7 +154,6 @@ recebeQuizzes()
 function renderizarTela3perguntas() {
     container.innerHTML = '';
     container.innerHTML +=`
-            <div class="criacao-perguntas">
                 <h3>Crie suas perguntas</h3>
                     <div class="tela-preencher-perguntas">
                         <div class="pergunta expandida">
@@ -183,17 +183,14 @@ function renderizarTela3perguntas() {
                                 <input type="url" id="link3" placeholder="URL da imagem 3">
                             </div>
                         </div>
-                    </div>
-            </div>
-    `
+                    </div>`
 
-    let preencherPerguntas = document.querySelector(".tela-preencher-perguntas")
-    let contador = infoCriarQuiz[qntPerguntas];
-    for(i = 0; i > contador; i++){
-        preencherPerguntas.innerHTML +=
+    let contador = infoCriarQuiz["qntPerguntas"];
+    for(i = 0; i < contador; i++){
+        container.innerHTML +=
         `<div class="pergunta escondida">
             <div class="nome-pergunta" onclick="expandirPergunta()">
-                <h3>Pergunta 1</h3>
+                <h3>Pergunta ${i+2}</h3>
                 <img src="./img/editarpergunta.svg" alt="editar pergunta">
             </div>
 
@@ -221,8 +218,12 @@ function renderizarTela3perguntas() {
     }
 }
 function expandirPergunta(){
-    //quando clica na div .nome-pergunta
-    //adiciona a classe expandida e remove a classe escondida
-    //usar o toggle
-    //o primeiro elemento da div deve começar com a classe expandida
+    let pergunta = document.querySelectorAll(".escondida");
+    //esconderPergunta()
+    pergunta.classList.toggle("expandida");
+}
+
+function esconderPergunta (){
+    let expandida = document.querySelectorAll(".expandida");
+    expandida.classList.remove(".expandida");
 }
