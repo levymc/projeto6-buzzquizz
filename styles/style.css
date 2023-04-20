@@ -197,13 +197,6 @@ main{
     background-position: center;
     background-repeat:round;
 }
-.quiz-tela3_3 img{
-    height: 100%;
-    width: 100%;
-    z-index: 2;
-    
-    border-radius: 5px;
-}
 .quiz-tela3_3 h4{
     z-index: 3;
     position: absolute;
@@ -261,6 +254,12 @@ main{
     border-radius: 11px;
     border: 0;
     padding: 0.25em 1.75em 0.25em 1.75em;
+}
+.btn-Home{
+    background-color: transparent;
+    border: transparent;
+    color: #818181;
+    cursor: pointer;
 }
 .criacao-perguntas{
     display: flex;
