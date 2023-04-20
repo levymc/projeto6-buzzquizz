@@ -62,6 +62,17 @@ let renderizarTela3 = () => {
 
 }
 
+let renderizarTela3_3 = () => {
+    container.innerHTML = '';
+    container.innerHTML += `
+    <div class="tela3_3 flex">
+        <h3>Seu quizz está pronto!</h3>
+        <div class="quiz"><img src="./img/preg.svg" alt=""><h4>O quanto você é de boas?</h4></div>
+        <button class="btn-acessarQuizz" onclick="btnCriarQuiz1()">Acessar Quizz</button>
+        <button class="btn-Home" onclick="recarregaPagina()">Voltar pra home</button>
+    </div>
+    `
+}
 
 let recarregaPagina = () => {
     window.location.reload();
@@ -86,7 +97,8 @@ let recebeQuizzes = () => {
     })
 }
 
-renderizarTela1();
+// renderizarTela1();
+renderizarTela3_3();
 const container1 = document.querySelector('.container-usuario1');
 const container2 = document.querySelector('.container-usuario2'); // Modificar para a tela 3 depois!
 let criarQuizz = () => {
@@ -150,7 +162,7 @@ let btnCriarQuiz1 = () => {
 
 
 // Inicializando funções
-recebeQuizzes()
+// recebeQuizzes()
 
 function renderizarTela3perguntas() {
     container.innerHTML = '';
