@@ -131,7 +131,6 @@ let btnCriarQuiz1 = () => {
             qntNiveis: qntNiveis
         };
         console.log(infoCriarQuiz);
-        aguarde();
         renderizarTela3perguntas();
     } else if (!titleChecked){
         alert("Título");
@@ -188,8 +187,8 @@ function renderizarTela3perguntas() {
     let contador = infoCriarQuiz["qntPerguntas"];
     for(i = 0; i < contador; i++){
         container.innerHTML +=
-        `<div class="pergunta escondida">
-            <div class="nome-pergunta" onclick="expandirPergunta()">
+        `<div class="pergunta escondida" id="pergunta${i+2}">
+            <div class="nome-pergunta" onclick="expandirPergunta("pergunta${i+2}")">
                 <h3>Pergunta ${i+2}</h3>
                 <img src="./img/editarpergunta.svg" alt="editar pergunta">
             </div>
@@ -217,8 +216,8 @@ function renderizarTela3perguntas() {
         </div>`
     }
 }
-function expandirPergunta(){
-    let pergunta = document.querySelectorAll(".escondida");
+function expandirPergunta(id){
+    let pergunta = document.querySelector("#"+id);
     //esconderPergunta()
     pergunta.classList.toggle("expandida");
 }
