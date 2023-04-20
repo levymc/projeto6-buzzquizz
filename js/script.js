@@ -78,15 +78,30 @@ let recarregaPagina = () => {
     window.location.reload();
 }
 
+// let renderizaQuizzes = (listaQuizzes) => {
+//     let divPrincipal = document.querySelector(".container-todos");
+//     // divPrincipal.innerHTML = "";
+//     listaQuizzes.forEach(quiz => { //<img src="${quiz.image}" alt="">
+//         console.log(quiz);
+//         divPrincipal.innerHTML += `<div class="quiz"><h4>${quiz.title}</h4></div>`
+//         document.querySelector(".quiz").style.backgroundImage = "linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.1%, #000000 100%), url(https://img.freepik.com/vetores-gratis/castelo-de-conto-de-fadas-mao-desenhado-design_23-2148468272.jpg?w=740&t=st=1682032829~exp=1682033429~hmac=cc07bd823c519d0e378a838531ce5ad427ade9b7757e773b25a9810f99885933)";
+//         // divQuiz.style.backgroundImage = `url("../img/unnamed.png")`;
+//     });
+// }
+
 let renderizaQuizzes = (listaQuizzes) => {
+    console.log(listaQuizzes)
     let divPrincipal = document.querySelector(".container-todos");
-    // divPrincipal.innerHTML = "";
+    divPrincipal.innerHTML = "";
     listaQuizzes.forEach(quiz => {
-        console.log(quiz);
-        divPrincipal.innerHTML += `<div class="quiz"><img src="${quiz.image}" alt=""><h4>${quiz.title}</h4></div>`
-        // divQuiz.style.backgroundImage = `url("../img/unnamed.png")`;
+        divPrincipal.innerHTML += `<div class="quiz" style="
+        background:linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.1%, #000000 100%), url(${quiz.image});
+        background-size: contain; 
+        background-position: center;
+        background-repeat:no-repeat;
+        "><h4>${quiz.title}</h4></div>`;
     });
-}
+};
 
 let recebeQuizzes = () => {
     axios.get("https://mock-api.driven.com.br/api/vm/buzzquizz/quizzes").then(response => {
@@ -203,11 +218,7 @@ function renderizarTela3perguntas() {
     for(i = 0; i < contador; i++){
         container.innerHTML +=
         `<div class="pergunta escondida">
-<<<<<<< HEAD
             <div class="nome-pergunta" onclick="expandirPergunta(event)">
-=======
-            <div class="nome-pergunta" onclick="expandirPergunta("pergunta${i+2}")">
->>>>>>> c93867456bbf89f03eb0d88d299dca27e7cfef81
                 <h3>Pergunta ${i+2}</h3>
                 <img src="./img/editarpergunta.svg" alt="editar pergunta">
             </div>
