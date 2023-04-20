@@ -96,7 +96,7 @@ let renderizaQuizzes = (listaQuizzes) => {
     listaQuizzes.forEach(quiz => {
         divPrincipal.innerHTML += `<div class="quiz" style="
         background:linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.1%, #000000 100%), url(${quiz.image});
-        background-size: contain; 
+        background-size: cover; 
         background-position: center;
         background-repeat:no-repeat;
         "><h4>${quiz.title}</h4></div>`;
