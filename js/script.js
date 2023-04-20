@@ -105,48 +105,42 @@ let btnCriarQuiz1 = () => {
     const qntPerguntas = document.querySelector("#qntPerguntas").value;
     const qntNiveis = document.querySelector("#qntNiveis").value;
     let titleChecked, urlChecked, qntPerguntasChecked, qntNiveisChecked;
+    let validationState = "OK";
 
-    if(tituloQuiz && tituloQuiz.trim().length >= 20 && tituloQuiz.trim().length <= 64 ? true : false){
-        titleChecked = tituloQuiz;
-    }else {
-        alert("Titulo");
-        renderizarTela3();
-    }
-    if(urlQuiz && (urlQuiz.startsWith("http://") || urlQuiz.startsWith("https://"))){
-        urlChecked = urlQuiz;
-    }else {
-        alert("URL");
-        renderizarTela3();
-    }
-    if (qntPerguntas != null && qntPerguntas != undefined && qntPerguntas >= 3){
-        qntPerguntasChecked = qntPerguntas;
-    }else {
-        alert("Quantidade de Perguntas");
-        renderizarTela3();
-    }
-    if (qntNiveis != null && qntNiveis != undefined && qntNiveis >= 2){
-        qntNiveisChecked = qntNiveis;
-    } else{
-        alert("Quantidade de Níveis");
-        renderizarTela3();
-    }
+    titleChecked = tituloQuiz != '' && tituloQuiz != null && tituloQuiz != undefined && tituloQuiz.trim().length >= 20 || tituloQuiz.trim().length <= 64 ? true : false;
+    // console.log(titleChecked)
 
-    let infoCriarQuiz = {};
+    urlChecked = urlQuiz != '' && urlQuiz != null && urlQuiz != undefined  && (urlQuiz.startsWith("http://") || urlQuiz.startsWith("https://")) ? true : false;
+    // console.log(urlChecked)
+
+    qntPerguntasChecked = qntPerguntas != '' && qntPerguntas != null && qntPerguntas != undefined && qntPerguntas >= 3 ? true : false;
+    console.log(qntPerguntasChecked)
+
+    qntNiveisChecked = qntNiveis != '' && qntNiveis != null && qntNiveis != undefined && qntNiveis >= 2 ? true : false;
 
     if (titleChecked && urlChecked && qntPerguntasChecked && qntNiveisChecked) {
-        infoCriarQuiz = {
-            title: titleChecked,
-            url: urlChecked,
-            qntPerguntas: qntPerguntasChecked,
-            qntNiveis: qntNiveisChecked
+        let infoCriarQuiz = {
+            title: tituloQuiz,
+            url: urlQuiz,
+            qntPerguntas: qntPerguntas,
+            qntNiveis: qntNiveis
         };
         console.log(infoCriarQuiz);
         aguarde();
-    } else {
+    } else if (!titleChecked){
+        alert("Título");
         renderizarTela3();
+    } else if (!urlChecked){
+        alert("URL");
+    }else if (!qntPerguntasChecked){
+        alert("qnt perg");
+    }else if (!qntNiveisChecked){
+        alert("qnt níveis")
     }
-
 }
+
+
+
 
 // Inicializando funções
 recebeQuizzes();
