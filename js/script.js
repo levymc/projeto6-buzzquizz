@@ -45,8 +45,8 @@ let renderizarTela3 = () => {
         <div class="criacao-infos">
             <input type="text" id="tituloQuiz" placeholder="Título do seu quizz">
             <input type="text" id="urlQuiz" placeholder="URL da imagem do seu quizz">
-            <input type="text" id="qntPerguntas" placeholder="Quantidade de perguntas do quizz">
-            <input type="text" id="qntNiveis" placeholder="Quantidade de níveis do quizz">
+            <input type="number" id="qntPerguntas" placeholder="Quantidade de perguntas do quizz">
+            <input type="number" id="qntNiveis" placeholder="Quantidade de níveis do quizz">
         </div>
         <button class="btn1-criarQuiz" onclick="btnCriarQuiz1()">Prosseguir pra criar perguntas</button>
     </div>
@@ -100,19 +100,52 @@ let aguarde = () => {
 }
 
 let btnCriarQuiz1 = () => {
-    const tituloQuiz = document.querySelector("#tituloQuiz");
-    const urlQuiz = document.querySelector("#urlQuiz");
-    const qntPerguntas = document.querySelector("#qntPerguntas");
-    const qntNiveis = document.querySelector("#qntNiveis");
+    const tituloQuiz = document.querySelector("#tituloQuiz").value;
+    const urlQuiz = document.querySelector("#urlQuiz").value;
+    const qntPerguntas = document.querySelector("#qntPerguntas").value;
+    const qntNiveis = document.querySelector("#qntNiveis").value;
+    let titleChecked, urlChecked, qntPerguntasChecked, qntNiveisChecked;
 
-    let infoCriarQuiz = {
-        title : tituloQuiz.value,
-        url : urlQuiz.value,
-        qntPerguntas : qntPerguntas.value,
-        qntNiveis : qntNiveis.value
-    };
-    console.log(infoCriarQuiz);
-    aguarde();
+    if(tituloQuiz && tituloQuiz.trim().length >= 20 && tituloQuiz.trim().length <= 64 ? true : false){
+        titleChecked = tituloQuiz;
+    }else {
+        alert("Titulo");
+        renderizarTela3();
+    }
+    if(urlQuiz && (urlQuiz.startsWith("http://") || urlQuiz.startsWith("https://"))){
+        urlChecked = urlQuiz;
+    }else {
+        alert("URL");
+        renderizarTela3();
+    }
+    if (qntPerguntas != null && qntPerguntas != undefined && qntPerguntas >= 3){
+        qntPerguntasChecked = qntPerguntas;
+    }else {
+        alert("Quantidade de Perguntas");
+        renderizarTela3();
+    }
+    if (qntNiveis != null && qntNiveis != undefined && qntNiveis >= 2){
+        qntNiveisChecked = qntNiveis;
+    } else{
+        alert("Quantidade de Níveis");
+        renderizarTela3();
+    }
+
+    let infoCriarQuiz = {};
+
+    if (titleChecked && urlChecked && qntPerguntasChecked && qntNiveisChecked) {
+        infoCriarQuiz = {
+            title: titleChecked,
+            url: urlChecked,
+            qntPerguntas: qntPerguntasChecked,
+            qntNiveis: qntNiveisChecked
+        };
+        console.log(infoCriarQuiz);
+        aguarde();
+    } else {
+        renderizarTela3();
+    }
+
 }
 
 // Inicializando funções
