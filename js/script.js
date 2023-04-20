@@ -7,6 +7,12 @@ let container = document.querySelector(".container")
 let divQuiz = document.querySelector(".quiz")
 let criacaoInfos = document.querySelector(".criacao-infos")
 
+let infoCriarQuiz = {
+    title: "",
+    url: "",
+    qntPerguntas: "",
+    qntNiveis: ""
+}
 
 // Seção de Funções
 
@@ -118,7 +124,7 @@ let btnCriarQuiz1 = () => {
     qntNiveisChecked = qntNiveis != '' && qntNiveis != null && qntNiveis != undefined && qntNiveis >= 2 ? true : false;
 
     if (titleChecked && urlChecked && qntPerguntasChecked && qntNiveisChecked) {
-        let infoCriarQuiz = {
+        infoCriarQuiz = {
             title: tituloQuiz,
             url: urlQuiz,
             qntPerguntas: qntPerguntas,
@@ -144,7 +150,76 @@ let btnCriarQuiz1 = () => {
 // Inicializando funções
 recebeQuizzes()
 
+function renderizarTela3perguntas() {
+    container.innerHTML = '';
+    container.innerHTML +=`
+            <div class="criacao-perguntas">
+                <h3>Crie suas perguntas</h3>
+                    <div class="tela-preencher-perguntas">
+                        <div class="pergunta expandida">
+                            <div class="nome-pergunta" onclick="expandirPergunta()">
+                                <h3>Pergunta 1</h3>
+                                <img src="./img/editarpergunta.svg" alt="editar pergunta">
+                            </div>
 
+                            <div class="conteudo-pergunta">
+                                <input type="text" id="titulo" placeholder="Texto da pergunta">
+                                <input type="text" id="cor" placeholder="Cor de fundo da pergunta">
+            
+                                <h3>Resposta correta</h3>
+            
+                                <input type="text" id="resposta-correta" placeholder="Resposta correta">
+                                <input type="url" id="link-correta" placeholder="URL da imagem">
+            
+                                <h3>Respostas incorretas</h3>
+            
+                                <input type="text" id="resposta1" placeholder="Resposta incorreta 1">
+                                <input type="url" id="link1" placeholder="URL da imagem 1">
+            
+                                <input type="text" id="resposta2" placeholder="Resposta incorreta 2">
+                                <input type="url" id="link2" placeholder="URL da imagem 2">
+            
+                                <input type="text" id="resposta3" placeholder="Resposta incorreta 3">
+                                <input type="url" id="link3" placeholder="URL da imagem 3">
+                            </div>
+                        </div>
+                    </div>
+            </div>
+    `
+
+    let preencherPerguntas = document.querySelector(".tela-preencher-perguntas")
+    let contador = infoCriarQuiz[qntPerguntas];
+    for(i = 0; i > contador; i++){
+        preencherPerguntas.innerHTML +=
+        `<div class="pergunta escondida">
+            <div class="nome-pergunta" onclick="expandirPergunta()">
+                <h3>Pergunta 1</h3>
+                <img src="./img/editarpergunta.svg" alt="editar pergunta">
+            </div>
+
+            <div class="conteudo-pergunta">
+                <input type="text" id="titulo" placeholder="Texto da pergunta">
+                <input type="text" id="cor" placeholder="Cor de fundo da pergunta">
+
+                <h3>Resposta correta</h3>
+
+                <input type="text" id="resposta-correta" placeholder="Resposta correta">
+                <input type="url" id="link-correta" placeholder="URL da imagem">
+
+                <h3>Respostas incorretas</h3>
+
+                <input type="text" id="resposta1" placeholder="Resposta incorreta 1">
+                <input type="url" id="link1" placeholder="URL da imagem 1">
+
+                <input type="text" id="resposta2" placeholder="Resposta incorreta 2">
+                <input type="url" id="link2" placeholder="URL da imagem 2">
+
+                <input type="text" id="resposta3" placeholder="Resposta incorreta 3">
+                <input type="url" id="link3" placeholder="URL da imagem 3">
+            </div>
+        </div>`
+    }
+}
 function expandirPergunta(){
     //quando clica na div .nome-pergunta
     //adiciona a classe expandida e remove a classe escondida
