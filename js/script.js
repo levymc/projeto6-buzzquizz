@@ -106,7 +106,7 @@ let btnCriarQuiz1 = () => {
     const qntNiveis = document.querySelector("#qntNiveis").value;
     let titleChecked, urlChecked, qntPerguntasChecked, qntNiveisChecked;
 
-    titleChecked = tituloQuiz != '' && tituloQuiz != null && tituloQuiz != undefined && tituloQuiz.trim().length >= 20 || tituloQuiz.trim().length <= 64 ? true : false;
+    titleChecked = tituloQuiz != '' && tituloQuiz != null && tituloQuiz != undefined && (tituloQuiz.trim().length >= 20 || tituloQuiz.trim().length <= 64) ? true : false;
     // console.log(titleChecked)
 
     urlChecked = urlQuiz != '' && urlQuiz != null && urlQuiz != undefined  && (urlQuiz.startsWith("http://") || urlQuiz.startsWith("https://")) ? true : false;
