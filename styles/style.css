@@ -326,8 +326,9 @@ input[type=url]{
 }
 .tela3_3{
     display: flex;
-    gap: 1.5em;
+    gap: 2em;
     /* justify-content: center; */
+    margin-top: 1.5em;
     align-items: center;
     flex-direction: column;
 }
