@@ -222,14 +222,11 @@ function renderizarTela3perguntas() {
         </div>`
     }
 }
-<<<<<<< HEAD
-=======
 function expandirPergunta(){
     let pergunta = document.querySelector(".escondida");
     //esconderPergunta()
     pergunta.classList.toggle("expandida");
 }
->>>>>>> c93867456bbf89f03eb0d88d299dca27e7cfef81
 
 function expandirPergunta(event) {
     const pergunta = event.target.parentNode.querySelector('.conteudo-pergunta');
