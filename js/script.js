@@ -7,6 +7,8 @@ let container = document.querySelector(".container")
 let divQuiz = document.querySelector(".quiz")
 let criacaoInfos = document.querySelector(".criacao-infos")
 
+let userQuizzes ;
+
 let infoCriarQuiz = {
     title: "",
     url: "",
@@ -131,7 +133,6 @@ let btnCriarQuiz1 = () => {
             qntNiveis: qntNiveis
         };
         console.log(infoCriarQuiz);
-        aguarde();
         renderizarTela3perguntas();
     } else if (!titleChecked){
         alert("Título");
@@ -189,7 +190,11 @@ function renderizarTela3perguntas() {
     for(i = 0; i < contador; i++){
         container.innerHTML +=
         `<div class="pergunta escondida">
+<<<<<<< HEAD
             <div class="nome-pergunta" onclick="expandirPergunta(event)">
+=======
+            <div class="nome-pergunta" onclick="expandirPergunta("pergunta${i+2}")">
+>>>>>>> c93867456bbf89f03eb0d88d299dca27e7cfef81
                 <h3>Pergunta ${i+2}</h3>
                 <img src="./img/editarpergunta.svg" alt="editar pergunta">
             </div>
@@ -217,6 +222,14 @@ function renderizarTela3perguntas() {
         </div>`
     }
 }
+<<<<<<< HEAD
+=======
+function expandirPergunta(){
+    let pergunta = document.querySelector(".escondida");
+    //esconderPergunta()
+    pergunta.classList.toggle("expandida");
+}
+>>>>>>> c93867456bbf89f03eb0d88d299dca27e7cfef81
 
 function expandirPergunta(event) {
     const pergunta = event.target.parentNode.querySelector('.conteudo-pergunta');
