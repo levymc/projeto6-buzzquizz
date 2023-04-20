@@ -157,7 +157,7 @@ function renderizarTela3perguntas() {
                 <h3>Crie suas perguntas</h3>
                     <div class="tela-preencher-perguntas">
                         <div class="pergunta expandida">
-                            <div class="nome-pergunta" onclick="expandirPergunta()">
+                            <div class="nome-pergunta" onclick="expandirPergunta(event)">
                                 <h3>Pergunta 1</h3>
                                 <img src="./img/editarpergunta.svg" alt="editar pergunta">
                             </div>
@@ -189,7 +189,7 @@ function renderizarTela3perguntas() {
     for(i = 0; i < contador; i++){
         container.innerHTML +=
         `<div class="pergunta escondida">
-            <div class="nome-pergunta" onclick="expandirPergunta()">
+            <div class="nome-pergunta" onclick="expandirPergunta(event)">
                 <h3>Pergunta ${i+2}</h3>
                 <img src="./img/editarpergunta.svg" alt="editar pergunta">
             </div>
@@ -217,13 +217,15 @@ function renderizarTela3perguntas() {
         </div>`
     }
 }
-function expandirPergunta(){
-    let pergunta = document.querySelectorAll(".escondida");
-    //esconderPergunta()
-    pergunta.classList.toggle("expandida");
-}
 
-function esconderPergunta (){
-    let expandida = document.querySelectorAll(".expandida");
-    expandida.classList.remove(".expandida");
-}
+function expandirPergunta(event) {
+    const pergunta = event.target.parentNode.querySelector('.conteudo-pergunta');
+    const perguntas = document.querySelectorAll('.pergunta');
+    perguntas.forEach((pergunta) => {
+      pergunta.classList.remove('expandida');
+      pergunta.classList.add('escondida');
+    });
+    pergunta.parentNode.classList.toggle('escondida');
+    pergunta.parentNode.classList.toggle('expandida');
+  }
+
