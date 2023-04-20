@@ -7,6 +7,8 @@ let container = document.querySelector(".container")
 let divQuiz = document.querySelector(".quiz")
 let criacaoInfos = document.querySelector(".criacao-infos")
 
+let userQuizzes ;
+
 let infoCriarQuiz = {
     title: "",
     url: "",
