@@ -187,7 +187,7 @@ function renderizarTela3perguntas() {
     let contador = infoCriarQuiz["qntPerguntas"];
     for(i = 0; i < contador; i++){
         container.innerHTML +=
-        `<div class="pergunta escondida" id="pergunta${i+2}">
+        `<div class="pergunta escondida">
             <div class="nome-pergunta" onclick="expandirPergunta("pergunta${i+2}")">
                 <h3>Pergunta ${i+2}</h3>
                 <img src="./img/editarpergunta.svg" alt="editar pergunta">
@@ -216,8 +216,8 @@ function renderizarTela3perguntas() {
         </div>`
     }
 }
-function expandirPergunta(id){
-    let pergunta = document.querySelector("#"+id);
+function expandirPergunta(){
+    let pergunta = document.querySelector(".escondida");
     //esconderPergunta()
     pergunta.classList.toggle("expandida");
 }
