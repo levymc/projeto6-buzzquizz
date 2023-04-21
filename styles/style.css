@@ -345,6 +345,10 @@ input[type=url]{
 
 
 @media screen and (max-width: 1100px) {
+    body{
+        overflow-x: hidden;
+    }
+
     .todosQuiz{
         left: 2%;
         width: 21.25em;
@@ -355,5 +359,31 @@ input[type=url]{
     .container-todos{
         align-items: center;
         flex-direction: column;
+    }
+    .container{
+        width: 100vw;
+    }
+
+
+
+    .pergunta{
+        width: 100vw;
+        display: flex;
+        align-items: center;
+        border-radius: 0px;
+    }
+    .nome-pergunta{
+        width: 95%;
+    }
+    .conteudo-pergunta{
+        width: 95%;
+    }
+
+
+
+    #botao-perguntas{
+        width: 20em;
+        font-size: 18px;
+        padding: 0.95em;
     }
 }
