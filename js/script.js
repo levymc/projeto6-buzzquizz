@@ -218,11 +218,11 @@ function renderizarTela3perguntas() {
                     </div>`
 
     const contador = infoCriarQuiz["qntPerguntas"];
-    for(i = 0; i < contador; i++){
+    for(i = 1; i < contador; i++){
         container.innerHTML +=
         `<div class="pergunta escondida">
             <div class="nome-pergunta" onclick="expandirPergunta(event)">
-                <h3>Pergunta ${i+2}</h3>
+                <h3>Pergunta ${i+1}</h3>
                 <img src="./img/editarpergunta.svg" alt="editar pergunta">
             </div>
 
@@ -254,7 +254,7 @@ function renderizarTela3perguntas() {
 }
 
 function expandirPergunta(event) {
-    const pergunta = event.target.parentNode.querySelector('.conteudo-pergunta');
+    const pergunta = event.currentTarget.closest('.pergunta').querySelector('.conteudo-pergunta');
     const perguntas = document.querySelectorAll('.pergunta');
     perguntas.forEach((pergunta) => {
         pergunta.classList.remove('expandida');
@@ -285,10 +285,10 @@ function botaoValidarPerguntas(){
             isCorrectAnswer: true
         };
 
-        if (respostaCorreta["text"] === '' || respostaCorreta["text"] === null || respostaCorreta["text"] === undefined) {
+        if (respostaCorreta["text"] === '' && respostaCorreta["text"] === null && respostaCorreta["text"] === undefined) {
             alert("Coloque um texto na sua resposta");
         }
-        if (respostaCorreta["image"] === '' || respostaCorreta["image"] === null || respostaCorreta["image"] === undefined) {
+        if (respostaCorreta["image"] === '' && respostaCorreta["image"] === null && respostaCorreta["image"] === undefined && (respostaCorreta["image"].startsWith("http://") || respostaCorreta["image"].startsWith("https://"))) {
             alert("Adicione uma imagem na sua resposta");
         }
 
