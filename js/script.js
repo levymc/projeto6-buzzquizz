@@ -15,6 +15,9 @@ let infoCriarQuiz = {
     qntPerguntas: "",
     qntNiveis: ""
 }
+let perguntasQuiz = [];
+
+let niveisQuiz = [];
 
 // Seção de Funções
 
@@ -178,36 +181,32 @@ function renderizarTela3perguntas() {
 
                             <div class="conteudo-pergunta">
                                 <input type="text" id="titulo" placeholder="Texto da pergunta">
-                                <input type="text" id="cor" placeholder="Cor de fundo da pergunta">
+                                <input type="text" data-mask="#000000" id="cor" placeholder="Cor de fundo da pergunta">
             
                                 <h3>Resposta correta</h3>
             
                                 <input type="text" id="resposta-correta" placeholder="Resposta correta">
-                                <input type="url" id="link-correta" placeholder="URL da imagem">
+                                <input type="url" pattern="https://*" id="link-correta" placeholder="URL da imagem">
             
                                 <h3>Respostas incorretas</h3>
             
                                 <input type="text" id="resposta1" placeholder="Resposta incorreta 1">
-                                <input type="url" id="link1" placeholder="URL da imagem 1">
+                                <input type="url" pattern="https://*" id="link1" placeholder="URL da imagem 1">
             
                                 <input type="text" id="resposta2" placeholder="Resposta incorreta 2">
-                                <input type="url" id="link2" placeholder="URL da imagem 2">
+                                <input type="url" pattern="https://*" id="link2" placeholder="URL da imagem 2">
             
                                 <input type="text" id="resposta3" placeholder="Resposta incorreta 3">
-                                <input type="url" id="link3" placeholder="URL da imagem 3">
+                                <input type="url" pattern="https://*" id="link3" placeholder="URL da imagem 3">
                             </div>
                         </div>
                     </div>`
 
-    let contador = infoCriarQuiz["qntPerguntas"];
+    const contador = infoCriarQuiz["qntPerguntas"];
     for(i = 0; i < contador; i++){
         container.innerHTML +=
         `<div class="pergunta escondida">
-<<<<<<< HEAD
             <div class="nome-pergunta" onclick="expandirPergunta(event)">
-=======
-            <div class="nome-pergunta" onclick="expandirPergunta("pergunta${i+2}")">
->>>>>>> c93867456bbf89f03eb0d88d299dca27e7cfef81
                 <h3>Pergunta ${i+2}</h3>
                 <img src="./img/editarpergunta.svg" alt="editar pergunta">
             </div>
@@ -234,21 +233,115 @@ function renderizarTela3perguntas() {
             </div>
         </div>`
     }
-}
-function expandirPergunta(){
-    let pergunta = document.querySelector(".escondida");
-    //esconderPergunta()
-    pergunta.classList.toggle("expandida");
+
+    container.innerHTML +=
+    `<button id="botao-perguntas" type="submit" onclick="botaoValidarPerguntas()">Prosseguir pra criar níveis</button>`
 }
 
 function expandirPergunta(event) {
     const pergunta = event.target.parentNode.querySelector('.conteudo-pergunta');
     const perguntas = document.querySelectorAll('.pergunta');
     perguntas.forEach((pergunta) => {
-      pergunta.classList.remove('expandida');
-      pergunta.classList.add('escondida');
+        pergunta.classList.remove('expandida');
+        pergunta.classList.add('escondida');
     });
     pergunta.parentNode.classList.toggle('escondida');
     pergunta.parentNode.classList.toggle('expandida');
-  }
+}
+
+function botaoValidarPerguntas(){
+    const perguntas = document.querySelectorAll('.pergunta');
+
+    perguntas.forEach((pergunta) => {
+        const titulo = pergunta.querySelector('#titulo').value;
+        const cor = pergunta.querySelector('#cor').value;
+
+        if (titulo.length < 20){
+            alert("O título da pergunta precisa ter pelo menos 20 caracteres");
+        }
+        
+        if(!/^#[0-9A-F]{6}$/i.test(cor)){
+            alert("A cor precisa estar no formato hexadecimal (ex. #3455eb)");
+        }
+
+        const respostaCorreta = {
+            text: pergunta.querySelector('#resposta-correta').value,
+            image: pergunta.querySelector('#link-correta').value,
+            isCorrectAnswer: true
+        };
+
+        if (respostaCorreta["text"] === '' || respostaCorreta["text"] === null || respostaCorreta["text"] === undefined) {
+            alert("Coloque um texto na sua resposta");
+        }
+        if (respostaCorreta["image"] === '' || respostaCorreta["image"] === null || respostaCorreta["image"] === undefined) {
+            alert("Adicione uma imagem na sua resposta");
+        }
+
+        const respostasIncorretas = [
+            {
+                text: pergunta.querySelector('#resposta1').value,
+                image: pergunta.querySelector('#link1').value,
+                isCorrectAnswer: false
+            },
+            {
+                text: pergunta.querySelector('#resposta2').value,
+                image: pergunta.querySelector('#link2').value,
+                isCorrectAnswer: false
+            },
+            {
+                text: pergunta.querySelector('#resposta3').value,
+                image: pergunta.querySelector('#link3').value,
+                isCorrectAnswer: false
+            }
+            ];
+    } )
+
+
+    salvarPerguntasQuiz()
+}
+
+function salvarPerguntasQuiz (){
+    const perguntas = document.querySelectorAll('.pergunta');
+
+    perguntas.forEach((pergunta) => {
+        const titulo = pergunta.querySelector('#titulo').value;
+        const cor = pergunta.querySelector('#cor').value;
+
+        const respostaCorreta = {
+            text: pergunta.querySelector('#resposta-correta').value,
+            image: pergunta.querySelector('#link-correta').value,
+            isCorrectAnswer: true
+        };
+
+        const respostasIncorretas = [
+        {
+            text: pergunta.querySelector('#resposta1').value,
+            image: pergunta.querySelector('#link1').value,
+            isCorrectAnswer: false
+        },
+        {
+            text: pergunta.querySelector('#resposta2').value,
+            image: pergunta.querySelector('#link2').value,
+            isCorrectAnswer: false
+        },
+        {
+            text: pergunta.querySelector('#resposta3').value,
+            image: pergunta.querySelector('#link3').value,
+            isCorrectAnswer: false
+        }
+        ];
+
+        const answers = [respostaCorreta, ...respostasIncorretas];
+
+        const perguntaQuiz = {
+            title: titulo,
+            color: cor,
+            answers: answers
+        };
+    
+        perguntasQuiz.push(perguntaQuiz);
+    });
+
+    console.log(perguntasQuiz)
+}
 

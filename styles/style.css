@@ -332,6 +332,20 @@ input[type=url]{
     align-items: center;
     flex-direction: column;
 }
+#botao-perguntas{
+    background: #EC362D;
+    border-radius: 15px;
+    width: 22em;
+    font-weight: 400;
+    font-size: 21px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #FFF5F4;
+    border: none;
+    padding: 1em;
+}
 
 
 
