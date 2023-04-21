@@ -271,26 +271,11 @@ function botaoValidarPerguntas(){
         const titulo = pergunta.querySelector('#titulo').value;
         const cor = pergunta.querySelector('#cor').value;
 
-        if (titulo.length < 20){
-            alert("O título da pergunta precisa ter pelo menos 20 caracteres");
-        }
-        
-        if(!/^#[0-9A-F]{6}$/i.test(cor)){
-            alert("A cor precisa estar no formato hexadecimal (ex. #3455eb)");
-        }
-
         const respostaCorreta = {
             text: pergunta.querySelector('#resposta-correta').value,
             image: pergunta.querySelector('#link-correta').value,
             isCorrectAnswer: true
         };
-
-        if (respostaCorreta["text"] === '' && respostaCorreta["text"] === null && respostaCorreta["text"] === undefined) {
-            alert("Coloque um texto na sua resposta");
-        }
-        if (respostaCorreta["image"] === '' && respostaCorreta["image"] === null && respostaCorreta["image"] === undefined && (respostaCorreta["image"].startsWith("http://") || respostaCorreta["image"].startsWith("https://"))) {
-            alert("Adicione uma imagem na sua resposta");
-        }
 
         const respostasIncorretas = [
             {
@@ -309,10 +294,74 @@ function botaoValidarPerguntas(){
                 isCorrectAnswer: false
             }
             ];
+
+        if (titulo.length < 20){
+            alert("O título das perguntas precisa ter pelo menos 20 caracteres");
+        }
+
+        else if(!/^#[0-9A-F]{6}$/i.test(cor)){
+            alert("A cor das perguntas precisa estar no formato hexadecimal (ex. #3455eb)");
+        }
+
+        else if (respostaCorreta["text"] === '' || respostaCorreta["text"] === null || respostaCorreta["text"] === undefined) {
+            alert("Coloque um texto na sua resposta");
+        }
+        else if (respostaCorreta["image"] === '' || respostaCorreta["image"] === null || respostaCorreta["image"] === undefined || !respostaCorreta["image"].startsWith("http://") || !respostaCorreta["image"].startsWith("https://")) {
+            alert("Adicione uma imagem válida na sua resposta");
+        }
+
+        else if(respostasIncorretas[0].text === '' || respostasIncorretas[0].text === null || respostasIncorretas[0].text === undefined){
+            alert("Adicione pelo menos uma resposta incorreta 1");
+        }
+        else if(respostasIncorretas[0].image === '' || respostasIncorretas[0].image === null || respostasIncorretas[0].image === undefined || !respostasIncorretas[0].image.startsWith("http://") || !respostasIncorretas[0].image.startsWith("https://")){
+            alert("Adicione uma imagem válida na sua resposta resposta incorreta 1");
+        }
+
+
+        else if ((respostasIncorretas[1].text === "" || respostasIncorretas[1].text === null || respostasIncorretas[1].text === undefined) && (respostasIncorretas[1].image === "" || respostasIncorretas[1].image === null || respostasIncorretas[1].image === undefined)){
+
+        }
+        else if((respostasIncorretas[1].text === "" || respostasIncorretas[1].text === null || respostasIncorretas[1].text === undefined) && (respostasIncorretas[1].image !== "" && respostasIncorretas[1].image !== null && respostasIncorretas[1].image !== undefined && respostasIncorretas[1].image.startsWith("http://") || respostasIncorretas[1].image.startsWith("https://"))){
+            alert("Adicione um texto para a resposta incorreta 2");
+        }
+        else if((respostasIncorretas[1].text !== "" && respostasIncorretas[1].text !== null && respostasIncorretas[1].text !== undefined) && (respostasIncorretas[1].image === "" || respostasIncorretas[1].image === null || respostasIncorretas[1].image === undefined || !respostasIncorretas[1].image.startsWith("http://") || !respostasIncorretas[1].image.startsWith("https://"))){
+            alert("Adicione uma imagem válida para a resposta incorreta 2");
+        }
+        else if((respostasIncorretas[1].text !== "" && respostasIncorretas[1].text !== null && respostasIncorretas[1].text !== undefined) && (respostasIncorretas[1].image !== "" && respostasIncorretas[1].image !== null && respostasIncorretas[1].image === undefined && respostasIncorretas[1].image.startsWith("http://") || respostasIncorretas[1].image.startsWith("https://"))){
+
+        }
+
+
+        else if ((respostasIncorretas[2].text === "" || respostasIncorretas[2].text === null || respostasIncorretas[2].text === undefined) && (respostasIncorretas[2].image === "" || respostasIncorretas[2].image === null || respostasIncorretas[2].image === undefined)){
+
+        }
+        else if((respostasIncorretas[2].text === "" || respostasIncorretas[2].text === null || respostasIncorretas[2].text === undefined) && (respostasIncorretas[2].image !== "" && respostasIncorretas[2].image !== null && respostasIncorretas[2].image !== undefined && respostasIncorretas[2].image.startsWith("http://") || respostasIncorretas[2].image.startsWith("https://"))){
+            alert("Adicione um texto para a resposta incorreta 3");
+        }
+        else if((respostasIncorretas[2].text !== "" && respostasIncorretas[2].text !== null && respostasIncorretas[2].text !== undefined) && (respostasIncorretas[2].image === "" || respostasIncorretas[2].image === null || respostasIncorretas[2].image === undefined || !respostasIncorretas[2].image.startsWith("http://") || !respostasIncorretas[2].image.startsWith("https://"))){
+            alert("Adicione uma imagem válida para a resposta incorreta 3");
+        }
+        else if((respostasIncorretas[2].text !== "" && respostasIncorretas[2].text !== null && respostasIncorretas[2].text !== undefined) && (respostasIncorretas[2].image !== "" && respostasIncorretas[2].image !== null && respostasIncorretas[2].image === undefined && respostasIncorretas[2].image.startsWith("http://") || respostasIncorretas[2].image.startsWith("https://"))){
+
+        }
+
+
+        else if ((respostasIncorretas[3].text === "" || respostasIncorretas[3].text === null || respostasIncorretas[3].text === undefined) && (respostasIncorretas[3].image === "" || respostasIncorretas[3].image === null || respostasIncorretas[3].image === undefined)){
+
+        }
+        else if((respostasIncorretas[3].text === "" || respostasIncorretas[3].text === null || respostasIncorretas[3].text === undefined) && (respostasIncorretas[3].image !== "" && respostasIncorretas[3].image !== null && respostasIncorretas[3].image !== undefined && respostasIncorretas[3].image.startsWith("http://") || respostasIncorretas[3].image.startsWith("https://"))){
+            alert("Adicione um texto para a resposta incorreta 4");
+        }
+        else if((respostasIncorretas[3].text !== "" && respostasIncorretas[3].text !== null && respostasIncorretas[3].text !== undefined) && (respostasIncorretas[3].image === "" || respostasIncorretas[3].image === null || respostasIncorretas[3].image === undefined || !respostasIncorretas[3].image.startsWith("http://") || !respostasIncorretas[3].image.startsWith("https://"))){
+            alert("Adicione uma imagem válida para a resposta incorreta 4");
+        }
+        else if((respostasIncorretas[3].text !== "" && respostasIncorretas[3].text !== null && respostasIncorretas[3].text !== undefined) && (respostasIncorretas[3].image !== "" && respostasIncorretas[3].image !== null && respostasIncorretas[3].image === undefined && respostasIncorretas[3].image.startsWith("http://") || respostasIncorretas[3].image.startsWith("https://"))){
+
+        }
+        else{
+            salvarPerguntasQuiz()
+        }
     } )
-
-
-    salvarPerguntasQuiz()
 }
 
 function salvarPerguntasQuiz (){
@@ -357,6 +406,7 @@ function salvarPerguntasQuiz (){
         perguntasQuiz.push(perguntaQuiz);
     });
 
-    console.log(perguntasQuiz)
+    console.log(perguntasQuiz);
+    aguarde();
 }
 
