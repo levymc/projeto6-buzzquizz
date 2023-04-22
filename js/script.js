@@ -145,7 +145,7 @@ let recarregaPagina = () => {
 // }
 
 let renderizaQuizzes = (listaQuizzes) => {
-    console.log(listaQuizzes)
+    
     index = listaQuizzes;
     let divPrincipal = document.querySelector(".container-todos");
     divPrincipal.innerHTML = "";
@@ -156,13 +156,22 @@ let renderizaQuizzes = (listaQuizzes) => {
         background-size: cover; 
         background-position: center;
         background-repeat:no-repeat;"
-        onclick="jogarQuizz()"><h4>${quiz.title}</h4></div>`;
+        onclick="jogarQuizz(${quiz.id})"><h4>${quiz.title}</h4></div>`;
     });
-};
 
-function jogarQuizz() {
-    const promise = axios.get(`https://mock-api.driven.com.br/api/vm/buzzquizz/quizzes/210`);
+
+}
+
+
+function jogarQuizz(element) {
+    Number(element)
+    
+    const promise = axios.get(`https://mock-api.driven.com.br/api/vm/buzzquizz/quizzes/${element}`);
     promise.then(renderizarQuizzClicado);
+    promise.catch(error => {
+        console.log(error);
+        alert("Algum erro ocorreu, tente novamente mais tarde!")
+    })
 
     function renderizarQuizzClicado(promessa) {
         container.innerHTML = ''; 
@@ -189,6 +198,9 @@ function jogarQuizz() {
             display: flex;
             align-items: center;
             justify-content: center;
+            word-wrap: break-word;
+            word-break:break-all ;
+            text-align: center;
             width: 100%;
             height: 138px;">
                 <h4>${questionsClicado[i].title}</h4>
@@ -222,6 +234,7 @@ function jogarQuizz() {
         
         }
 
+
           /*  <div class="perguntasDoQuizz">
                 <div class="opcaoUm" onclick="selecionarOpcao()">
                     <img src="${questionsClicado[i].image}">
@@ -250,7 +263,9 @@ function jogarQuizz() {
         
 
     }
-
+function selecionarOpcao(){
+    alert("Lógica em construção em construção")
+}
     
 
 let recebeQuizzes = () => {
