@@ -150,7 +150,7 @@ let btnCriarQuiz1 = () => {
     // console.log(urlChecked)
 
     qntPerguntasChecked = qntPerguntas != '' && qntPerguntas != null && qntPerguntas != undefined && qntPerguntas >= 3 ? true : false;
-    console.log(qntPerguntasChecked)
+    // console.log(qntPerguntasChecked)
 
     qntNiveisChecked = qntNiveis != '' && qntNiveis != null && qntNiveis != undefined && qntNiveis >= 2 ? true : false;
 
@@ -168,10 +168,13 @@ let btnCriarQuiz1 = () => {
         renderizarTela3();
     } else if (!urlChecked){
         alert("URL");
+        renderizarTela3();
     }else if (!qntPerguntasChecked){
         alert("qnt perg");
+        renderizarTela3();
     }else if (!qntNiveisChecked){
         alert("qnt níveis")
+        renderizarTela3();
     }
 }
 
