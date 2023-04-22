@@ -8,6 +8,7 @@ let divQuiz = document.querySelector(".quiz")
 let criacaoInfos = document.querySelector(".criacao-infos")
 let perguntaSelecionada = document.querySelector(".pergunta-selecionada")
 let perguntasQuizz = document.querySelector(".perguntas-quizz")
+
 let imgstring="";
 let index;
 let userQuizzes ;
@@ -168,7 +169,7 @@ let renderizaQuizzes = (listaQuizzes) => {
 };
 
 function jogarQuizz() {
-    const promise = axios.get(`https://mock-api.driven.com.br/api/vm/buzzquizz/quizzes/10`);
+    const promise = axios.get(`https://mock-api.driven.com.br/api/vm/buzzquizz/quizzes/210`);
     promise.then(renderizarQuizzClicado);
 
     function renderizarQuizzClicado(promessa) {
@@ -177,6 +178,7 @@ function jogarQuizz() {
         const QuantidadeQuestionsClicado = quizzClicado.questions.length
         const questionsClicado = quizzClicado.questions
         console.log(questionsClicado)
+        console.log(QuantidadeQuestionsClicado)
 
         perguntaSelecionada.innerHTML=`
         <div class="quizzSelecionado">
@@ -186,7 +188,7 @@ function jogarQuizz() {
         ">${quizzClicado.title}</div>`;
 
         
-        for(const i=0; i<=QuantidadeQuestionsClicado-1; i++){
+        for(let i=0; i<=QuantidadeQuestionsClicado; i++){
         console.log(perguntasQuizz);
         perguntasQuizz.innerHTML +=
         `<div class="perguntaQuizz">
@@ -198,9 +200,31 @@ function jogarQuizz() {
             width: 100%;
             height: 138px;">
                 <h4>${questionsClicado[i].title}</h4>
-            </div> `
-        
+            </div> 
+            <div class="perguntasDoQuizz">
+            </div>
+            </div>`
+            
 
+            
+            const numeroDeRespostas = questionsClicado[i].answers.length
+            console.log(numeroDeRespostas)
+            
+            for(let u=0; u<= numeroDeRespostas-1; u++){
+                const cadaPerguntaQuizz = perguntasQuizz.querySelector(".perguntasDoQuizz")
+                cadaPerguntaQuizz.innerHTML += `
+                    
+                <div class="opcaoUm" onclick="selecionarOpcao()">
+                    <img src="${questionsClicado[i].answers[u].image}">
+                    <h4>${questionsClicado[i].answers[u].text}</h4>
+                </div>
+            
+                `
+                if(u==numeroDeRespostas-1){
+                    cadaPerguntaQuizz.classList.remove("perguntasDoQuizz")
+                    cadaPerguntaQuizz.classList.add("respostaRenderizada")
+                }
+            } 
             
      
         
