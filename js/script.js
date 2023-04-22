@@ -6,7 +6,11 @@ axios.defaults.headers.common['Authorization'] = 'C57BZDyeqoO9fanyGKeKwmBW';
 let container = document.querySelector(".container")
 let divQuiz = document.querySelector(".quiz")
 let criacaoInfos = document.querySelector(".criacao-infos")
+let perguntaSelecionada = document.querySelector(".pergunta-selecionada")
+let perguntasQuizz = document.querySelector(".perguntas-quizz")
 
+let imgstring="";
+let index;
 let userQuizzes ;
 
 let infoCriarQuiz = {
@@ -48,12 +52,63 @@ let renderizarTela1 = () => {
 }
 
 
-function jogarQuizz(){
-    const removerEscondido = document.querySelector(".quizzSelecionado")
-    removerEscondido.classList.remove("escondido")
-    container.innerHTML = '';
+/*function jogarQuizz(){
 
-}
+
+   
+
+
+    let containerTodos = container.querySelector(".container-todos")
+    console.log(containerTodos)
+    containerTodos.addEventListener("click", function(event) {
+        event.target.classList.add("click")
+        console.log(event.target)
+       // let elementoimg = event.target;
+        //let guardarImagem = elementoimg.getAttribute("url")
+       // imgstring = guardarImagem.toString()
+       
+        
+        
+
+        const imagemFundoQuizz = document.querySelector(".bannerQuizz")
+        clickQuizz.style = `background: linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${quiz.image})`
+        
+       console.log(imgstring)        
+    });
+    container.innerHTML = ''; 
+
+    perguntaSelecionada.innerHTML=`
+    <div class="quizzSelecionado">
+    <div class="bannerQuizz">O quanto você é de boas?</div>
+    <div class="perguntaQuizz">
+        <div class="bannerPergunta">
+            <h4>Em qual animal Olho-Tonto Moody transfigurou Malfoy?</h4>
+        </div>
+        <div class="perguntasDoQuizz">
+            <div class="opcaoUm" onclick="selecionarOpcao()">
+                <img src="./img/image 3.png">
+                <h4>Gatíneo</h4>
+            </div>
+            <div class="opcaoDois" onclick="selecionarOpcao()">
+                <img src="./img/image 3.png">
+                <h4>Gatíneo</h4>
+            </div>
+            <div class="opcaoTres" onclick="selecionarOpcao()">
+                <img src="./img/image 3.png">
+                <h4>Gatíneo</h4>
+            </div>
+            <div class="opcaoQuatro" onclick="selecionarOpcao()">
+                <img src="./img/image 3.png">
+                <h4>Gatíneo</h4>
+            </div>
+        </div>
+
+    </div>
+    
+</div>
+    `;
+
+}*/
 
 let renderizarTela3 = () => {
     container.innerHTML = '';
@@ -72,17 +127,7 @@ let renderizarTela3 = () => {
 
 }
 
-let renderizarTela3_3 = () => {
-    container.innerHTML = '';
-    container.innerHTML += `
-    <div class="tela3_3 flex">
-        <h3>Seu quizz está pronto!</h3>
-        <div class="quiz-tela3_3"><h4>O quanto você é de boas?</h4></div>
-        <button class="btn-acessarQuizz" onclick="btnCriarQuiz1()">Acessar Quizz</button>
-        <button class="btn-Home" onclick="recarregaPagina()">Voltar pra home</button>
-    </div>
-    `
-}
+
 
 let recarregaPagina = () => {
     window.location.reload();
@@ -101,21 +146,117 @@ let recarregaPagina = () => {
 
 let renderizaQuizzes = (listaQuizzes) => {
     console.log(listaQuizzes)
+    index = listaQuizzes;
     let divPrincipal = document.querySelector(".container-todos");
     divPrincipal.innerHTML = "";
+    
     listaQuizzes.forEach(quiz => {
         divPrincipal.innerHTML += `<div class="quiz" style="
         background:linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.1%, #000000 100%), url(${quiz.image});
         background-size: cover; 
         background-position: center;
-        background-repeat:no-repeat;
-        "><h4>${quiz.title}</h4></div>`;
+        background-repeat:no-repeat;"
+        onclick="jogarQuizz()"><h4>${quiz.title}</h4></div>`;
     });
 };
+
+function jogarQuizz() {
+    const promise = axios.get(`https://mock-api.driven.com.br/api/vm/buzzquizz/quizzes/210`);
+    promise.then(renderizarQuizzClicado);
+
+    function renderizarQuizzClicado(promessa) {
+        container.innerHTML = ''; 
+        const quizzClicado = promessa.data
+        const QuantidadeQuestionsClicado = quizzClicado.questions.length
+        const questionsClicado = quizzClicado.questions
+        console.log(questionsClicado)
+        console.log(QuantidadeQuestionsClicado)
+
+        perguntaSelecionada.innerHTML=`
+        <div class="quizzSelecionado">
+        <div class="bannerQuizz" style = "
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${quizzClicado.image});
+        background-size: cover; 
+        ">${quizzClicado.title}</div>`;
+
+        
+        for(let i=0; i<=QuantidadeQuestionsClicado; i++){
+        console.log(perguntasQuizz);
+        perguntasQuizz.innerHTML +=
+        `<div class="perguntaQuizz">
+            <div class="bannerPergunta" style="
+            background-color: ${questionsClicado[i].color};
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 138px;">
+                <h4>${questionsClicado[i].title}</h4>
+            </div> 
+            <div class="perguntasDoQuizz">
+            </div>
+            </div>`
+            
+
+            
+            const numeroDeRespostas = questionsClicado[i].answers.length
+            console.log(numeroDeRespostas)
+            
+            for(let u=0; u<= numeroDeRespostas-1; u++){
+                const cadaPerguntaQuizz = perguntasQuizz.querySelector(".perguntasDoQuizz")
+                cadaPerguntaQuizz.innerHTML += `
+                    
+                <div class="opcaoUm" onclick="selecionarOpcao()">
+                    <img src="${questionsClicado[i].answers[u].image}">
+                    <h4>${questionsClicado[i].answers[u].text}</h4>
+                </div>
+            
+                `
+                if(u==numeroDeRespostas-1){
+                    cadaPerguntaQuizz.classList.remove("perguntasDoQuizz")
+                    cadaPerguntaQuizz.classList.add("respostaRenderizada")
+                }
+            } 
+            
+     
+        
+        }
+
+          /*  <div class="perguntasDoQuizz">
+                <div class="opcaoUm" onclick="selecionarOpcao()">
+                    <img src="${questionsClicado[i].image}">
+                    <h4></h4>
+                </div>
+                <div class="opcaoDois" onclick="selecionarOpcao()">
+                    <img src="./img/image 3.png">
+                    <h4>Gatíneo</h4>
+                </div>
+                <div class="opcaoTres" onclick="selecionarOpcao()">
+                    <img src="./img/image 3.png">
+                    <h4>Gatíneo</h4>
+                </div>
+                <div class="opcaoQuatro" onclick="selecionarOpcao()">
+                    <img src="./img/image 3.png">
+                    <h4>Gatíneo</h4>
+                </div>
+            </div>
+    
+        </div>
+        
+    </div>*/
+    
+    
+    }
+        
+
+    }
+
+    
 
 let recebeQuizzes = () => {
     axios.get("https://mock-api.driven.com.br/api/vm/buzzquizz/quizzes").then(response => {
         renderizaQuizzes(response.data);
+        console.log(response.data);
     }).catch(error => {
         console.log(error);
         alert("Algum erro ocorreu, tente novamente mais tarde!")
@@ -429,4 +570,20 @@ function salvarPerguntasQuiz (){
     console.log(perguntasQuiz);
     aguarde();
 }
+
+let renderizarTela3_3 = () => {
+    container.innerHTML = '';
+    container.innerHTML += `
+    <div class="tela3_3 flex">
+        <h3>Seu quizz está pronto!</h3>
+        <div class="quiz-tela3_3"><h4>O quanto você é de boas?</h4></div>
+        <button class="btn-acessarQuizz" onclick="btnCriarQuiz1()">Acessar Quizz</button>
+        <button class="btn-Home" onclick="recarregaPagina()">Voltar pra home</button>
+    </div>
+    `
+}
+
+
+// localStorage.setItem('newUser', newUser); // armazena o nome do usuário na localStorage
+// newUser = localStorage.getItem('newUser');
 

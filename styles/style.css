@@ -175,6 +175,7 @@ main{
 .quiz h4{
     z-index: 3;
     position: absolute;
+    word-break: break-all;
     bottom: 1em;
     left: 1em;
     font-weight: lighter;
@@ -197,6 +198,7 @@ main{
     z-index: 3;
     position: absolute;
     bottom: 1em;
+    word-break: break-all;
     left: 1em;
     font-weight: lighter;
     font-size: 17px;
@@ -369,6 +371,8 @@ input[type=url]{
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 100x;
+   
 }
 .bannerQuizz{
     position: absolute;
@@ -379,7 +383,8 @@ input[type=url]{
 
     margin-top: 69px;
 
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("/projeto6-buzzquizz/img/Rectangle\ 42Potter.png");
+    
+    
 
     display: flex;
     align-items: center;
@@ -396,18 +401,29 @@ input[type=url]{
     width: 676px;
     height: auto;
     background-color: #FFFFFF;
-    margin-top: 42px;
+    
 
     padding: 20px;
     box-sizing: border-box;
 
+    margin-bottom: 50px;
+
+}
+
+
+
+
+.perguntas-quizz{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .bannerPergunta{
     width: 100%;
     height: 138px;
     background-color: #434CA0;
-
+    
     display: flex;
     align-items: center;
     justify-content: center;
@@ -421,7 +437,15 @@ input[type=url]{
 
 }
 
-.opcaoUm, .opcaoDois, .opcaoTres, .opcaoQuatro{
+.respostaRenderizada{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+
+}
+
+.opcaoUm{
 
 height: 209px;
 width: 305px;
@@ -429,12 +453,29 @@ width: 305px;
 margin: 5px;
 
 }
+
+.opcaoUm img{
+
+    width: 100%;
+    height: auto;
+   
+    
+    }
+
+.opcaoUm h4{
+    text-align: center;
+    width: 100%;
+
+    word-wrap: break-word;
+    word-break:break-all ;
+}
+
 .bannerPergunta h4{
     font-family: "Roboto", sans-serif;    
     font-size: 20px;
     font-weight: 700;
     margin-top: 5px;
-    color: #FFFFFF;
+    color: #030303;
 
 }
 .perguntasDoQuizz img{
@@ -452,10 +493,10 @@ margin: 5px;
 
 .escondido{
     display: none;
-
-    .container {
-        width: 100vw;
-    }
+}
+    /* .container {
+        width: 100vw; */
+    /* } */
 
     .pergunta{
         width: 100vw;
@@ -477,4 +518,3 @@ margin: 5px;
         font-size: 18px;
         padding: 0.95em;
     }
-}
