@@ -452,10 +452,10 @@ margin: 5px;
 
 .escondido{
     display: none;
-
-    .container {
-        width: 100vw;
-    }
+}
+    /* .container {
+        width: 100vw; */
+    /* } */
 
     .pergunta{
         width: 100vw;
@@ -477,4 +477,3 @@ margin: 5px;
         font-size: 18px;
         padding: 0.95em;
     }
-}
