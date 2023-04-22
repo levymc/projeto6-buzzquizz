@@ -473,14 +473,6 @@ function botaoValidarPerguntas(){
         else if(respostasIncorretas[0].image === '' || respostasIncorretas[0].image === null || respostasIncorretas[0].image === undefined || !respostasIncorretas[0].image.startsWith("http://") && !respostasIncorretas[0].image.startsWith("https://")){
             alert("Adicione uma imagem válida na sua resposta resposta incorreta 1");
         }
-
-        //VALIDANDO A SEGUNDA RESPOSTA INCORRETA - OPCIONAL
-
-        /*
-        //SE ESTIVER VAZIA
-        else if ((respostasIncorretas[1].text === "" || respostasIncorretas[1].text === null || respostasIncorretas[1].text === undefined) && (respostasIncorretas[1].image === "" || respostasIncorretas[1].image === null || respostasIncorretas[1].image === undefined)){
-
-        }*/
         //SE TIVER IMAGEM MAS NÃO TIVER TEXTO
         else if((respostasIncorretas[1].text === "" || respostasIncorretas[1].text === null || respostasIncorretas[1].text === undefined) && (respostasIncorretas[1].image !== "" && respostasIncorretas[1].image !== null && respostasIncorretas[1].image !== undefined && respostasIncorretas[1].image.startsWith("http://") || respostasIncorretas[1].image.startsWith("https://"))){
             alert("Adicione um texto para a resposta incorreta 2");
@@ -489,20 +481,6 @@ function botaoValidarPerguntas(){
         else if((respostasIncorretas[1].text !== "" && respostasIncorretas[1].text !== null && respostasIncorretas[1].text !== undefined) && (respostasIncorretas[1].image === "" || respostasIncorretas[1].image === null || respostasIncorretas[1].image === undefined || !respostasIncorretas[1].image.startsWith("http://") && !respostasIncorretas[1].image.startsWith("https://"))){
             alert("Adicione uma imagem válida para a resposta incorreta 2");
         }
-
-        /*
-        //SE TIVER TEXTO E IMAGEM
-        else if((respostasIncorretas[1].text !== "" && respostasIncorretas[1].text !== null && respostasIncorretas[1].text !== undefined) && (respostasIncorretas[1].image !== "" && respostasIncorretas[1].image !== null && respostasIncorretas[1].image !== undefined && respostasIncorretas[1].image.startsWith("http://") || respostasIncorretas[1].image.startsWith("https://"))){
-
-        }*/
-
-        //VALIDANDO A TERCEIRA RESPOSTA INCORRETA - OPCIONAL
-
-        /*
-        //SE ESTIVER VAZIA
-        else if ((respostasIncorretas[2].text === "" || respostasIncorretas[2].text === null || respostasIncorretas[2].text === undefined) && (respostasIncorretas[2].image === "" || respostasIncorretas[2].image === null || respostasIncorretas[2].image === undefined)){
-
-        }*/
         //SE TIVER IMAGEM MAS NÃO TIVER TEXTO
         else if((respostasIncorretas[2].text === "" || respostasIncorretas[2].text === null || respostasIncorretas[2].text === undefined) && (respostasIncorretas[2].image !== "" && respostasIncorretas[2].image !== null && respostasIncorretas[2].image !== undefined && respostasIncorretas[2].image.startsWith("http://") || respostasIncorretas[2].image.startsWith("https://"))){
             alert("Adicione um texto para a resposta incorreta 3");
@@ -511,13 +489,6 @@ function botaoValidarPerguntas(){
         else if((respostasIncorretas[2].text !== "" && respostasIncorretas[2].text !== null && respostasIncorretas[2].text !== undefined) && (respostasIncorretas[2].image === "" || respostasIncorretas[2].image === null || respostasIncorretas[2].image === undefined && !respostasIncorretas[2].image.startsWith("http://") && !respostasIncorretas[2].image.startsWith("https://"))){
             alert("Adicione uma imagem válida para a resposta incorreta 3");
         }
-
-        /*
-        //SE TIVER TEXTO E IMAGEM
-        else if((respostasIncorretas[2].text !== "" && respostasIncorretas[2].text !== null && respostasIncorretas[2].text !== undefined) && (respostasIncorretas[2].image !== "" && respostasIncorretas[2].image !== null && respostasIncorretas[2].image !== undefined && respostasIncorretas[2].image.startsWith("http://") || respostasIncorretas[2].image.startsWith("https://"))){
-
-        }*/
-
         else{
             salvarPerguntasQuiz()
         }
