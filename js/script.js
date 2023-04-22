@@ -157,15 +157,7 @@ let renderizaQuizzes = (listaQuizzes) => {
         background-position: center;
         background-repeat:no-repeat;"
         onclick="jogarQuizz()"><h4>${quiz.title}</h4></div>`;
-    
-    
-    
-    
     });
-
-    
-
-
 };
 
 function jogarQuizz() {

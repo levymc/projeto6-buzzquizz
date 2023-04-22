@@ -175,6 +175,7 @@ main{
 .quiz h4{
     z-index: 3;
     position: absolute;
+    word-break: break-all;
     bottom: 1em;
     left: 1em;
     font-weight: lighter;
@@ -197,6 +198,7 @@ main{
     z-index: 3;
     position: absolute;
     bottom: 1em;
+    word-break: break-all;
     left: 1em;
     font-weight: lighter;
     font-size: 17px;
