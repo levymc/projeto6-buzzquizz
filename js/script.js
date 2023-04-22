@@ -30,15 +30,17 @@ let renderizarTela1 = () => {
             <div class="todosQuiz"><h3>Todos os Quizzes</h3></div>
             <div class="container-todos">
                 <div class="quiz" onclick="jogarQuizz()"><img src="./img/preg.svg" alt=""><h4>O quanto você é de boas?</h4></div>
-                <div class="quiz"><img src="./img/preg.svg" alt=""><h4>O quanto você é de boas?</h4></div>
-                <div class="quiz"><img src="./img/preg.svg" alt=""><h4>O quanto você é de boas?</h4></div>
-                <div class="quiz"><img src="./img/preg.svg" alt=""><h4>O quanto você é de boas?</h4></div>
+                <div class="quiz" onclick="jogarQuizz()"><img src="./img/preg.svg" alt=""><h4>O quanto você é de boas?</h4></div>
+                <div class="quiz" onclick="jogarQuizz()"><img src="./img/preg.svg" alt=""><h4>O quanto você é de boas?</h4></div>
+                <div class="quiz" onclick="jogarQuizz()"><img src="./img/preg.svg" alt=""><h4>O quanto você é de boas?</h4></div>
             </div>`
 }
 
 
 function jogarQuizz(){
-container.innerHTML = '';
+    const removerEscondido = document.querySelector(".quizzSelecionado")
+    removerEscondido.classList.remove("escondido")
+    container.innerHTML = '';
 
 }
 
