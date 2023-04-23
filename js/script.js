@@ -411,6 +411,7 @@ let btnCriarQuiz1 = () => {
         };
         console.log(infoCriarQuiz);
         renderizarTela3perguntas();
+        // renderizarTela3_3()
     } else if (!titleChecked){
         alert("Título");
         renderizarTela3();
@@ -657,7 +658,12 @@ let renderizarTela3_3 = () => {
     container.innerHTML += `
     <div class="tela3_3 flex">
         <h3>Seu quizz está pronto!</h3>
-        <div class="quiz-tela3_3"><h4>O quanto você é de boas?</h4></div>
+        <div class="quiz-tela3_3" style="
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.1%, #000000 100%), url(${infoCriarQuiz.url});
+        background-size: contain;
+        background-position: center;
+        background-repeat:no-repeat;
+        "><h4>${infoCriarQuiz.title}</h4></div>
         <button class="btn-acessarQuizz" onclick="btnCriarQuiz1()">Acessar Quizz</button>
         <button class="btn-Home" onclick="recarregaPagina()">Voltar pra home</button>
     </div>
