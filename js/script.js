@@ -753,9 +753,10 @@ function btnFinalizarQuizz(){
         
 
     }) 
-    console.log(levels)
+    renderizarTela3_3();
+    console.log(levels);
     
-    aguarde()
+    aguarde();
 }
 
 
