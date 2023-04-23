@@ -12,6 +12,8 @@ let arrayConfigurado = []
 let cadaPerguntaQuizz;
 let qntNiveis;
 let levels = []
+let dadosQuiz ;
+
 
 let pontosMaximo = 0;
 
@@ -606,7 +608,6 @@ function botaoValidarPerguntas(){
 }
 
 function salvarPerguntasQuiz (){
-    let dadosQuiz ;
     const perguntas = document.querySelectorAll('.pergunta');
 
     perguntas.forEach((pergunta) => {
@@ -739,11 +740,12 @@ function renderizarTelaNivel(elemento, dadosQuiz) {
     }
     
     container.innerHTML +=
-    `<button id="botao-nivel" type="submit" onclick="btnFinalizarQuizz(${dadosQuiz})">Finalizar Quizz</button>`
+    `<button id="botao-nivel" type="submit" onclick="btnFinalizarQuizz()">Finalizar Quizz</button>`
 
 }
 
-function btnFinalizarQuizz(dadosQuiz){
+function btnFinalizarQuizz(){
+    console.log(dadosQuiz);
     levels = [];
     const niveis = document.querySelectorAll(".conteudo-nivel");
     
@@ -760,11 +762,11 @@ function btnFinalizarQuizz(dadosQuiz){
         const inserirNivel = [objNivel]
         levels.push(inserirNivel)
     }) 
-    dados.levels = levels;
-    renderizarTela3_3(dadosQuiz);
+    dadosQuiz.levels = levels;
+    renderizarTela3_3();
     console.log(dadosQuiz);
     
-    aguarde();
+    // aguarde();
 }
 
 
