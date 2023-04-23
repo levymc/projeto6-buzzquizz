@@ -213,8 +213,14 @@ function selecionarOpcao(elemento, thisElemento){
             proximaPergunta.scrollIntoView({
                 behavior: 'smooth'
             });
+        } else{
+            resultadoQuiz();
         }
     }, 2000);
+}
+
+function resultadoQuiz(){
+
 }
 
 
