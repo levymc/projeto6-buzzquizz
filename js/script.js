@@ -9,6 +9,7 @@ let criacaoInfos = document.querySelector(".criacao-infos")
 let perguntaSelecionada = document.querySelector(".pergunta-selecionada")
 let perguntasQuizz = document.querySelector(".perguntas-quizz")
 let arrayConfigurado = []
+let cadaPerguntaQuizz;
 
 let imgstring="";
 let index;
@@ -163,6 +164,11 @@ let renderizaQuizzes = (listaQuizzes) => {
 
 }
 
+function selecionarOpcao(elemento){
+    console.log(elemento)
+}
+
+
 function comparador() { 
     return Math.random() - 0.5; 
 }
@@ -230,7 +236,7 @@ function jogarQuizz(element) {
 
                 
                 arrayRespostas.push(`
-                <div class="opcaoUm" onclick="selecionarOpcao()">
+                <div class="opcaoUm" onclick="selecionarOpcao(${questionsClicado[i].answers[u].isCorrectAnswer})">
                     <img src="${questionsClicado[i].answers[u].image}">
                     <h4>${questionsClicado[i].answers[u].text}</h4>
                 </div>
@@ -243,18 +249,20 @@ function jogarQuizz(element) {
                     arrayConfigurado = arrayRespostas.join('')
                     
                     console.log(arrayConfigurado)
-                    const cadaPerguntaQuizz = perguntasQuizz.querySelector(".perguntasDoQuizz")
+                    let cadaPerguntaQuizz = perguntasQuizz.querySelector(".perguntasDoQuizz")
                     cadaPerguntaQuizz.innerHTML = arrayConfigurado
                     cadaPerguntaQuizz.classList.remove("perguntasDoQuizz")
                     cadaPerguntaQuizz.classList.add("respostaRenderizada")
                     arrayRespostas = []
                 }
-            } 
-            
-     
-        
-        }
 
+              
+               
+            } 
+           
+                
+        }
+       
 
           /*  <div class="perguntasDoQuizz">
                 <div class="opcaoUm" onclick="selecionarOpcao()">
@@ -285,10 +293,7 @@ function jogarQuizz(element) {
     }
 
    
-function selecionarOpcao(){
-    alert("Lógica em construção")
-}
-    
+
 
 let recebeQuizzes = () => {
     axios.get("https://mock-api.driven.com.br/api/vm/buzzquizz/quizzes").then(response => {
