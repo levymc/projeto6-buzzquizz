@@ -10,6 +10,8 @@ let perguntaSelecionada = document.querySelector(".pergunta-selecionada")
 let perguntasQuizz = document.querySelector(".perguntas-quizz")
 let arrayConfigurado = []
 let cadaPerguntaQuizz;
+let qntNiveis;
+let levels = []
 
 let imgstring="";
 let index;
@@ -163,8 +165,19 @@ let renderizaQuizzes = (listaQuizzes) => {
 
 
 }
-function selecionarOpcao(elemento){
+
+//EFEITO NAS RESPOSTAS
+
+function selecionarOpcao(elemento, thisElemento){
     console.log(elemento)
+
+    if (elemento === true) {
+        thisElemento.classList.add('acerto');
+
+    }
+    else{
+
+    }
 }
 
 
@@ -222,8 +235,8 @@ function jogarQuizz(element) {
             </div> 
             <div class="perguntasDoQuizz">
             </div>
-            </div>`
-            
+        </div>`
+
 
             
             const numeroDeRespostas = questionsClicado[i].answers.length
@@ -234,12 +247,12 @@ function jogarQuizz(element) {
 
                 
                 arrayRespostas.push(`
-                <div class="opcaoUm" onclick="selecionarOpcao(${questionsClicado[i].answers[u].isCorrectAnswer})">
+                <div class="opcaoUm" onclick="selecionarOpcao(${questionsClicado[i].answers[u].isCorrectAnswer}, this)">
                     <img src="${questionsClicado[i].answers[u].image}">
                     <h4>${questionsClicado[i].answers[u].text}</h4>
                 </div>
                 `)
-               
+            
 
                 
                 if(u==numeroDeRespostas-1){
@@ -254,16 +267,12 @@ function jogarQuizz(element) {
                     arrayRespostas = []
                 }
 
-              
-               
-            } 
-           
-                
+            }
         }
-       
+    
 
-          /*  <div class="perguntasDoQuizz">
-                <div class="opcaoUm" onclick="selecionarOpcao()">
+    /*  <div class="perguntasDoQuizz">
+        <div class="opcaoUm" onclick="selecionarOpcao()">
                     <img src="${questionsClicado[i].image}">
                     <h4></h4>
                 </div>
@@ -284,13 +293,9 @@ function jogarQuizz(element) {
         </div>
         
     </div>*/
-    
-    
     }
     
-    }
-
-   
+}
 
 
 let recebeQuizzes = () => {
@@ -328,7 +333,7 @@ let btnCriarQuiz1 = () => {
     const tituloQuiz = document.querySelector("#tituloQuiz").value;
     const urlQuiz = document.querySelector("#urlQuiz").value;
     const qntPerguntas = document.querySelector("#qntPerguntas").value;
-    const qntNiveis = document.querySelector("#qntNiveis").value;
+    qntNiveis = document.querySelector("#qntNiveis").value;
     let titleChecked, urlChecked, qntPerguntasChecked, qntNiveisChecked;
 
     titleChecked = tituloQuiz != '' && tituloQuiz != null && tituloQuiz != undefined && (tituloQuiz.trim().length >= 20 || tituloQuiz.trim().length <= 64) ? true : false;
@@ -375,6 +380,7 @@ let btnCriarQuiz1 = () => {
 recebeQuizzes()
 renderizarTela1();
 //renderizarTela3_3();
+//renderizarTelaNivel();
 
 function renderizarTela3perguntas() {
     container.innerHTML = '';
@@ -486,7 +492,9 @@ function botaoValidarPerguntas(){
                 image: pergunta.querySelector('#link3').value,
                 isCorrectAnswer: false
             }
-            ];
+        ];
+
+        //VALIDANDO O TÍTULO E COR
 
         if (titulo.length < 20){
             alert("O título das perguntas precisa ter pelo menos 20 caracteres");
@@ -496,66 +504,49 @@ function botaoValidarPerguntas(){
             alert("A cor das perguntas precisa estar no formato hexadecimal (ex. #3455eb)");
         }
 
+        //VALIDANDO A RESPOSTA CORRETA - OBRIGATÓRIA
+
         else if (respostaCorreta["text"] === '' || respostaCorreta["text"] === null || respostaCorreta["text"] === undefined) {
             alert("Coloque um texto na sua resposta");
         }
-        else if (respostaCorreta["image"] === '' || respostaCorreta["image"] === null || respostaCorreta["image"] === undefined || !respostaCorreta["image"].startsWith("http://") || !respostaCorreta["image"].startsWith("https://")) {
+        else if (respostaCorreta["image"] === '' || respostaCorreta["image"] === null || respostaCorreta["image"] === undefined || !respostaCorreta["image"].startsWith("http://") && !respostaCorreta["image"].startsWith("https://")) {
             alert("Adicione uma imagem válida na sua resposta");
         }
+
+        //VALIDANDO A PRIMEIRA RESPOSTA INCORRETA - OBRIGATÓRIA
 
         else if(respostasIncorretas[0].text === '' || respostasIncorretas[0].text === null || respostasIncorretas[0].text === undefined){
             alert("Adicione pelo menos uma resposta incorreta 1");
         }
-       else if(respostasIncorretas[0].image === '' || respostasIncorretas[0].image === null || respostasIncorretas[0].image === undefined || !respostasIncorretas[0].image.startsWith("http://") || !respostasIncorretas[0].image.startsWith("https://")){
+        else if(respostasIncorretas[0].image === '' || respostasIncorretas[0].image === null || respostasIncorretas[0].image === undefined || !respostasIncorretas[0].image.startsWith("http://") && !respostasIncorretas[0].image.startsWith("https://")){
             alert("Adicione uma imagem válida na sua resposta resposta incorreta 1");
         }
 
+        //VALIDANDO A SEGUNDA RESPOSTA INCORRETA - OPCIONAL
 
-        else if ((respostasIncorretas[1].text === "" || respostasIncorretas[1].text === null || respostasIncorretas[1].text === undefined) && (respostasIncorretas[1].image === "" || respostasIncorretas[1].image === null || respostasIncorretas[1].image === undefined)){
-
-        }
+        //SE TIVER IMAGEM MAS NÃO TIVER TEXTO
         else if((respostasIncorretas[1].text === "" || respostasIncorretas[1].text === null || respostasIncorretas[1].text === undefined) && (respostasIncorretas[1].image !== "" && respostasIncorretas[1].image !== null && respostasIncorretas[1].image !== undefined && respostasIncorretas[1].image.startsWith("http://") || respostasIncorretas[1].image.startsWith("https://"))){
             alert("Adicione um texto para a resposta incorreta 2");
         }
-       else if((respostasIncorretas[1].text !== "" && respostasIncorretas[1].text !== null && respostasIncorretas[1].text !== undefined) && (respostasIncorretas[1].image === "" || respostasIncorretas[1].image === null || respostasIncorretas[1].image === undefined || !respostasIncorretas[1].image.startsWith("http://") || !respostasIncorretas[1].image.startsWith("https://"))){
+        //SE TIVER TEXTO MAS NÃO TIVER IMAGEM
+        else if((respostasIncorretas[1].text !== "" && respostasIncorretas[1].text !== null && respostasIncorretas[1].text !== undefined) && (respostasIncorretas[1].image === "" || respostasIncorretas[1].image === null || respostasIncorretas[1].image === undefined || !respostasIncorretas[1].image.startsWith("http://") && !respostasIncorretas[1].image.startsWith("https://"))){
             alert("Adicione uma imagem válida para a resposta incorreta 2");
         }
-        else if((respostasIncorretas[1].text !== "" && respostasIncorretas[1].text !== null && respostasIncorretas[1].text !== undefined) && (respostasIncorretas[1].image !== "" && respostasIncorretas[1].image !== null && respostasIncorretas[1].image === undefined && respostasIncorretas[1].image.startsWith("http://") || respostasIncorretas[1].image.startsWith("https://"))){
 
-        }
+        //VALIDANDO A TERCEIRA RESPOSTA INCORRETA - OPCIONAL
 
-
-        else if ((respostasIncorretas[2].text === "" || respostasIncorretas[2].text === null || respostasIncorretas[2].text === undefined) && (respostasIncorretas[2].image === "" || respostasIncorretas[2].image === null || respostasIncorretas[2].image === undefined)){
-
-        }
+        //SE TIVER IMAGEM MAS NÃO TIVER TEXTO
         else if((respostasIncorretas[2].text === "" || respostasIncorretas[2].text === null || respostasIncorretas[2].text === undefined) && (respostasIncorretas[2].image !== "" && respostasIncorretas[2].image !== null && respostasIncorretas[2].image !== undefined && respostasIncorretas[2].image.startsWith("http://") || respostasIncorretas[2].image.startsWith("https://"))){
             alert("Adicione um texto para a resposta incorreta 3");
         }
-        else if((respostasIncorretas[2].text !== "" && respostasIncorretas[2].text !== null && respostasIncorretas[2].text !== undefined) && (respostasIncorretas[2].image === "" || respostasIncorretas[2].image === null || respostasIncorretas[2].image === undefined || !respostasIncorretas[2].image.startsWith("http://") || !respostasIncorretas[2].image.startsWith("https://"))){
+        //SE TIVER TEXTO MAS NÃO TIVER IMAGEM
+        else if((respostasIncorretas[2].text !== "" && respostasIncorretas[2].text !== null && respostasIncorretas[2].text !== undefined) && (respostasIncorretas[2].image === "" || respostasIncorretas[2].image === null || respostasIncorretas[2].image === undefined && !respostasIncorretas[2].image.startsWith("http://") && !respostasIncorretas[2].image.startsWith("https://"))){
             alert("Adicione uma imagem válida para a resposta incorreta 3");
         }
-        else if((respostasIncorretas[2].text !== "" && respostasIncorretas[2].text !== null && respostasIncorretas[2].text !== undefined) && (respostasIncorretas[2].image !== "" && respostasIncorretas[2].image !== null && respostasIncorretas[2].image === undefined && respostasIncorretas[2].image.startsWith("http://") || respostasIncorretas[2].image.startsWith("https://"))){
 
-        }
+    })
 
-
-        else if ((respostasIncorretas[3].text === "" || respostasIncorretas[3].text === null || respostasIncorretas[3].text === undefined) && (respostasIncorretas[3].image === "" || respostasIncorretas[3].image === null || respostasIncorretas[3].image === undefined)){
-
-        }
-        else if((respostasIncorretas[3].text === "" || respostasIncorretas[3].text === null || respostasIncorretas[3].text === undefined) && (respostasIncorretas[3].image !== "" && respostasIncorretas[3].image !== null && respostasIncorretas[3].image !== undefined && respostasIncorretas[3].image.startsWith("http://") || respostasIncorretas[3].image.startsWith("https://"))){
-            alert("Adicione um texto para a resposta incorreta 4");
-        }
-        else if((respostasIncorretas[3].text !== "" && respostasIncorretas[3].text !== null && respostasIncorretas[3].text !== undefined) && (respostasIncorretas[3].image === "" || respostasIncorretas[3].image === null || respostasIncorretas[3].image === undefined || !respostasIncorretas[3].image.startsWith("http://") || !respostasIncorretas[3].image.startsWith("https://"))){
-            alert("Adicione uma imagem válida para a resposta incorreta 4");
-        }
-        else if((respostasIncorretas[3].text !== "" && respostasIncorretas[3].text !== null && respostasIncorretas[3].text !== undefined) && (respostasIncorretas[3].image !== "" && respostasIncorretas[3].image !== null && respostasIncorretas[3].image === undefined && respostasIncorretas[3].image.startsWith("http://") || respostasIncorretas[3].image.startsWith("https://"))){
-
-        }
-        else{
-            salvarPerguntasQuiz()
-            
-        }
-    } )
+    salvarPerguntasQuiz();
 }
 
 function salvarPerguntasQuiz (){
@@ -602,7 +593,8 @@ function salvarPerguntasQuiz (){
     });
     console.log("salvo perguntas")
     console.log(perguntasQuiz);
-    aguarde();
+    //aguarde();
+    renderizarTelaNivel(perguntasQuiz);
 }
 
 let renderizarTela3_3 = () => {
@@ -617,6 +609,106 @@ let renderizarTela3_3 = () => {
     `
 }
 
+function renderizarTelaNivel(elemento) {
+    
+    const nivelPergunta = document.querySelectorAll(".conteudo-nivel");
+
+    container.innerHTML = "";
+
+    container.innerHTML = `
+    <h3>Agora, descida os níveis</h3>
+
+    <div class="tela-preencher-nivel">
+    <div class="nivel expandida">
+        <div class="nome-nivel" onclick="expandirNivel(event)">
+            <h3>Nível 1</h3>
+            <img src="./img/editarpergunta.svg" alt="editar pergunta">
+        </div>
+
+        <div class="conteudo-nivel">
+            <input type="text" id="titulo" placeholder="Título do nível">
+            <input type="number" id="percentual" placeholder="% de acerto mínimo">
+            <input type="url" pattern="https://*"" id="linkImg" placeholder="URL da imagem do nível">
+            <input type="text" id="descriptionLevel" placeholder="Descrição do nível">
+
+            
+        </div>
+    </div>
+</div>
+`;
+    
+   
+
+   /* const objNivel = [{
+        title: nivelPergunta.getElementById(".titulo").value,
+        image: nivelPergunta.getElementById(".linkImg").value,
+        text:  nivelPergunta.getElementById(".descriptionLevel").value,
+        minValue:0
+    }]*/
+
+    for(let i=1; i<=qntNiveis-1; i++){
+    container.innerHTML += `
+        <div class="tela-preencher-nivel">
+        <div class="nivel escondida">
+            <div class="nome-nivel" onclick="expandirNivel(event)">
+                <h3>Nível ${i+1}</h3>
+                <img src="./img/editarpergunta.svg" alt="editar pergunta">
+            </div>
+
+            <div class="conteudo-nivel">
+                <input type="text" id="titulo" placeholder="Título do nível">
+                <input type="number" id="percentual" placeholder="% de acerto mínimo">
+                <input type="url" pattern="https://*"" id="linkImg" placeholder="URL da imagem do nível">
+                <input type="text" id="descriptionLevel" placeholder="Descrição do nível">
+
+                
+            </div>
+        </div>
+    </div>
+    `
+    }
+    
+    container.innerHTML +=
+    `<button id="botao-nivel" type="submit" onclick="btnFinalizarQuizz()">Finalizar Quizz</button>`
+
+}
+
+function btnFinalizarQuizz(){
+    levels = [];
+    const niveis = document.querySelectorAll(".conteudo-nivel");
+    
+
+    niveis.forEach((nivel) =>{
+        
+        const objNivel = {
+            title: nivel.querySelector("#titulo").value,
+            image: nivel.querySelector("#linkImg").value,
+            text: nivel.querySelector("#descriptionLevel").value,
+            minValue: nivel.querySelector("#percentual").value
+
+        }
+        const inserirNivel = [objNivel]
+        levels.push(inserirNivel)
+        
+
+    }) 
+    console.log(levels)
+    
+    aguarde()
+}
+
+
+
+function expandirNivel(event) {
+    const pergunta = event.currentTarget.closest('.nivel').querySelector('.conteudo-nivel');
+    const perguntas = document.querySelectorAll('.nivel');
+    perguntas.forEach((pergunta) => {
+        pergunta.classList.remove('expandida');
+        pergunta.classList.add('escondida');
+    });
+    pergunta.parentNode.classList.toggle('escondida');
+    pergunta.parentNode.classList.toggle('expandida');
+}
 
 // localStorage.setItem('newUser', newUser); // armazena o nome do usuário na localStorage
 // newUser = localStorage.getItem('newUser');
