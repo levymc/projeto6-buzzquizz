@@ -398,7 +398,7 @@ input[type=url]{
 }
 
 .perguntaQuizz{
-    width: 676px;
+    width: 700px;
     height: auto;
     background-color: #FFFFFF;
     
@@ -429,6 +429,8 @@ input[type=url]{
     justify-content: center;
 }
 
+
+
 .perguntasDoQuizz{
     display: flex;
     flex-wrap: wrap;
@@ -440,24 +442,28 @@ input[type=url]{
 .respostaRenderizada{
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-top: 20px;
+    
 
 
 }
 
 .opcaoUm{
 
-height: 209px;
+height: 100%;
 width: 305px;
+margin-bottom: 20px;
 
-margin: 5px;
 
 }
 
 .opcaoUm img{
 
     width: 100%;
-    height: auto;
+    height: 100%;
    
     
     }
@@ -465,6 +471,10 @@ margin: 5px;
 .opcaoUm h4{
     text-align: center;
     width: 100%;
+    font-family: "Roboto", sans-serif;   
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
 
     word-wrap: break-word;
     word-break:break-all ;
@@ -475,7 +485,7 @@ margin: 5px;
     font-size: 20px;
     font-weight: 700;
     margin-top: 5px;
-    color: #030303;
+    color: #dfd8d8;
 
 }
 .perguntasDoQuizz img{
