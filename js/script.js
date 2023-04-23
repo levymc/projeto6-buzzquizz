@@ -606,7 +606,7 @@ function botaoValidarPerguntas(){
 }
 
 function salvarPerguntasQuiz (){
-    
+    let dadosQuiz ;
     const perguntas = document.querySelectorAll('.pergunta');
 
     perguntas.forEach((pergunta) => {
@@ -649,8 +649,13 @@ function salvarPerguntasQuiz (){
     });
     console.log("salvo perguntas")
     console.log(perguntasQuiz);
+    dadosQuiz = {
+        title : infoCriarQuiz.title,
+        image : infoCriarQuiz.url,
+        questions:  perguntasQuiz
+    }
     //aguarde();
-    renderizarTelaNivel(perguntasQuiz);
+    renderizarTelaNivel(perguntasQuiz, dadosQuiz);
 }
 
 let renderizarTela3_3 = () => {
@@ -670,7 +675,11 @@ let renderizarTela3_3 = () => {
     `
 }
 
-function renderizarTelaNivel(elemento) {
+let criarQuiz = () => {
+    axios.post("https://mock-api.driven.com.br/api/vm/buzzquizz/quizzes", dados)
+}
+
+function renderizarTelaNivel(elemento, dadosQuiz) {
     
     const nivelPergunta = document.querySelectorAll(".conteudo-nivel");
 
@@ -730,11 +739,11 @@ function renderizarTelaNivel(elemento) {
     }
     
     container.innerHTML +=
-    `<button id="botao-nivel" type="submit" onclick="btnFinalizarQuizz()">Finalizar Quizz</button>`
+    `<button id="botao-nivel" type="submit" onclick="btnFinalizarQuizz(${dadosQuiz})">Finalizar Quizz</button>`
 
 }
 
-function btnFinalizarQuizz(){
+function btnFinalizarQuizz(dadosQuiz){
     levels = [];
     const niveis = document.querySelectorAll(".conteudo-nivel");
     
@@ -750,11 +759,10 @@ function btnFinalizarQuizz(){
         }
         const inserirNivel = [objNivel]
         levels.push(inserirNivel)
-        
-
     }) 
-    renderizarTela3_3();
-    console.log(levels);
+    dados.levels = levels;
+    renderizarTela3_3(dadosQuiz);
+    console.log(dadosQuiz);
     
     aguarde();
 }
