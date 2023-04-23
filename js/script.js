@@ -168,12 +168,21 @@ let renderizaQuizzes = (listaQuizzes) => {
 
 function selecionarOpcao(elemento, thisElemento){
     console.log(elemento)
+    const pergunta  = thisElemento.closest(".respostaRenderizada");
+
+    const opcoes = Array.from(pergunta.children);
+
+    console.log(opcoes);
 
     if (elemento === true) {
         thisElemento.classList.add('acerto');
 
-    }
-    else{
+        opcoes.forEach(opcao => {
+            opcao.classList.add('erradas');
+        });
+
+        thisElemento.classList.remove('erradas');
+    } else{
 
     }
 }

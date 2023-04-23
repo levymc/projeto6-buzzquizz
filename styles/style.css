@@ -363,6 +363,27 @@ input[type=url]{
         align-items: center;
         flex-direction: column;
     }
+
+    .pergunta{
+        width: 100vw;
+        display: flex;
+        align-items: center;
+        border-radius: 0px;
+    }
+    .nome-pergunta{
+        width: 95%;
+    }
+    .conteudo-pergunta{
+        width: 95%;
+    }
+
+
+
+    #botao-perguntas{
+        width: 20em;
+        font-size: 18px;
+        padding: 0.95em;
+    }
 }
 
 
@@ -508,27 +529,16 @@ margin-bottom: 20px;
         width: 100vw; */
     /* } */
 
-    .pergunta{
-        width: 100vw;
-        display: flex;
-        align-items: center;
-        border-radius: 0px;
-    }
-    .nome-pergunta{
-        width: 95%;
-    }
-    .conteudo-pergunta{
-        width: 95%;
-    }
 
-
-
-    #botao-perguntas{
-        width: 20em;
-        font-size: 18px;
-        padding: 0.95em;
-    }
 
 .acerto h4{
     color: #009C22;
+}
+
+.erradas{
+    opacity: 0.3;
+}
+
+.erradas h4{
+    color: #FF4B4B;
 }
