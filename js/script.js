@@ -205,6 +205,16 @@ function selecionarOpcao(elemento, thisElemento){
     
         thisElemento.removeAttribute('onclick');
     }
+
+    setTimeout(() => {
+        const proximaPergunta = pergunta.closest('.perguntaQuizz').nextElementSibling;
+
+        if (proximaPergunta) {
+            proximaPergunta.scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+    }, 2000);
 }
 
 
