@@ -11,6 +11,8 @@ let perguntasQuizz = document.querySelector(".perguntas-quizz")
 let arrayConfigurado = []
 let cadaPerguntaQuizz;
 
+let pontosMaximo = 0;
+
 let imgstring="";
 let index;
 let userQuizzes ;
@@ -168,6 +170,9 @@ let renderizaQuizzes = (listaQuizzes) => {
 
 function selecionarOpcao(elemento, thisElemento){
     console.log(elemento)
+
+    let pontosFeitos = 0
+
     const pergunta  = thisElemento.closest(".respostaRenderizada");
 
     const opcoes = Array.from(pergunta.children);
@@ -176,6 +181,7 @@ function selecionarOpcao(elemento, thisElemento){
 
     if (elemento === true) {
         thisElemento.classList.add('acerto');
+        pontosFeitos++
 
         opcoes.forEach(opcao => {
             opcao.classList.add('erradas');
@@ -206,6 +212,8 @@ function selecionarOpcao(elemento, thisElemento){
         thisElemento.removeAttribute('onclick');
     }
 
+    let porcentagemAcertos = Math.ceil((pontosFeitos / pontosMaximo) * 100);
+
     setTimeout(() => {
         const proximaPergunta = pergunta.closest('.perguntaQuizz').nextElementSibling;
 
@@ -214,13 +222,13 @@ function selecionarOpcao(elemento, thisElemento){
                 behavior: 'smooth'
             });
         } else{
-            resultadoQuiz();
+            resultadoQuiz(porcentagemAcertos);
         }
     }, 2000);
 }
 
-function resultadoQuiz(){
-
+function resultadoQuiz(resultado){
+    
 }
 
 
@@ -252,6 +260,8 @@ function jogarQuizz(element) {
         const questionsClicado = quizzClicado.questions
         console.log(questionsClicado)
         console.log(QuantidadeQuestionsClicado)
+
+        pontosMaximo = quizzClicado.questions.length
 
         perguntaSelecionada.innerHTML=`
         <div class="quizzSelecionado">
