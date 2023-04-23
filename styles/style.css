@@ -501,6 +501,15 @@ margin-bottom: 20px;
     margin-top: 5px;
 }
 
+@media screen and (max-width: 375px ){
+    
+    
+}
+
+
+
+
+
 .escondido{
     display: none;
 }

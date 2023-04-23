@@ -163,7 +163,6 @@ let renderizaQuizzes = (listaQuizzes) => {
 
 
 }
-
 function selecionarOpcao(elemento){
     console.log(elemento)
 }
@@ -174,8 +173,7 @@ function comparador() {
 }
 
 function jogarQuizz(element) {
-    Number(element)
-    
+    Number(element)    
     const promise = axios.get(`https://mock-api.driven.com.br/api/vm/buzzquizz/quizzes/${element}`);
     promise.then(renderizarQuizzClicado);
     promise.catch(error => {
@@ -195,8 +193,8 @@ function jogarQuizz(element) {
         const quizzClicado = promessa.data
         const QuantidadeQuestionsClicado = quizzClicado.questions.length
         const questionsClicado = quizzClicado.questions
-        console.log(questionsClicado)
-        console.log(QuantidadeQuestionsClicado)
+        //console.log(questionsClicado)
+        //console.log(QuantidadeQuestionsClicado)
 
         perguntaSelecionada.innerHTML=`
         <div class="quizzSelecionado">
@@ -206,7 +204,7 @@ function jogarQuizz(element) {
         ">${quizzClicado.title}</div>`;
 
         
-        for(let i=0; i<=QuantidadeQuestionsClicado; i++){
+        for(let i=0; i<=QuantidadeQuestionsClicado-1; i++){
         
         perguntasQuizz.innerHTML +=
         `<div class="perguntaQuizz">
@@ -229,7 +227,7 @@ function jogarQuizz(element) {
 
             
             const numeroDeRespostas = questionsClicado[i].answers.length
-            console.log(numeroDeRespostas)
+            //console.log(numeroDeRespostas)
             
             
             for(let u=0; u<= numeroDeRespostas-1; u++){
@@ -248,7 +246,7 @@ function jogarQuizz(element) {
                     arrayRespostas.sort(comparador);
                     arrayConfigurado = arrayRespostas.join('')
                     
-                    console.log(arrayConfigurado)
+                   // console.log(arrayConfigurado)
                     let cadaPerguntaQuizz = perguntasQuizz.querySelector(".perguntasDoQuizz")
                     cadaPerguntaQuizz.innerHTML = arrayConfigurado
                     cadaPerguntaQuizz.classList.remove("perguntasDoQuizz")
@@ -366,6 +364,8 @@ let btnCriarQuiz1 = () => {
         alert("qnt níveis")
         renderizarTela3();
     }
+
+
 }
 
 
@@ -374,7 +374,7 @@ let btnCriarQuiz1 = () => {
 // Inicializando funções
 recebeQuizzes()
 renderizarTela1();
-// renderizarTela3_3();
+//renderizarTela3_3();
 
 function renderizarTela3perguntas() {
     container.innerHTML = '';
@@ -506,7 +506,7 @@ function botaoValidarPerguntas(){
         else if(respostasIncorretas[0].text === '' || respostasIncorretas[0].text === null || respostasIncorretas[0].text === undefined){
             alert("Adicione pelo menos uma resposta incorreta 1");
         }
-        else if(respostasIncorretas[0].image === '' || respostasIncorretas[0].image === null || respostasIncorretas[0].image === undefined || !respostasIncorretas[0].image.startsWith("http://") || !respostasIncorretas[0].image.startsWith("https://")){
+       else if(respostasIncorretas[0].image === '' || respostasIncorretas[0].image === null || respostasIncorretas[0].image === undefined || !respostasIncorretas[0].image.startsWith("http://") || !respostasIncorretas[0].image.startsWith("https://")){
             alert("Adicione uma imagem válida na sua resposta resposta incorreta 1");
         }
 
@@ -517,7 +517,7 @@ function botaoValidarPerguntas(){
         else if((respostasIncorretas[1].text === "" || respostasIncorretas[1].text === null || respostasIncorretas[1].text === undefined) && (respostasIncorretas[1].image !== "" && respostasIncorretas[1].image !== null && respostasIncorretas[1].image !== undefined && respostasIncorretas[1].image.startsWith("http://") || respostasIncorretas[1].image.startsWith("https://"))){
             alert("Adicione um texto para a resposta incorreta 2");
         }
-        else if((respostasIncorretas[1].text !== "" && respostasIncorretas[1].text !== null && respostasIncorretas[1].text !== undefined) && (respostasIncorretas[1].image === "" || respostasIncorretas[1].image === null || respostasIncorretas[1].image === undefined || !respostasIncorretas[1].image.startsWith("http://") || !respostasIncorretas[1].image.startsWith("https://"))){
+       else if((respostasIncorretas[1].text !== "" && respostasIncorretas[1].text !== null && respostasIncorretas[1].text !== undefined) && (respostasIncorretas[1].image === "" || respostasIncorretas[1].image === null || respostasIncorretas[1].image === undefined || !respostasIncorretas[1].image.startsWith("http://") || !respostasIncorretas[1].image.startsWith("https://"))){
             alert("Adicione uma imagem válida para a resposta incorreta 2");
         }
         else if((respostasIncorretas[1].text !== "" && respostasIncorretas[1].text !== null && respostasIncorretas[1].text !== undefined) && (respostasIncorretas[1].image !== "" && respostasIncorretas[1].image !== null && respostasIncorretas[1].image === undefined && respostasIncorretas[1].image.startsWith("http://") || respostasIncorretas[1].image.startsWith("https://"))){
@@ -553,11 +553,13 @@ function botaoValidarPerguntas(){
         }
         else{
             salvarPerguntasQuiz()
+            
         }
     } )
 }
 
 function salvarPerguntasQuiz (){
+    
     const perguntas = document.querySelectorAll('.pergunta');
 
     perguntas.forEach((pergunta) => {
@@ -598,7 +600,7 @@ function salvarPerguntasQuiz (){
     
         perguntasQuiz.push(perguntaQuiz);
     });
-
+    console.log("salvo perguntas")
     console.log(perguntasQuiz);
     aguarde();
 }
