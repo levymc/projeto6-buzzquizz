@@ -170,14 +170,53 @@ let renderizaQuizzes = (listaQuizzes) => {
 
 function selecionarOpcao(elemento, thisElemento){
     console.log(elemento)
+    const pergunta  = thisElemento.closest(".respostaRenderizada");
+
+    const opcoes = Array.from(pergunta.children);
+
+    console.log(opcoes);
 
     if (elemento === true) {
         thisElemento.classList.add('acerto');
 
-    }
-    else{
+        opcoes.forEach(opcao => {
+            opcao.classList.add('erradas');
+            opcao.removeAttribute('onclick');
+        });
 
+        thisElemento.classList.remove('erradas');
+
+        thisElemento.removeAttribute('onclick');
+    } else {
+        thisElemento.classList.add('errou');
+    
+        opcoes.forEach(opcao => {
+            opcao.classList.add('erradas');
+
+            if (opcao.getAttribute('onclick') === "selecionarOpcao(true, this)") {
+                opcao.classList.add('era-certa');
+                opcao.removeAttribute('onclick');
+                opcao.classList.remove('erradas');
+            } else {
+                
+            }
+    
+            opcao.removeAttribute('onclick');
+        });
+        thisElemento.classList.remove('erradas');
+    
+        thisElemento.removeAttribute('onclick');
     }
+
+    setTimeout(() => {
+        const proximaPergunta = pergunta.closest('.perguntaQuizz').nextElementSibling;
+
+        if (proximaPergunta) {
+            proximaPergunta.scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+    }, 2000);
 }
 
 
