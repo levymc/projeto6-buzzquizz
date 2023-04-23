@@ -179,11 +179,31 @@ function selecionarOpcao(elemento, thisElemento){
 
         opcoes.forEach(opcao => {
             opcao.classList.add('erradas');
+            opcao.removeAttribute('onclick');
         });
 
         thisElemento.classList.remove('erradas');
-    } else{
 
+        thisElemento.removeAttribute('onclick');
+    } else {
+        thisElemento.classList.add('errou');
+    
+        opcoes.forEach(opcao => {
+            opcao.classList.add('erradas');
+
+            if (opcao.getAttribute('onclick') === "selecionarOpcao(true, this)") {
+                opcao.classList.add('era-certa');
+                opcao.removeAttribute('onclick');
+                opcao.classList.remove('erradas');
+            } else {
+                
+            }
+    
+            opcao.removeAttribute('onclick');
+        });
+        thisElemento.classList.remove('erradas');
+    
+        thisElemento.removeAttribute('onclick');
     }
 }
 
