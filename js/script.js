@@ -10,6 +10,8 @@ let perguntaSelecionada = document.querySelector(".pergunta-selecionada")
 let perguntasQuizz = document.querySelector(".perguntas-quizz")
 let arrayConfigurado = []
 let cadaPerguntaQuizz;
+let qntNiveis;
+let levels = []
 
 let pontosMaximo = 0;
 
@@ -237,8 +239,7 @@ function comparador() {
 }
 
 function jogarQuizz(element) {
-    Number(element)
-    
+    Number(element)    
     const promise = axios.get(`https://mock-api.driven.com.br/api/vm/buzzquizz/quizzes/${element}`);
     promise.then(renderizarQuizzClicado);
     promise.catch(error => {
@@ -258,8 +259,8 @@ function jogarQuizz(element) {
         const quizzClicado = promessa.data
         const QuantidadeQuestionsClicado = quizzClicado.questions.length
         const questionsClicado = quizzClicado.questions
-        console.log(questionsClicado)
-        console.log(QuantidadeQuestionsClicado)
+        //console.log(questionsClicado)
+        //console.log(QuantidadeQuestionsClicado)
 
         pontosMaximo = quizzClicado.questions.length
 
@@ -271,7 +272,7 @@ function jogarQuizz(element) {
         ">${quizzClicado.title}</div>`;
 
         
-        for(let i=0; i<=QuantidadeQuestionsClicado; i++){
+        for(let i=0; i<=QuantidadeQuestionsClicado-1; i++){
         
         perguntasQuizz.innerHTML +=
         `<div class="perguntaQuizz">
@@ -294,7 +295,7 @@ function jogarQuizz(element) {
 
             
             const numeroDeRespostas = questionsClicado[i].answers.length
-            console.log(numeroDeRespostas)
+            //console.log(numeroDeRespostas)
             
             
             for(let u=0; u<= numeroDeRespostas-1; u++){
@@ -313,7 +314,7 @@ function jogarQuizz(element) {
                     arrayRespostas.sort(comparador);
                     arrayConfigurado = arrayRespostas.join('')
                     
-                    console.log(arrayConfigurado)
+                   // console.log(arrayConfigurado)
                     let cadaPerguntaQuizz = perguntasQuizz.querySelector(".perguntasDoQuizz")
                     cadaPerguntaQuizz.innerHTML = arrayConfigurado
                     cadaPerguntaQuizz.classList.remove("perguntasDoQuizz")
@@ -387,7 +388,7 @@ let btnCriarQuiz1 = () => {
     const tituloQuiz = document.querySelector("#tituloQuiz").value;
     const urlQuiz = document.querySelector("#urlQuiz").value;
     const qntPerguntas = document.querySelector("#qntPerguntas").value;
-    const qntNiveis = document.querySelector("#qntNiveis").value;
+    qntNiveis = document.querySelector("#qntNiveis").value;
     let titleChecked, urlChecked, qntPerguntasChecked, qntNiveisChecked;
 
     titleChecked = tituloQuiz != '' && tituloQuiz != null && tituloQuiz != undefined && (tituloQuiz.trim().length >= 20 || tituloQuiz.trim().length <= 64) ? true : false;
@@ -423,6 +424,8 @@ let btnCriarQuiz1 = () => {
         alert("qnt níveis")
         renderizarTela3();
     }
+
+
 }
 
 
@@ -431,7 +434,8 @@ let btnCriarQuiz1 = () => {
 // Inicializando funções
 recebeQuizzes()
 renderizarTela1();
-// renderizarTela3_3();
+//renderizarTela3_3();
+//renderizarTelaNivel();
 
 function renderizarTela3perguntas() {
     container.innerHTML = '';
@@ -601,6 +605,7 @@ function botaoValidarPerguntas(){
 }
 
 function salvarPerguntasQuiz (){
+    
     const perguntas = document.querySelectorAll('.pergunta');
 
     perguntas.forEach((pergunta) => {
@@ -641,9 +646,10 @@ function salvarPerguntasQuiz (){
     
         perguntasQuiz.push(perguntaQuiz);
     });
-
+    console.log("salvo perguntas")
     console.log(perguntasQuiz);
-    aguarde();
+    //aguarde();
+    renderizarTelaNivel(perguntasQuiz);
 }
 
 let renderizarTela3_3 = () => {
@@ -658,6 +664,106 @@ let renderizarTela3_3 = () => {
     `
 }
 
+function renderizarTelaNivel(elemento) {
+    
+    const nivelPergunta = document.querySelectorAll(".conteudo-nivel");
+
+    container.innerHTML = "";
+
+    container.innerHTML = `
+    <h3>Agora, descida os níveis</h3>
+
+    <div class="tela-preencher-nivel">
+    <div class="nivel expandida">
+        <div class="nome-nivel" onclick="expandirNivel(event)">
+            <h3>Nível 1</h3>
+            <img src="./img/editarpergunta.svg" alt="editar pergunta">
+        </div>
+
+        <div class="conteudo-nivel">
+            <input type="text" id="titulo" placeholder="Título do nível">
+            <input type="number" id="percentual" placeholder="% de acerto mínimo">
+            <input type="url" pattern="https://*"" id="linkImg" placeholder="URL da imagem do nível">
+            <input type="text" id="descriptionLevel" placeholder="Descrição do nível">
+
+            
+        </div>
+    </div>
+</div>
+`;
+    
+   
+
+   /* const objNivel = [{
+        title: nivelPergunta.getElementById(".titulo").value,
+        image: nivelPergunta.getElementById(".linkImg").value,
+        text:  nivelPergunta.getElementById(".descriptionLevel").value,
+        minValue:0
+    }]*/
+
+    for(let i=1; i<=qntNiveis-1; i++){
+    container.innerHTML += `
+        <div class="tela-preencher-nivel">
+        <div class="nivel escondida">
+            <div class="nome-nivel" onclick="expandirNivel(event)">
+                <h3>Nível ${i+1}</h3>
+                <img src="./img/editarpergunta.svg" alt="editar pergunta">
+            </div>
+
+            <div class="conteudo-nivel">
+                <input type="text" id="titulo" placeholder="Título do nível">
+                <input type="number" id="percentual" placeholder="% de acerto mínimo">
+                <input type="url" pattern="https://*"" id="linkImg" placeholder="URL da imagem do nível">
+                <input type="text" id="descriptionLevel" placeholder="Descrição do nível">
+
+                
+            </div>
+        </div>
+    </div>
+    `
+    }
+    
+    container.innerHTML +=
+    `<button id="botao-nivel" type="submit" onclick="btnFinalizarQuizz()">Finalizar Quizz</button>`
+
+}
+
+function btnFinalizarQuizz(){
+    levels = [];
+    const niveis = document.querySelectorAll(".conteudo-nivel");
+    
+
+    niveis.forEach((nivel) =>{
+        
+        const objNivel = {
+            title: nivel.querySelector("#titulo").value,
+            image: nivel.querySelector("#linkImg").value,
+            text: nivel.querySelector("#descriptionLevel").value,
+            minValue: nivel.querySelector("#percentual").value
+
+        }
+        const inserirNivel = [objNivel]
+        levels.push(inserirNivel)
+        
+
+    }) 
+    console.log(levels)
+    
+    aguarde()
+}
+
+
+
+function expandirNivel(event) {
+    const pergunta = event.currentTarget.closest('.nivel').querySelector('.conteudo-nivel');
+    const perguntas = document.querySelectorAll('.nivel');
+    perguntas.forEach((pergunta) => {
+        pergunta.classList.remove('expandida');
+        pergunta.classList.add('escondida');
+    });
+    pergunta.parentNode.classList.toggle('escondida');
+    pergunta.parentNode.classList.toggle('expandida');
+}
 
 // localStorage.setItem('newUser', newUser); // armazena o nome do usuário na localStorage
 // newUser = localStorage.getItem('newUser');

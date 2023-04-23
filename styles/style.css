@@ -268,6 +268,10 @@ main{
 .tela-preencher-perguntas{
     margin-top: 2.2em;
 }
+.tela-preencher-nivel{
+    margin-top: 2.2em;
+}
+
 .pergunta{
     width: 600px;
     display: flex;
@@ -280,6 +284,19 @@ main{
     padding-top: 1.85em;
     margin-bottom: 1.5em;
 }
+.nivel{
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+    padding: 1em;
+    padding-bottom: 1em;
+    padding-top: 1.85em;
+    margin-bottom: 1.5em;
+}
+
 .nome-pergunta:hover{
     cursor: pointer;
 }
@@ -289,21 +306,43 @@ main{
 .expandida .conteudo-pergunta{
     display: flex;
 }
+
+.expandida .conteudo-nivel{
+    display: flex;
+}
+
 .escondida .nome-pergunta img{
     display: flex;
 }
 .escondida .conteudo-pergunta{
     display: none;
 }
+
+.escondida .conteudo-nivel{
+    display: none;
+}
+
 .nome-pergunta{
     display: flex;
     justify-content: space-between;
     margin-bottom: 1em;
 }
+.nome-nivel{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1em;
+}
+
 .conteudo-pergunta{
     display: flex;
     flex-direction: column;
 }
+
+.conteudo-nivel{
+    display: flex;
+    flex-direction: column;
+}
+
 input{
     border: 1px solid #D1D1D1;
     border-radius: 5px;
@@ -322,6 +361,11 @@ input[type=url]{
 .conteudo-pergunta h3{
     margin-bottom: 1.6em;
 }
+
+.conteudo-nivel h3{
+    margin-bottom: 1.6em;
+}
+
 .tela3_3{
     display: flex;
     gap: 2em;
@@ -331,6 +375,21 @@ input[type=url]{
     flex-direction: column;
 }
 #botao-perguntas{
+    background: #EC362D;
+    border-radius: 15px;
+    width: 22em;
+    font-weight: 400;
+    font-size: 21px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #FFF5F4;
+    border: none;
+    padding: 1em;
+}
+
+#botao-nivel{
     background: #EC362D;
     border-radius: 15px;
     width: 22em;
@@ -522,6 +581,12 @@ margin-bottom: 20px;
     margin-top: 5px;
 }
 
+
+
+
+
+
+
 .escondido{
     display: none;
 }
@@ -529,6 +594,21 @@ margin-bottom: 20px;
         width: 100vw; */
     /* } */
 
+.pergunta{
+        width: 100vw;
+        display: flex;
+        align-items: center;
+        border-radius: 0px;
+    }
+.nome-pergunta{
+        width: 95%;
+    }
+.conteudo-pergunta{
+    width: 95%;
+    }
+.conteudo-nivel{
+        width: 95%;
+    }
 
 
 .acerto h4{
