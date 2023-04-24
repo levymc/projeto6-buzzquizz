@@ -14,7 +14,8 @@ let qntNiveis;
 let levels = []
 let dadosQuiz ;
 let userIds = [];
-let contador = 0
+let contador = 0;
+let contadorZero = 0;
 
 
 let pontosMaximo = 0;
@@ -863,8 +864,20 @@ function btnFinalizarQuizz(){
         } else{
             validarDescriçãoNivel = true
         }
+
+        if(valorPercentual == 0){
+            contadorZero++
+        }
         
     })
+
+    if(contadorZero == 0){
+        contador++
+        alert("Valor do percentual incorreto")
+    }
+
+    
+    console.log(dadosQuiz);
     levels = [];
     if(contador === 0){
         console.log("valido")
