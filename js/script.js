@@ -790,11 +790,11 @@ function renderizarTelaNivel(elemento) {
     }
     
     container.innerHTML +=
-    `<button id="botao-nivel" type="submit" data-test="finish" onclick="btnFinalizarQuizz()">Finalizar Quizz</button>`
+    `<button id="botao-nivel" type="submit" data-test="finish" onclick="btnFinalizarQuizz(${dadosQuiz})">Finalizar Quizz</button>`
 
 }
 
-function btnFinalizarQuizz(){
+function btnFinalizarQuizz(dadosQuiz){
     let validarTitulo, validarPercentual, validarImagem, validarDescriçãoNivel;
 
     
@@ -833,7 +833,7 @@ function btnFinalizarQuizz(){
             validarImagem = true
         }
         
-        if( valorDescricaoNivel === "" || valorDescricaoNivel === null || valorDescricaoNivel === undefined || valorDescricaoNivel.length < 10){
+        if( valorDescricaoNivel === "" || valorDescricaoNivel === null || valorDescricaoNivel === undefined || valorDescricaoNivel.length < 30){
             alert("Imagem incorreta")
             validarDescriçãoNivel = false
         } else{
