@@ -947,7 +947,7 @@ let renderizaQuizzes = (listaQuizzes) => {
     console.log("Aqui", listaIds)
     listaQuizzes.forEach(quiz => {
         listaIds.forEach(id => {
-            if (quiz.id == id){
+            if (quiz.id == id[0][0]){
                 trocarDivUsuario();
                 userQuizzes.innerHTML+=`<div class="quiz" data-test="my-quiz" style="
                 background:linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.1%, #000000 100%), url(${quiz.image});
