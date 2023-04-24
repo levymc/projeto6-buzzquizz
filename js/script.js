@@ -13,6 +13,7 @@ let cadaPerguntaQuizz;
 let qntNiveis;
 let levels = []
 let dadosQuiz ;
+let userIds = [];
 
 
 let pontosMaximo = 0;
@@ -142,34 +143,7 @@ let recarregaPagina = () => {
     window.location.reload();
 }
 
-// let renderizaQuizzes = (listaQuizzes) => {
-//     let divPrincipal = document.querySelector(".container-todos");
-//     // divPrincipal.innerHTML = "";
-//     listaQuizzes.forEach(quiz => { //<img src="${quiz.image}" alt="">
-//         console.log(quiz);
-//         divPrincipal.innerHTML += `<div class="quiz"><h4>${quiz.title}</h4></div>`
-//         document.querySelector(".quiz").style.backgroundImage = "linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.1%, #000000 100%), url(https://img.freepik.com/vetores-gratis/castelo-de-conto-de-fadas-mao-desenhado-design_23-2148468272.jpg?w=740&t=st=1682032829~exp=1682033429~hmac=cc07bd823c519d0e378a838531ce5ad427ade9b7757e773b25a9810f99885933)";
-//         // divQuiz.style.backgroundImage = `url("../img/unnamed.png")`;
-//     });
-// }
 
-let renderizaQuizzes = (listaQuizzes) => {
-    
-    index = listaQuizzes;
-    let divPrincipal = document.querySelector(".container-todos");
-    divPrincipal.innerHTML = "";
-    
-    listaQuizzes.forEach(quiz => {
-        divPrincipal.innerHTML += `<div class="quiz" data-test="others-quiz" style="
-        background:linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.1%, #000000 100%), url(${quiz.image});
-        background-size: cover; 
-        background-position: center;
-        background-repeat:no-repeat;"
-        onclick="jogarQuizz(${quiz.id})"><h4>${quiz.title}</h4></div>`;
-    });
-
-
-}
 
 //EFEITO NAS RESPOSTAS
 
@@ -453,11 +427,35 @@ let recebeQuizzes = () => {
 
 const container1 = document.querySelector('.container-usuario1');
 const container2 = document.querySelector('.container-usuario2'); // Modificar para a tela 3 depois!
-let criarQuizz = () => {
+let trocarDivUsuario = () => {
     container1.classList.remove('mostrar');
     container1.classList.add('esconder');
     container2.classList.remove('esconder');
     container2.classList.add('mostrar');
+}
+
+let renderizaQuizzes = (listaQuizzes) => {
+    index = listaQuizzes;
+    let divPrincipal = document.querySelector(".container-todos");
+    divPrincipal.innerHTML = "";
+    listaQuizzes.forEach(quiz => {
+        if (userIds.includes(quiz.id)){
+            trocarDivUsuario();
+            container2.innerHTML+=`<div class="quiz" data-test="others-quiz" style="
+            background:linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.1%, #000000 100%), url(${quiz.image});
+            background-size: cover; 
+            background-position: center;
+            background-repeat:no-repeat;"
+            onclick="jogarQuizz(${quiz.id})"><h4>${quiz.title}</h4></div>`;
+        }else{
+            divPrincipal.innerHTML += `<div class="quiz" data-test="others-quiz" style="
+            background:linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.1%, #000000 100%), url(${quiz.image});
+            background-size: cover; 
+            background-position: center;
+            background-repeat:no-repeat;"
+            onclick="jogarQuizz(${quiz.id})"><h4>${quiz.title}</h4></div>`;
+        }
+    });
 }
 
 let aguarde = () => {
@@ -745,6 +743,8 @@ function salvarPerguntasQuiz (){
 }
 
 let renderizarTela3_4 = () => {
+    let id = localStorage.getItem('id');
+    userIds.push(id);
     container.innerHTML = '';
     container.innerHTML += `
     <div class="tela3_3 flex">
@@ -755,7 +755,7 @@ let renderizarTela3_4 = () => {
         background-position: center;
         background-repeat:no-repeat;
         "><h4>${infoCriarQuiz.title}</h4></div>
-        <button class="btn-acessarQuizz" data-test="go-quiz" onclick="btnCriarQuiz1()">Acessar Quizz</button>
+        <button class="btn-acessarQuizz" data-test="go-quiz" onclick="jogarQuizz(${id})">Acessar Quizz</button>
         <button class="btn-Home" data-test="go-home" onclick="recarregaPagina()">Voltar pra home</button>
     </div>
     `
@@ -907,6 +907,7 @@ if((validarTitulo && validarImagem && validarPercentual && validarDescriçãoNiv
     console.log(dadosQuiz)
     axios.post("https://mock-api.driven.com.br/api/vm/buzzquizz/quizzes", dadosQuiz).then(response => {
         console.log(response.data);
+        localStorage.setItem('id', response.data.id);
         renderizarTela3_4();
     }).catch(error => {
         console.log(error);
