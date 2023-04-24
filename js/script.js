@@ -676,23 +676,31 @@ function salvarPerguntasQuiz (){
             isCorrectAnswer: true
         };
 
-        const respostasIncorretas = [
-        {
+        const respostasIncorretas = [];
+
+        if (pergunta.querySelector('#resposta1').value && pergunta.querySelector('#link1').value) {
+        respostasIncorretas.push({
             text: pergunta.querySelector('#resposta1').value,
             image: pergunta.querySelector('#link1').value,
             isCorrectAnswer: false
-        },
-        {
+        });
+        }
+
+        if (pergunta.querySelector('#resposta2').value && pergunta.querySelector('#link2').value) {
+        respostasIncorretas.push({
             text: pergunta.querySelector('#resposta2').value,
             image: pergunta.querySelector('#link2').value,
             isCorrectAnswer: false
-        },
-        {
+        });
+        }
+
+        if (pergunta.querySelector('#resposta3').value && pergunta.querySelector('#link3').value) {
+        respostasIncorretas.push({
             text: pergunta.querySelector('#resposta3').value,
             image: pergunta.querySelector('#link3').value,
             isCorrectAnswer: false
+        });
         }
-        ];
 
         const answers = [respostaCorreta, ...respostasIncorretas];
 
