@@ -14,6 +14,7 @@ let qntNiveis;
 let levels = []
 
 let pontosMaximo = 0;
+let pontosFeitos = 0;
 
 let imgstring="";
 let index;
@@ -27,7 +28,7 @@ let infoCriarQuiz = {
 }
 let perguntasQuiz = [];
 
-let niveisQuiz = [];
+let niveisQuiz;
 
 // Seção de Funções
 
@@ -171,15 +172,13 @@ let renderizaQuizzes = (listaQuizzes) => {
 //EFEITO NAS RESPOSTAS
 
 function selecionarOpcao(elemento, thisElemento){
-    console.log(elemento)
-
-    let pontosFeitos = 0
+    //console.log(elemento)
 
     const pergunta  = thisElemento.closest(".respostaRenderizada");
 
     const opcoes = Array.from(pergunta.children);
 
-    console.log(opcoes);
+    //console.log(opcoes);
 
     if (elemento === true) {
         thisElemento.classList.add('acerto');
@@ -224,13 +223,54 @@ function selecionarOpcao(elemento, thisElemento){
                 behavior: 'smooth'
             });
         } else{
-            resultadoQuiz(porcentagemAcertos);
+            resultadoQuiz(niveisQuiz, porcentagemAcertos);
         }
     }, 2000);
 }
 
-function resultadoQuiz(resultado){
-    
+function resultadoQuiz(niveisQuiz, porcentagemAcertos) {
+    let nivelAtual = null;
+    console.log(porcentagemAcertos);
+
+    for (let i = 0; i < niveisQuiz.length; i++) {
+        const nivel = niveisQuiz[i];
+        if (nivel.minValue <= porcentagemAcertos) {
+            nivelAtual = nivel;
+        } else {
+            break;
+        }
+    }
+
+    console.log(nivelAtual);
+
+    if (nivelAtual) {
+        let main = document.querySelector("main");
+
+        main.innerHTML +=
+        `<div class="resultado">
+            <div class="titulo-nivel">
+                <h3>${nivelAtual.title}</h3>
+            </div>
+
+            <div class="conteudo">
+                <img src=${nivelAtual.image}>
+                <p>${nivelAtual.text}</p>
+            </div>
+        </div>
+
+        <div class="botao-reiniciar" onclick="jogarQuizz(element)">
+        <p>Reiniciar Quizz</p>
+        </div>
+
+        <div class="botao-home" onclick="recarregaPagina()">
+        <p>Voltar pra home</p>
+        </div>
+        `
+
+        const resultado = document.querySelector('.resultado');
+        resultado.scrollIntoView({ behavior: 'smooth' });
+    } else {
+    }
 }
 
 
@@ -263,6 +303,12 @@ function jogarQuizz(element) {
         //console.log(QuantidadeQuestionsClicado)
 
         pontosMaximo = quizzClicado.questions.length
+        niveisQuiz = quizzClicado.levels
+
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
 
         perguntaSelecionada.innerHTML=`
         <div class="quizzSelecionado">

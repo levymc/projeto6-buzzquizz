@@ -406,44 +406,7 @@ input[type=url]{
 
 
 
-@media screen and (max-width: 1100px) {
-    body{
-        overflow-x: hidden;
-    }
 
-    .todosQuiz{
-        left: 2%;
-        width: 21.25em;
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-    }
-    .container-todos{
-        align-items: center;
-        flex-direction: column;
-    }
-
-    .pergunta{
-        width: 100vw;
-        display: flex;
-        align-items: center;
-        border-radius: 0px;
-    }
-    .nome-pergunta{
-        width: 95%;
-    }
-    .conteudo-pergunta{
-        width: 95%;
-    }
-
-
-
-    #botao-perguntas{
-        width: 20em;
-        font-size: 18px;
-        padding: 0.95em;
-    }
-}
 
 
 /* jogar quizz*/
@@ -632,4 +595,167 @@ margin-bottom: 20px;
 }
 .era-certa h4{
     color: #009C22;
+}
+
+.resultado{
+    margin-left: auto;
+    margin-right: auto;
+    width: 700px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+    padding: 14px;
+    margin-bottom: 57px;
+}
+
+.titulo-nivel{
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #EC362D;
+    padding: 22px;
+}
+.titulo-nivel h3{
+    font-weight: 700;
+    font-size: 23px;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.conteudo{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: top;
+}
+.conteudo img{
+    width: 330px;
+}
+.conteudo p{
+    font-weight: 700;
+    font-size: 19px;
+    line-height: 25px;
+    color: #484848;
+    margin-left: 18px;
+}
+
+.botao-reiniciar{
+    width: 260px;
+    background: #EC362D;
+    border-radius: 15px;
+    padding: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+}
+.botao-reiniciar p{
+    font-size: 21px;
+    text-align: center;
+    color: #FFF5F4;
+}
+.botao-reiniciar:hover{
+    cursor: pointer;
+}
+
+.botao-home{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 80px;
+}
+
+.botao-home p{
+    color: #818181;
+    font-size: 21px;
+}
+.botao-home:hover{
+    cursor: pointer;
+}
+
+@media screen and (max-width: 1100px) {
+    body{
+        overflow-x: hidden;
+    }
+
+    .todosQuiz{
+        left: 2%;
+        width: 21.25em;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    .container-todos{
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .pergunta{
+        width: 100vw;
+        display: flex;
+        align-items: center;
+        border-radius: 0px;
+    }
+    .nome-pergunta{
+        width: 95%;
+    }
+    .conteudo-pergunta{
+        width: 95%;
+    }
+
+
+
+    #botao-perguntas{
+        width: 20em;
+        font-size: 18px;
+        padding: 0.95em;
+    }
+
+    .resultado{
+        width: 100vw;
+        padding: 18px;
+    }
+    
+    .titulo-nivel{
+        padding: 15px;
+    }
+    .titulo-nivel h3{
+        font-size: 19px;
+        text-align: center;
+    }
+    
+    .conteudo{
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: top;
+    }
+    .conteudo img{
+        width: 100%;
+    }
+    .conteudo p{
+        font-size: 17px;
+        line-height: 20px;
+        margin-top: 18px;
+        margin-right: 15px;
+    }
+
+    .botao-reiniciar{
+        width: 60%;
+        padding: 18px;
+        margin-bottom: 20px;
+    }
+    .botao-reiniciar p{
+        font-size: 18px;
+    }
+    
+    .botao-home p{
+        color: #818181;
+        font-size: 18px;
+    }
 }
