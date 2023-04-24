@@ -745,11 +745,66 @@ function renderizarTelaNivel(elemento, dadosQuiz) {
 }
 
 function btnFinalizarQuizz(){
+    let validarTitulo, validarPercentual, validarImagem, validarDescriçãoNivel;
+
+    
+    const niveis = document.querySelectorAll(".conteudo-nivel");
+    const titulo = document.querySelectorAll("#titulo");
+
+    console.log(titulo);
+
+    niveis.forEach((index1) =>{
+        const valorTitulo = index1.querySelector("#titulo").value;
+        const valorPercentual = index1.querySelector("#percentual").value;
+        parseInt(valorPercentual) 
+        const valorImagem = index1.querySelector("#linkImg").value
+        const valorDescricaoNivel = index1.querySelector("#descriptionLevel").value
+        
+        console.log(valorPercentual);
+        // Validando título do nível
+        if( valorTitulo === "" || valorTitulo === null || valorTitulo === undefined ||  valorTitulo.length < 10){
+            alert("Valor do título incorreto")
+            validarTitulo = false
+        } else{
+            validarTitulo = true
+        }
+    
+        if( valorPercentual === "" || valorPercentual === null || valorPercentual === undefined ||  valorPercentual < 0 || valorPercentual > 100){
+            alert("Valor do percentual incorreto")
+            validarPercentual = false
+        } else{
+            validarPercentual = true
+        }
+
+        if( valorImagem === "" || valorImagem === null || valorImagem === undefined || (!valorImagem.startsWith("http://") && !valorImagem.startsWith("https://") )){
+            alert("Imagem incorreta")
+            validarImagem = false
+        } else{
+            validarImagem = true
+        }
+        
+        if( valorDescricaoNivel === "" || valorDescricaoNivel === null || valorDescricaoNivel === undefined || valorDescricaoNivel.length < 10){
+            alert("Imagem incorreta")
+            validarDescriçãoNivel = false
+        } else{
+            validarDescriçãoNivel = true
+        }
+        
+    }) 
+    
+    console.log(validarTitulo)
+    console.log(validarPercentual)
+    console.log(validarImagem)
+    console.log(validarDescriçãoNivel)
+
+
+
+    
     console.log(dadosQuiz);
     levels = [];
-    const niveis = document.querySelectorAll(".conteudo-nivel");
     
-
+    
+if((validarTitulo && validarImagem && validarPercentual && validarDescriçãoNivel) === true){
     niveis.forEach((nivel) =>{
         
         const objNivel = {
@@ -765,7 +820,7 @@ function btnFinalizarQuizz(){
     dadosQuiz.levels = levels;
     renderizarTela3_3();
     console.log(dadosQuiz);
-    
+} 
     // aguarde();
 }
 
