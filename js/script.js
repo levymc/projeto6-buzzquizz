@@ -825,7 +825,7 @@ function renderizarTelaNivel(elemento) {
     }
     
     container.innerHTML +=
-    `<button id="botao-nivel" type="submit" data-test="finish" onclick="btnFinalizarQuizz(${dadosQuiz})">Finalizar Quizz</button>`
+    `<button id="botao-nivel" type="submit" data-test="finish" onclick="btnFinalizarQuizz()">Finalizar Quizz</button>`
 
 }
 
