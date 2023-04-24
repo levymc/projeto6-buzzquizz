@@ -478,7 +478,7 @@ let btnCriarQuiz1 = () => {
     qntNiveis = document.querySelector("#qntNiveis").value;
     let titleChecked, urlChecked, qntPerguntasChecked, qntNiveisChecked;
 
-    titleChecked = tituloQuiz != '' && tituloQuiz != null && tituloQuiz != undefined && (tituloQuiz.trim().length >= 20 || tituloQuiz.trim().length <= 64) ? true : false;
+    titleChecked = tituloQuiz != '' && tituloQuiz != null && tituloQuiz != undefined && (tituloQuiz.trim().length >= 20 && tituloQuiz.trim().length <= 64) ? true : false;
     // console.log(titleChecked)
 
     urlChecked = urlQuiz != '' && urlQuiz != null && urlQuiz != undefined  && (urlQuiz.startsWith("http://") || urlQuiz.startsWith("https://")) ? true : false;
@@ -899,8 +899,8 @@ if((validarTitulo && validarImagem && validarPercentual && validarDescriçãoNiv
             minValue: nivel.querySelector("#percentual").value
 
         }
-        const inserirNivel = [objNivel]
-        levels.push(inserirNivel)
+        //const inserirNivel = [objNivel]
+        levels.push(objNivel)
     }) 
     dadosQuiz.levels = levels;
     // Aqui que deve enviar o dadosQUiz para o servidor https://mock-api.driven.com.br/api/vm/buzzquizz/quizzes
