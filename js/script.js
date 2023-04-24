@@ -260,12 +260,14 @@ function resultadoQuiz(niveisQuiz, porcentagemAcertos) {
             </div>
         </div>
 
-        <div class="botao-reiniciar" data-test="restart" onclick="reiniciarQuizz()">
-        <p>Reiniciar Quizz</p>
-        </div>
+        <div class="navegacao">
+            <div class="botao-reiniciar" data-test="restart" onclick="reiniciarQuizz()">
+            <p>Reiniciar Quizz</p>
+            </div>
 
-        <div class="botao-home" data-test="go-home" onclick="recarregaPagina()">
-        <p>Voltar pra home</p>
+            <div class="botao-home" data-test="go-home" onclick="recarregaPagina()">
+            <p>Voltar pra home</p>
+            </div>
         </div>
         `
 
@@ -276,7 +278,40 @@ function resultadoQuiz(niveisQuiz, porcentagemAcertos) {
 }
 
 function reiniciarQuizz(){
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
 
+    const resultado = document.querySelector('.resultado');
+    resultado.innerHTML = '';
+
+    const botoes = document.querySelector('.navegacao');
+    botoes.innerHTML = '';
+
+    const respostas = document.querySelectorAll('.opcaoUm')
+
+    respostas.forEach(resposta => {
+        if (resposta.classList.contains('erradas')) {
+            resposta.classList.remove('erradas');
+            resposta.setAttribute('onclick', 'selecionarOpcao(false, this)');
+        }
+
+        if (resposta.classList.contains('errou')) {
+            resposta.classList.remove('errou');
+            resposta.setAttribute('onclick', 'selecionarOpcao(false, this)');
+        }
+
+        if (resposta.classList.contains('era-certa')) {
+            resposta.classList.remove('era-certa');
+            resposta.setAttribute('onclick', 'selecionarOpcao(true, this)');
+        }
+
+        if (resposta.classList.contains('acerto')) {
+            resposta.classList.remove('acerto');
+            resposta.setAttribute('onclick', 'selecionarOpcao(true, this)');
+        }
+    });
 }
 
 
