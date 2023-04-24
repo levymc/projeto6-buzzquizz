@@ -21,7 +21,7 @@ let pontosFeitos = 0;
 
 let imgstring="";
 let index;
-let userQuizzes ;
+
 
 let infoCriarQuiz = {
     title: "",
@@ -61,7 +61,7 @@ let renderizarTela1 = () => {
             </div>`
 }
 
-
+let userQuizzes = document.querySelector(".userQuizzes");
 /*function jogarQuizz(){
 
 
@@ -425,14 +425,7 @@ let recebeQuizzes = () => {
 }
 
 
-const container1 = document.querySelector('.container-usuario1');
-const container2 = document.querySelector('.container-usuario2'); // Modificar para a tela 3 depois!
-let trocarDivUsuario = () => {
-    container1.classList.remove('mostrar');
-    container1.classList.add('esconder');
-    container2.classList.remove('esconder');
-    container2.classList.add('mostrar');
-}
+
 
 
 let aguarde = () => {
@@ -917,10 +910,11 @@ let renderizaQuizzes = (listaQuizzes) => {
     index = listaQuizzes;
     let divPrincipal = document.querySelector(".container-todos");
     divPrincipal.innerHTML = "";
+    console.log("Aqui")
     listaQuizzes.forEach(quiz => {
-        if (userIds.includes(quiz.id)){
+        if (localStorage.getItem('id') && quiz.id == localStorage.getItem('id')){
             trocarDivUsuario();
-            container2.innerHTML+=`<div class="quiz" data-test="others-quiz" style="
+            userQuizzes.innerHTML+=`<div class="quiz" data-test="others-quiz" style="
             background:linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.1%, #000000 100%), url(${quiz.image});
             background-size: cover; 
             background-position: center;
@@ -935,6 +929,14 @@ let renderizaQuizzes = (listaQuizzes) => {
             onclick="jogarQuizz(${quiz.id})"><h4>${quiz.title}</h4></div>`;
         }
     });
+}
+const container1 = document.querySelector('.container-usuario1');
+const container2 = document.querySelector('.container-usuario2'); // Modificar para a tela 3 depois!
+let trocarDivUsuario = () => {
+    container1.classList.remove('mostrar');
+    container1.classList.add('esconder');
+    container2.classList.remove('esconder');
+    container2.classList.add('mostrar');
 }
 recebeQuizzes();
 renderizarTela1();
