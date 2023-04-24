@@ -15,6 +15,7 @@ let levels = []
 let dadosQuiz ;
 let userIds = [];
 let contador = 0
+let listaIds = [] ;
 
 
 let pontosMaximo = 0;
@@ -713,9 +714,7 @@ function salvarPerguntasQuiz (){
     renderizarTelaNivel(perguntasQuiz);
 }
 
-let renderizarTela3_4 = () => {
-    let id = localStorage.getItem('id');
-    userIds.push(id);
+let renderizarTela3_4 = (id) => {
     container.innerHTML = '';
     container.innerHTML += `
     <div class="tela3_3 flex">
@@ -885,10 +884,10 @@ if(contador === 0){
     // Aqui que deve enviar o dadosQUiz para o servidor https://mock-api.driven.com.br/api/vm/buzzquizz/quizzes
     console.log(dadosQuiz)
     axios.post("https://mock-api.driven.com.br/api/vm/buzzquizz/quizzes", dadosQuiz).then(response => {
-        console.log(response.data);
+        console.log(response.data.id);
         userIds.push(response.data.id)
-        localStorage.setItem('ids', userIds);
-        renderizarTela3_4();
+        localStorage.setItem('ids', JSON.stringify(userIds));
+        renderizarTela3_4(response.data.id);
     }).catch(error => {
         console.log(error);
     })
@@ -926,10 +925,13 @@ let userQuizzes = document.querySelector(".userQuizzes");
 let renderizaQuizzes = (listaQuizzes) => {
     index = listaQuizzes;
     let divPrincipal = document.querySelector(".container-todos");
+    if (localStorage.getItem("ids")){
+       listaIds.push(JSON.parse(localStorage.getItem("ids")));
+    }
     divPrincipal.innerHTML = "";
-    console.log("Aqui")
+    console.log("Aqui", userIds)
     listaQuizzes.forEach(quiz => {
-        userIds.forEach(id => {
+        listaIds.forEach(id => {
             if (quiz.id == id){
                 trocarDivUsuario();
                 userQuizzes.innerHTML+=`<div class="quiz" data-test="others-quiz" style="
