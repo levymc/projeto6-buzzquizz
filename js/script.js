@@ -803,6 +803,8 @@ function renderizarTelaNivel(elemento) {
 
 }
 
+
+
 function btnFinalizarQuizz(){
     let validarTitulo, validarPercentual, validarImagem, validarDescriçãoNivel;
 
@@ -862,56 +864,51 @@ function btnFinalizarQuizz(){
         if (percentual === 0) {
             valorPercentual = true;
         }
-    });
-
-    // Verificando se pelo menos um nível tem percentual igual a 0
-    if (!valorPercentual) {
-        alert("Pelo menos um nível deve ter percentual igual a 0");
-        contador++;
-    }
-
-    // Verificando se há pelo menos dois níveis com o mesmo percentual
-    const percentuais = Array.from(niveis, n => parseInt(n.querySelector("#percentual").value));
-    const percentuaisDuplicados = percentuais.filter((p, i) => percentuais.indexOf(p) !== i);
-    if (percentuaisDuplicados.length > 0) {
-        alert("Dois ou mais níveis não podem ter o mesmo percentual");
-        contador++;
-    }
-
-
     
+
+        // Verificando se pelo menos um nível tem percentual igual a 0
+        if (!valorPercentual) {
+            alert("Pelo menos um nível deve ter percentual igual a 0");
+            contador++;
+        }
+
+        // Verificando se há pelo menos dois níveis com o mesmo percentual
+        const percentuais = Array.from(niveis, n => parseInt(n.querySelector("#percentual").value));
+        const percentuaisDuplicados = percentuais.filter((p, i) => percentuais.indexOf(p) !== i);
+        if (percentuaisDuplicados.length > 0) {
+            alert("Dois ou mais níveis não podem ter o mesmo percentual");
+            contador++;
+        }
+    });
     console.log(dadosQuiz);
     levels = [];
-    
-    
-if(contador === 0){
-    console.log("valido")
-    
-    niveis.forEach((nivel) =>{
+    if(contador === 0){
+        console.log("valido")
         
-        const objNivel = {
-            title: nivel.querySelector("#titulo").value,
-            image: nivel.querySelector("#linkImg").value,
-            text: nivel.querySelector("#descriptionLevel").value,
-            minValue: nivel.querySelector("#percentual").value
+        niveis.forEach((nivel) =>{
+            
+            const objNivel = {
+                title: nivel.querySelector("#titulo").value,
+                image: nivel.querySelector("#linkImg").value,
+                text: nivel.querySelector("#descriptionLevel").value,
+                minValue: nivel.querySelector("#percentual").value
 
-        }
-        //const inserirNivel = [objNivel]
-        levels.push(objNivel)
-    }) 
-    dadosQuiz.levels = levels;
-    // Aqui que deve enviar o dadosQUiz para o servidor https://mock-api.driven.com.br/api/vm/buzzquizz/quizzes
-    console.log(dadosQuiz)
-    axios.post("https://mock-api.driven.com.br/api/vm/buzzquizz/quizzes", dadosQuiz).then(response => {
-        console.log(response.data.id);
-        console.log("IDS:::: ", listaIds)
-        localStorage.setItem('ids', JSON.stringify(listaIds));
-        armazenarId(response.data.id);
-        renderizarTela3_4(response.data.id);
-    }).catch(error => {
-        console.log(error);
-    })
-} 
+            }
+            //const inserirNivel = [objNivel]
+            levels.push(objNivel)
+        }) 
+        dadosQuiz.levels = levels;
+        // Aqui que deve enviar o dadosQUiz para o servidor https://mock-api.driven.com.br/api/vm/buzzquizz/quizzes
+        console.log(dadosQuiz)
+        axios.post("https://mock-api.driven.com.br/api/vm/buzzquizz/quizzes", dadosQuiz).then(response => {
+            console.log(response.data.id);
+            console.log("IDS:::: ", listaIds)
+            localStorage.setItem('ids', JSON.stringify(listaIds));
+            renderizarTela3_4(response.data.id);
+        }).catch(error => {
+            console.log(error);
+        })
+    } 
 }
 
 
