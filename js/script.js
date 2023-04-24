@@ -897,9 +897,6 @@ function btnFinalizarQuizz(){
         // Aqui que deve enviar o dadosQUiz para o servidor https://mock-api.driven.com.br/api/vm/buzzquizz/quizzes
         console.log(dadosQuiz)
         axios.post("https://mock-api.driven.com.br/api/vm/buzzquizz/quizzes", dadosQuiz).then(response => {
-            console.log(response.data.id);
-            console.log("IDS:::: ", listaIds)
-            
             renderizarTela3_4(response.data.id);
         }).catch(error => {
             console.log(error);
