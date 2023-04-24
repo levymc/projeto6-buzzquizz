@@ -434,29 +434,6 @@ let trocarDivUsuario = () => {
     container2.classList.add('mostrar');
 }
 
-let renderizaQuizzes = (listaQuizzes) => {
-    index = listaQuizzes;
-    let divPrincipal = document.querySelector(".container-todos");
-    divPrincipal.innerHTML = "";
-    listaQuizzes.forEach(quiz => {
-        if (userIds.includes(quiz.id)){
-            trocarDivUsuario();
-            container2.innerHTML+=`<div class="quiz" data-test="others-quiz" style="
-            background:linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.1%, #000000 100%), url(${quiz.image});
-            background-size: cover; 
-            background-position: center;
-            background-repeat:no-repeat;"
-            onclick="jogarQuizz(${quiz.id})"><h4>${quiz.title}</h4></div>`;
-        }else{
-            divPrincipal.innerHTML += `<div class="quiz" data-test="others-quiz" style="
-            background:linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.1%, #000000 100%), url(${quiz.image});
-            background-size: cover; 
-            background-position: center;
-            background-repeat:no-repeat;"
-            onclick="jogarQuizz(${quiz.id})"><h4>${quiz.title}</h4></div>`;
-        }
-    });
-}
 
 let aguarde = () => {
     Swal.fire({
@@ -496,7 +473,6 @@ let btnCriarQuiz1 = () => {
         };
         console.log(infoCriarQuiz);
         renderizarTela3perguntas();
-        // renderizarTela3_3()
     } else if (!titleChecked){
         alert("Título");
         renderizarTela3();
@@ -510,16 +486,13 @@ let btnCriarQuiz1 = () => {
         alert("qnt níveis")
         renderizarTela3();
     }
-
-
 }
 
 
 
 
 // Inicializando funções
-recebeQuizzes()
-renderizarTela1();
+
 //renderizarTela3_3();
 //renderizarTelaNivel();
 
@@ -932,3 +905,28 @@ function expandirNivel(event) {
 // localStorage.setItem('newUser', newUser); // armazena o nome do usuário na localStorage
 // newUser = localStorage.getItem('newUser');
 
+let renderizaQuizzes = (listaQuizzes) => {
+    index = listaQuizzes;
+    let divPrincipal = document.querySelector(".container-todos");
+    divPrincipal.innerHTML = "";
+    listaQuizzes.forEach(quiz => {
+        if (userIds.includes(quiz.id)){
+            trocarDivUsuario();
+            container2.innerHTML+=`<div class="quiz" data-test="others-quiz" style="
+            background:linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.1%, #000000 100%), url(${quiz.image});
+            background-size: cover; 
+            background-position: center;
+            background-repeat:no-repeat;"
+            onclick="jogarQuizz(${quiz.id})"><h4>${quiz.title}</h4></div>`;
+        }else{
+            divPrincipal.innerHTML += `<div class="quiz" data-test="others-quiz" style="
+            background:linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.1%, #000000 100%), url(${quiz.image});
+            background-size: cover; 
+            background-position: center;
+            background-repeat:no-repeat;"
+            onclick="jogarQuizz(${quiz.id})"><h4>${quiz.title}</h4></div>`;
+        }
+    });
+}
+recebeQuizzes();
+renderizarTela1();
