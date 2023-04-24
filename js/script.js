@@ -16,7 +16,6 @@ let dadosQuiz ;
 
 
 let pontosMaximo = 0;
-let pontosFeitos = 0;
 
 let imgstring="";
 let index;
@@ -30,7 +29,7 @@ let infoCriarQuiz = {
 }
 let perguntasQuiz = [];
 
-let niveisQuiz;
+let niveisQuiz = [];
 
 // Seção de Funções
 
@@ -174,13 +173,15 @@ let renderizaQuizzes = (listaQuizzes) => {
 //EFEITO NAS RESPOSTAS
 
 function selecionarOpcao(elemento, thisElemento){
-    //console.log(elemento)
+    console.log(elemento)
+
+    let pontosFeitos = 0
 
     const pergunta  = thisElemento.closest(".respostaRenderizada");
 
     const opcoes = Array.from(pergunta.children);
 
-    //console.log(opcoes);
+    console.log(opcoes);
 
     if (elemento === true) {
         thisElemento.classList.add('acerto');
@@ -225,54 +226,13 @@ function selecionarOpcao(elemento, thisElemento){
                 behavior: 'smooth'
             });
         } else{
-            resultadoQuiz(niveisQuiz, porcentagemAcertos);
+            resultadoQuiz(porcentagemAcertos);
         }
     }, 2000);
 }
 
-function resultadoQuiz(niveisQuiz, porcentagemAcertos) {
-    let nivelAtual = null;
-    console.log(porcentagemAcertos);
-
-    for (let i = 0; i < niveisQuiz.length; i++) {
-        const nivel = niveisQuiz[i];
-        if (nivel.minValue <= porcentagemAcertos) {
-            nivelAtual = nivel;
-        } else {
-            break;
-        }
-    }
-
-    console.log(nivelAtual);
-
-    if (nivelAtual) {
-        let main = document.querySelector("main");
-
-        main.innerHTML +=
-        `<div class="resultado">
-            <div class="titulo-nivel">
-                <h3>${nivelAtual.title}</h3>
-            </div>
-
-            <div class="conteudo">
-                <img src=${nivelAtual.image}>
-                <p>${nivelAtual.text}</p>
-            </div>
-        </div>
-
-        <div class="botao-reiniciar" onclick="jogarQuizz(element)">
-        <p>Reiniciar Quizz</p>
-        </div>
-
-        <div class="botao-home" onclick="recarregaPagina()">
-        <p>Voltar pra home</p>
-        </div>
-        `
-
-        const resultado = document.querySelector('.resultado');
-        resultado.scrollIntoView({ behavior: 'smooth' });
-    } else {
-    }
+function resultadoQuiz(resultado){
+    
 }
 
 
@@ -305,12 +265,6 @@ function jogarQuizz(element) {
         //console.log(QuantidadeQuestionsClicado)
 
         pontosMaximo = quizzClicado.questions.length
-        niveisQuiz = quizzClicado.levels
-
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
 
         perguntaSelecionada.innerHTML=`
         <div class="quizzSelecionado">
@@ -786,11 +740,11 @@ function renderizarTelaNivel(elemento, dadosQuiz) {
     }
     
     container.innerHTML +=
-    `<button id="botao-nivel" type="submit" onclick="btnFinalizarQuizz(${dadosQuiz})">Finalizar Quizz</button>`
+    `<button id="botao-nivel" type="submit" onclick="btnFinalizarQuizz()">Finalizar Quizz</button>`
 
 }
 
-function btnFinalizarQuizz(dadosQuiz){
+function btnFinalizarQuizz(){
     let validarTitulo, validarPercentual, validarImagem, validarDescriçãoNivel;
 
     
