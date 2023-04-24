@@ -829,7 +829,7 @@ function renderizarTelaNivel(elemento) {
 
 }
 
-function btnFinalizarQuizz(dadosQuiz){
+function btnFinalizarQuizz(){
     let validarTitulo, validarPercentual, validarImagem, validarDescriçãoNivel;
 
     
