@@ -16,7 +16,6 @@ let dadosQuiz ;
 let userIds = [];
 let contador = 0;
 let contadorZero = 0;
-let listaIds = [] ;
 
 
 let pontosMaximo = 0;
@@ -24,6 +23,7 @@ let pontosFeitos = 0;
 
 let imgstring="";
 let index;
+let listaIds = [] ;
 
 
 let infoCriarQuiz = {
@@ -39,6 +39,7 @@ let niveisQuiz;
 // Seção de Funções
 
 let renderizarTela1 = () => {
+    
     container.innerHTML = '';
     container.innerHTML = `<div class="container-usuario1 mostrar">
                 <h4>Você não criou nenhum <br />quizz ainda :(</h4>
@@ -720,6 +721,9 @@ function salvarPerguntasQuiz (){
 }
 
 let renderizarTela3_4 = (id) => {
+    listaIds.push(id);
+    localStorage.setItem('ids', JSON.stringify(listaIds));
+    console.log(listaIds);
     container.innerHTML = '';
     container.innerHTML += `
     <div class="tela3_3 flex">
@@ -877,7 +881,6 @@ function btnFinalizarQuizz(){
     levels = [];
     if(contador === 0){
         console.log("valido")
-        
         niveis.forEach((nivel) =>{
             
             const objNivel = {
@@ -896,7 +899,7 @@ function btnFinalizarQuizz(){
         axios.post("https://mock-api.driven.com.br/api/vm/buzzquizz/quizzes", dadosQuiz).then(response => {
             console.log(response.data.id);
             console.log("IDS:::: ", listaIds)
-            localStorage.setItem('ids', JSON.stringify(listaIds));
+            
             renderizarTela3_4(response.data.id);
         }).catch(error => {
             console.log(error);
@@ -933,14 +936,14 @@ let userQuizzes = document.querySelector(".userQuizzes");
 let renderizaQuizzes = (listaQuizzes) => {
     index = listaQuizzes;
     let divPrincipal = document.querySelector(".container-todos");
+    
     if (localStorage.getItem("ids")){
-       listaIds.push(JSON.parse(localStorage.getItem("ids")));
+       userIds.push(JSON.parse(localStorage.getItem("ids")));
     }
     divPrincipal.innerHTML = "";
-    console.log("Aqui", listaIds)
     listaQuizzes.forEach(quiz => {
-        listaIds.forEach(id => {
-            if (quiz.id == id[0][0]){
+        userIds.forEach(id => {
+            if (quiz.id == id[0]){
                 trocarDivUsuario();
                 userQuizzes.innerHTML+=`<div class="quiz" data-test="my-quiz" style="
                 background:linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.1%, #000000 100%), url(${quiz.image});
