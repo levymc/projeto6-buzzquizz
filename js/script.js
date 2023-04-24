@@ -14,7 +14,9 @@ let qntNiveis;
 let levels = []
 let dadosQuiz ;
 let userIds = [];
-let contador = 0
+let contador = 0;
+let contadorZero = 0;
+let listaIds = [] ;
 
 
 let pontosMaximo = 0;
@@ -717,9 +719,7 @@ function salvarPerguntasQuiz (){
     renderizarTelaNivel(perguntasQuiz);
 }
 
-let renderizarTela3_4 = () => {
-    let id = localStorage.getItem('id');
-    userIds.push(id);
+let renderizarTela3_4 = (id) => {
     container.innerHTML = '';
     container.innerHTML += `
     <div class="tela3_3 flex">
@@ -804,6 +804,8 @@ function renderizarTelaNivel(elemento) {
 
 }
 
+
+
 function btnFinalizarQuizz(){
     let validarTitulo, validarPercentual, validarImagem, validarDescriçãoNivel;
 
@@ -858,45 +860,49 @@ function btnFinalizarQuizz(){
         } else{
             validarDescriçãoNivel = true
         }
+
+        if(valorPercentual == 0){
+            contadorZero++
+        }
         
     })
 
+    if(contadorZero == 0){
+        contador++
+        alert("Valor do percentual incorreto")
+    }
 
     
     console.log(dadosQuiz);
     levels = [];
-    
-    
-if(contador === 0){
-    console.log("valido")
-    
-    niveis.forEach((nivel) =>{
+    if(contador === 0){
+        console.log("valido")
         
-        const objNivel = {
-            title: nivel.querySelector("#titulo").value,
-            image: nivel.querySelector("#linkImg").value,
-            text: nivel.querySelector("#descriptionLevel").value,
-            minValue: nivel.querySelector("#percentual").value
+        niveis.forEach((nivel) =>{
+            
+            const objNivel = {
+                title: nivel.querySelector("#titulo").value,
+                image: nivel.querySelector("#linkImg").value,
+                text: nivel.querySelector("#descriptionLevel").value,
+                minValue: nivel.querySelector("#percentual").value
 
-        }
-        //const inserirNivel = [objNivel]
-        levels.push(objNivel)
-    }) 
-    dadosQuiz.levels = levels;
-    // Aqui que deve enviar o dadosQUiz para o servidor https://mock-api.driven.com.br/api/vm/buzzquizz/quizzes
-    console.log(dadosQuiz)
-    axios.post("https://mock-api.driven.com.br/api/vm/buzzquizz/quizzes", dadosQuiz).then(response => {
-        console.log(response.data);
-        userIds.push(response.data.id)
-        localStorage.setItem('ids', userIds);
-        renderizarTela3_4();
-    }).catch(error => {
-        console.log(error);
-    })
-} 
-    // aguarde();
+            }
+            //const inserirNivel = [objNivel]
+            levels.push(objNivel)
+        }) 
+        dadosQuiz.levels = levels;
+        // Aqui que deve enviar o dadosQUiz para o servidor https://mock-api.driven.com.br/api/vm/buzzquizz/quizzes
+        console.log(dadosQuiz)
+        axios.post("https://mock-api.driven.com.br/api/vm/buzzquizz/quizzes", dadosQuiz).then(response => {
+            console.log(response.data.id);
+            console.log("IDS:::: ", listaIds)
+            localStorage.setItem('ids', JSON.stringify(listaIds));
+            renderizarTela3_4(response.data.id);
+        }).catch(error => {
+            console.log(error);
+        })
+    } 
 }
-
 
 
 function expandirNivel(event) {
@@ -927,11 +933,14 @@ let userQuizzes = document.querySelector(".userQuizzes");
 let renderizaQuizzes = (listaQuizzes) => {
     index = listaQuizzes;
     let divPrincipal = document.querySelector(".container-todos");
+    if (localStorage.getItem("ids")){
+       listaIds.push(JSON.parse(localStorage.getItem("ids")));
+    }
     divPrincipal.innerHTML = "";
-    console.log("Aqui")
+    console.log("Aqui", listaIds)
     listaQuizzes.forEach(quiz => {
-        userIds.forEach(id => {
-            if (quiz.id == id){
+        listaIds.forEach(id => {
+            if (quiz.id == id[0][0]){
                 trocarDivUsuario();
                 userQuizzes.innerHTML+=`<div class="quiz" data-test="my-quiz" style="
                 background:linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.1%, #000000 100%), url(${quiz.image});
