@@ -14,6 +14,7 @@ let qntNiveis;
 let levels = []
 let dadosQuiz ;
 let userIds = [];
+let contador = 0
 
 
 let pontosMaximo = 0;
@@ -817,9 +818,10 @@ function btnFinalizarQuizz(){
     const niveis = document.querySelectorAll(".conteudo-nivel");
     const titulo = document.querySelectorAll("#titulo");
 
-    console.log(titulo);
-
+    //console.log(titulo);
+    contador=0;
     niveis.forEach((index1) =>{
+
         const valorTitulo = index1.querySelector("#titulo").value;
         const valorPercentual = index1.querySelector("#percentual").value;
         parseInt(valorPercentual) 
@@ -827,10 +829,12 @@ function btnFinalizarQuizz(){
         const valorDescricaoNivel = index1.querySelector("#descriptionLevel").value
         
         console.log(valorPercentual);
+
         // Validando título do nível
         if( valorTitulo === "" || valorTitulo === null || valorTitulo === undefined ||  valorTitulo.length < 10){
             alert("Valor do título incorreto")
             validarTitulo = false
+            contador++
         } else{
             validarTitulo = true
         }
@@ -838,6 +842,8 @@ function btnFinalizarQuizz(){
         if( valorPercentual === "" || valorPercentual === null || valorPercentual === undefined ||  valorPercentual < 0 || valorPercentual > 100){
             alert("Valor do percentual incorreto")
             validarPercentual = false
+            contador++
+
         } else{
             validarPercentual = true
         }
@@ -845,6 +851,8 @@ function btnFinalizarQuizz(){
         if( valorImagem === "" || valorImagem === null || valorImagem === undefined || (!valorImagem.startsWith("http://") && !valorImagem.startsWith("https://") )){
             alert("Imagem incorreta")
             validarImagem = false
+            contador++
+
         } else{
             validarImagem = true
         }
@@ -852,16 +860,15 @@ function btnFinalizarQuizz(){
         if( valorDescricaoNivel === "" || valorDescricaoNivel === null || valorDescricaoNivel === undefined || valorDescricaoNivel.length < 30){
             alert("descrição incorreta")
             validarDescriçãoNivel = false
+            contador++
+
         } else{
             validarDescriçãoNivel = true
         }
         
     }) 
     
-    console.log(validarTitulo)
-    console.log(validarPercentual)
-    console.log(validarImagem)
-    console.log(validarDescriçãoNivel)
+   
 
 
 
@@ -870,7 +877,9 @@ function btnFinalizarQuizz(){
     levels = [];
     
     
-if((validarTitulo && validarImagem && validarPercentual && validarDescriçãoNivel) === true){
+if(contador === 0){
+    console.log("valido")
+    
     niveis.forEach((nivel) =>{
         
         const objNivel = {
