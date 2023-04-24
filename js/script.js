@@ -138,6 +138,10 @@ let renderizarTela3 = () => {
 
 let recarregaPagina = () => {
     window.location.reload();
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
 }
 
 
@@ -855,10 +859,25 @@ function btnFinalizarQuizz(){
             validarDescriçãoNivel = true
         }
         
-    }) 
-    
-   
+        // Verificando se o percentual é igual a 0
+        if (percentual === 0) {
+            valorPercentual = true;
+        }
+    });
 
+    // Verificando se pelo menos um nível tem percentual igual a 0
+    if (!valorPercentual) {
+        alert("Pelo menos um nível deve ter percentual igual a 0");
+        contador++;
+    }
+
+    // Verificando se há pelo menos dois níveis com o mesmo percentual
+    const percentuais = Array.from(niveis, n => parseInt(n.querySelector("#percentual").value));
+    const percentuaisDuplicados = percentuais.filter((p, i) => percentuais.indexOf(p) !== i);
+    if (percentuaisDuplicados.length > 0) {
+        alert("Dois ou mais níveis não podem ter o mesmo percentual");
+        contador++;
+    }
 
 
     
@@ -932,7 +951,7 @@ let renderizaQuizzes = (listaQuizzes) => {
         userIds.forEach(id => {
             if (quiz.id == id){
                 trocarDivUsuario();
-                userQuizzes.innerHTML+=`<div class="quiz" data-test="others-quiz" style="
+                userQuizzes.innerHTML+=`<div class="quiz" data-test="my-quiz" style="
                 background:linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.1%, #000000 100%), url(${quiz.image});
                 background-size: cover; 
                 background-position: center;
@@ -949,5 +968,38 @@ let renderizaQuizzes = (listaQuizzes) => {
         onclick="jogarQuizz(${quiz.id})"><h4>${quiz.title}</h4></div>`;
         
     });
-}
 
+/*let userQuizzes = document.querySelector(".userQuizzes");
+
+let renderizaQuizzes = (listaQuizzes) => {
+    let quizzesUserIds = listaQuizzes.filter(quiz => userIds.includes(quiz.id));
+    let quizzesOutros = listaQuizzes.filter(quiz => !userIds.includes(quiz.id));
+    
+    userQuizzes.innerHTML = "";
+    quizzesUserIds.forEach(quiz => {
+        trocarDivUsuario();
+        userQuizzes.innerHTML += `
+            <div class="quiz" data-test="others-quiz" style="
+                background:linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.1%, #000000 100%), url(${quiz.image});
+                background-size: cover; 
+                background-position: center;
+                background-repeat:no-repeat;"
+                onclick="jogarQuizz(${quiz.id})">
+                <h4>${quiz.title}</h4>
+            </div>`;
+    });
+    
+    let divPrincipal = document.querySelector(".container-todos");
+    divPrincipal.innerHTML = "";
+    quizzesOutros.forEach(quiz => {
+        divPrincipal.innerHTML += `
+            <div class="quiz" data-test="others-quiz" style="
+                background:linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.1%, #000000 100%), url(${quiz.image});
+                background-size: cover; 
+                background-position: center;
+                background-repeat:no-repeat;"
+                onclick="jogarQuizz(${quiz.id})">
+                <h4>${quiz.title}</h4>
+            </div>`;
+    });*/
+};

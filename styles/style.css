@@ -742,7 +742,6 @@ margin-bottom: 20px;
         margin-top: 10px;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
         align-items: top;
     }
     .conteudo img{
