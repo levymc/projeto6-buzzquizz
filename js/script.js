@@ -899,8 +899,8 @@ if((validarTitulo && validarImagem && validarPercentual && validarDescriçãoNiv
             minValue: nivel.querySelector("#percentual").value
 
         }
-        const inserirNivel = [objNivel]
-        levels.push(inserirNivel)
+        //const inserirNivel = [objNivel]
+        levels.push(objNivel)
     }) 
     dadosQuiz.levels = levels;
     // Aqui que deve enviar o dadosQUiz para o servidor https://mock-api.driven.com.br/api/vm/buzzquizz/quizzes
