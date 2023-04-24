@@ -713,6 +713,14 @@ margin-bottom: 20px;
         padding: 0.95em;
     }
 
+    .bannerQuizz{
+        width: 100vw;
+    }
+
+    .perguntas-quizz{
+        width: 100vw;
+    }
+
     .resultado{
         width: 100vw;
         padding: 18px;

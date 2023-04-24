@@ -38,12 +38,12 @@ let renderizarTela1 = () => {
     container.innerHTML = '';
     container.innerHTML = `<div class="container-usuario1 mostrar">
                 <h4>Você não criou nenhum <br />quizz ainda :(</h4>
-                    <div class="btn-criarQuizz" onclick="renderizarTela3()">Criar Quizz</div>
+                    <div class="btn-criarQuizz" data-test="create-btn" onclick="renderizarTela3()">Criar Quizz</div>
             </div>
             <div class="container-usuario2 esconder ">
                 <div class="cabecalhoUserQuizzes">
                     <h4>Seus Quizzes</h4>
-                    <div class="btn-addUserQuiz" onclick="renderizarTela3()"><img src="./img/plussimbol.svg" alt="+"></div>
+                    <div class="btn-addUserQuiz" data-test="create-btn" onclick="renderizarTela3()"><img src="./img/plussimbol.svg" alt="+"></div>
                 </div>
                 <div class="userQuizzes">
                     <div class="quiz"><img src="./img/preg.svg" alt="preguiça"><h4>O quanto você é de boas?</h4></div>
@@ -125,12 +125,12 @@ let renderizarTela3 = () => {
     <div class="tela3">
         <h3>Comece pelo começo</h3>
         <div class="criacao-infos">
-            <input type="text" id="tituloQuiz" placeholder="Título do seu quizz">
-            <input type="text" id="urlQuiz" placeholder="URL da imagem do seu quizz">
-            <input type="number" id="qntPerguntas" placeholder="Quantidade de perguntas do quizz">
-            <input type="number" id="qntNiveis" placeholder="Quantidade de níveis do quizz">
+            <input type="text" id="tituloQuiz" data-test="title-input" placeholder="Título do seu quizz">
+            <input type="text" id="urlQuiz" data-test="img-input" placeholder="URL da imagem do seu quizz">
+            <input type="number" id="qntPerguntas" data-test="questions-amount-input" placeholder="Quantidade de perguntas do quizz">
+            <input type="number" id="qntNiveis" data-test="levels-amount-input" placeholder="Quantidade de níveis do quizz">
         </div>
-        <button class="btn1-criarQuiz" onclick="btnCriarQuiz1()">Prosseguir pra criar perguntas</button>
+        <button class="btn1-criarQuiz" data-test="go-create-questions" onclick="btnCriarQuiz1()">Prosseguir pra criar perguntas</button>
     </div>
     `;
 
@@ -160,7 +160,7 @@ let renderizaQuizzes = (listaQuizzes) => {
     divPrincipal.innerHTML = "";
     
     listaQuizzes.forEach(quiz => {
-        divPrincipal.innerHTML += `<div class="quiz" style="
+        divPrincipal.innerHTML += `<div class="quiz" data-test="others-quiz" style="
         background:linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.1%, #000000 100%), url(${quiz.image});
         background-size: cover; 
         background-position: center;
@@ -251,20 +251,20 @@ function resultadoQuiz(niveisQuiz, porcentagemAcertos) {
         main.innerHTML +=
         `<div class="resultado">
             <div class="titulo-nivel">
-                <h3>${nivelAtual.title}</h3>
+                <h3 data-test="level-title">${porcentagemAcertos}% de acerto: ${nivelAtual.title}</h3>
             </div>
 
             <div class="conteudo">
-                <img src=${nivelAtual.image}>
-                <p>${nivelAtual.text}</p>
+                <img data-test="level-img" src=${nivelAtual.image}>
+                <p data-test="level-text">${nivelAtual.text}</p>
             </div>
         </div>
 
-        <div class="botao-reiniciar" onclick="jogarQuizz(element)">
+        <div class="botao-reiniciar" data-test="restart" onclick="reiniciarQuizz()">
         <p>Reiniciar Quizz</p>
         </div>
 
-        <div class="botao-home" onclick="recarregaPagina()">
+        <div class="botao-home" data-test="go-home" onclick="recarregaPagina()">
         <p>Voltar pra home</p>
         </div>
         `
@@ -273,6 +273,10 @@ function resultadoQuiz(niveisQuiz, porcentagemAcertos) {
         resultado.scrollIntoView({ behavior: 'smooth' });
     } else {
     }
+}
+
+function reiniciarQuizz(){
+
 }
 
 
@@ -314,7 +318,7 @@ function jogarQuizz(element) {
 
         perguntaSelecionada.innerHTML=`
         <div class="quizzSelecionado">
-        <div class="bannerQuizz" style = "
+        <div class="bannerQuizz" data-test="banner" style = "
         background: linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${quizzClicado.image});
         background-size: cover; 
         ">${quizzClicado.title}</div>`;
@@ -323,8 +327,8 @@ function jogarQuizz(element) {
         for(let i=0; i<=QuantidadeQuestionsClicado-1; i++){
         
         perguntasQuizz.innerHTML +=
-        `<div class="perguntaQuizz">
-            <div class="bannerPergunta" style="
+        `<div class="perguntaQuizz" data-test="question">
+            <div class="bannerPergunta" data-test="question-title" style="
             background-color: ${questionsClicado[i].color};
             display: flex;
             align-items: center;
@@ -350,9 +354,9 @@ function jogarQuizz(element) {
 
                 
                 arrayRespostas.push(`
-                <div class="opcaoUm" onclick="selecionarOpcao(${questionsClicado[i].answers[u].isCorrectAnswer}, this)">
+                <div class="opcaoUm" data-test="answer" onclick="selecionarOpcao(${questionsClicado[i].answers[u].isCorrectAnswer}, this)">
                     <img src="${questionsClicado[i].answers[u].image}">
-                    <h4>${questionsClicado[i].answers[u].text}</h4>
+                    <h4 data-test="answer-text">${questionsClicado[i].answers[u].text}</h4>
                 </div>
                 `)
             
@@ -491,31 +495,31 @@ function renderizarTela3perguntas() {
     container.innerHTML +=`
                 <h3>Crie suas perguntas</h3>
                     <div class="tela-preencher-perguntas">
-                        <div class="pergunta expandida">
+                        <div class="pergunta expandida" data-test="question-ctn">
                             <div class="nome-pergunta" onclick="expandirPergunta(event)">
                                 <h3>Pergunta 1</h3>
-                                <img src="./img/editarpergunta.svg" alt="editar pergunta">
+                                <img src="./img/editarpergunta.svg" data-test="toggle" alt="editar pergunta">
                             </div>
 
                             <div class="conteudo-pergunta">
-                                <input type="text" id="titulo" placeholder="Texto da pergunta">
-                                <input type="text" data-mask="#000000" id="cor" placeholder="Cor de fundo da pergunta">
+                                <input type="text" id="titulo" data-test="question-input" placeholder="Texto da pergunta">
+                                <input type="text" data-mask="#000000" id="cor" data-test="question-color-input" placeholder="Cor de fundo da pergunta">
             
                                 <h3>Resposta correta</h3>
             
-                                <input type="text" id="resposta-correta" placeholder="Resposta correta">
-                                <input type="url" pattern="https://*" id="link-correta" placeholder="URL da imagem">
+                                <input type="text" id="resposta-correta" data-test="correct-answer-input" placeholder="Resposta correta">
+                                <input type="url" pattern="https://*" data-test="correct-img-input" id="link-correta" placeholder="URL da imagem">
             
                                 <h3>Respostas incorretas</h3>
             
-                                <input type="text" id="resposta1" placeholder="Resposta incorreta 1">
-                                <input type="url" pattern="https://*" id="link1" placeholder="URL da imagem 1">
+                                <input type="text" id="resposta1" data-test="wrong-answer-input" placeholder="Resposta incorreta 1">
+                                <input type="url" pattern="https://*" id="link1" data-test="wrong-img-input" placeholder="URL da imagem 1">
             
-                                <input type="text" id="resposta2" placeholder="Resposta incorreta 2">
-                                <input type="url" pattern="https://*" id="link2" placeholder="URL da imagem 2">
+                                <input type="text" id="resposta2" data-test="wrong-answer-input" placeholder="Resposta incorreta 2">
+                                <input type="url" pattern="https://*" id="link2" data-test="wrong-img-input" placeholder="URL da imagem 2">
             
-                                <input type="text" id="resposta3" placeholder="Resposta incorreta 3">
-                                <input type="url" pattern="https://*" id="link3" placeholder="URL da imagem 3">
+                                <input type="text" id="resposta3" data-test="wrong-answer-input" placeholder="Resposta incorreta 3">
+                                <input type="url" pattern="https://*" id="link3" data-test="wrong-img-input" placeholder="URL da imagem 3">
                             </div>
                         </div>
                     </div>`
@@ -523,37 +527,37 @@ function renderizarTela3perguntas() {
     const contador = infoCriarQuiz["qntPerguntas"];
     for(i = 1; i < contador; i++){
         container.innerHTML +=
-        `<div class="pergunta escondida">
+        `<div class="pergunta escondida" data-test="question-ctn">
             <div class="nome-pergunta" onclick="expandirPergunta(event)">
                 <h3>Pergunta ${i+1}</h3>
-                <img src="./img/editarpergunta.svg" alt="editar pergunta">
+                <img src="./img/editarpergunta.svg" data-test="toggle" alt="editar pergunta">
             </div>
 
             <div class="conteudo-pergunta">
-                <input type="text" id="titulo" placeholder="Texto da pergunta">
-                <input type="text" id="cor" placeholder="Cor de fundo da pergunta">
+                <input type="text" id="titulo" data-test="question-input" placeholder="Texto da pergunta">
+                <input type="text" id="cor" data-test="question-color-input" placeholder="Cor de fundo da pergunta">
 
                 <h3>Resposta correta</h3>
 
-                <input type="text" id="resposta-correta" placeholder="Resposta correta">
-                <input type="url" id="link-correta" placeholder="URL da imagem">
+                <input type="text" id="resposta-correta" data-test="correct-answer-input" placeholder="Resposta correta">
+                <input type="url" id="link-correta" data-test="correct-img-input" placeholder="URL da imagem">
 
                 <h3>Respostas incorretas</h3>
 
-                <input type="text" id="resposta1" placeholder="Resposta incorreta 1">
-                <input type="url" id="link1" placeholder="URL da imagem 1">
+                <input type="text" id="resposta1" data-test="wrong-answer-input" placeholder="Resposta incorreta 1">
+                <input type="url" id="link1" data-test="wrong-img-input" placeholder="URL da imagem 1">
 
-                <input type="text" id="resposta2" placeholder="Resposta incorreta 2">
-                <input type="url" id="link2" placeholder="URL da imagem 2">
+                <input type="text" id="resposta2" data-test="wrong-answer-input" placeholder="Resposta incorreta 2">
+                <input type="url" id="link2" data-test="wrong-img-input" placeholder="URL da imagem 2">
 
-                <input type="text" id="resposta3" placeholder="Resposta incorreta 3">
-                <input type="url" id="link3" placeholder="URL da imagem 3">
+                <input type="text" id="resposta3" data-test="wrong-answer-input" placeholder="Resposta incorreta 3">
+                <input type="url" id="link3" data-test="wrong-img-input" placeholder="URL da imagem 3">
             </div>
         </div>`
     }
 
     container.innerHTML +=
-    `<button id="botao-perguntas" type="submit" onclick="botaoValidarPerguntas()">Prosseguir pra criar níveis</button>`
+    `<button id="botao-perguntas" type="submit" data-test="go-create-levels" onclick="botaoValidarPerguntas()">Prosseguir pra criar níveis</button>`
 }
 
 function expandirPergunta(event) {
@@ -710,14 +714,14 @@ let renderizarTela3_3 = () => {
     container.innerHTML += `
     <div class="tela3_3 flex">
         <h3>Seu quizz está pronto!</h3>
-        <div class="quiz-tela3_3" style="
+        <div class="quiz-tela3_3" data-test="success-banner" style="
         background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.1%, #000000 100%), url(${infoCriarQuiz.url});
         background-size: contain;
         background-position: center;
         background-repeat:no-repeat;
         "><h4>${infoCriarQuiz.title}</h4></div>
-        <button class="btn-acessarQuizz" onclick="btnCriarQuiz1()">Acessar Quizz</button>
-        <button class="btn-Home" onclick="recarregaPagina()">Voltar pra home</button>
+        <button class="btn-acessarQuizz" data-test="go-quiz" onclick="btnCriarQuiz1()">Acessar Quizz</button>
+        <button class="btn-Home" data-test="go-home" onclick="recarregaPagina()">Voltar pra home</button>
     </div>
     `
 }
@@ -736,17 +740,17 @@ function renderizarTelaNivel(elemento) {
     <h3>Agora, descida os níveis</h3>
 
     <div class="tela-preencher-nivel">
-    <div class="nivel expandida">
+    <div class="nivel expandida" data-test="level-ctn">
         <div class="nome-nivel" onclick="expandirNivel(event)">
             <h3>Nível 1</h3>
-            <img src="./img/editarpergunta.svg" alt="editar pergunta">
+            <img src="./img/editarpergunta.svg" data-test="toggle" alt="editar nível">
         </div>
 
         <div class="conteudo-nivel">
-            <input type="text" id="titulo" placeholder="Título do nível">
-            <input type="number" id="percentual" placeholder="% de acerto mínimo">
-            <input type="url" pattern="https://*"" id="linkImg" placeholder="URL da imagem do nível">
-            <input type="text" id="descriptionLevel" placeholder="Descrição do nível">
+            <input type="text" id="titulo" data-test="level-input" placeholder="Título do nível">
+            <input type="number" id="percentual" data-test="level-percent-input" placeholder="% de acerto mínimo">
+            <input type="url" pattern="https://*"" id="linkImg" data-test="level-img-input" placeholder="URL da imagem do nível">
+            <input type="text" id="descriptionLevel" data-test="level-description-input" placeholder="Descrição do nível">
 
             
         </div>
@@ -766,17 +770,17 @@ function renderizarTelaNivel(elemento) {
     for(let i=1; i<=qntNiveis-1; i++){
     container.innerHTML += `
         <div class="tela-preencher-nivel">
-        <div class="nivel escondida">
+        <div class="nivel escondida" data-test="level-ctn">
             <div class="nome-nivel" onclick="expandirNivel(event)">
                 <h3>Nível ${i+1}</h3>
-                <img src="./img/editarpergunta.svg" alt="editar pergunta">
+                <img src="./img/editarpergunta.svg" data-test="toggle" alt="editar nível">
             </div>
 
             <div class="conteudo-nivel">
-                <input type="text" id="titulo" placeholder="Título do nível">
-                <input type="number" id="percentual" placeholder="% de acerto mínimo">
-                <input type="url" pattern="https://*"" id="linkImg" placeholder="URL da imagem do nível">
-                <input type="text" id="descriptionLevel" placeholder="Descrição do nível">
+                <input type="text" id="titulo" data-test="level-input" placeholder="Título do nível">
+                <input type="number" id="percentual" data-test="level-percent-input" placeholder="% de acerto mínimo">
+                <input type="url" pattern="https://*"" id="linkImg" data-test="level-img-input" placeholder="URL da imagem do nível">
+                <input type="text" id="descriptionLevel" data-test="level-description-input" placeholder="Descrição do nível">
 
                 
             </div>
@@ -786,7 +790,7 @@ function renderizarTelaNivel(elemento) {
     }
     
     container.innerHTML +=
-    `<button id="botao-nivel" type="submit" onclick="btnFinalizarQuizz()">Finalizar Quizz</button>`
+    `<button id="botao-nivel" type="submit" data-test="finish" onclick="btnFinalizarQuizz()">Finalizar Quizz</button>`
 
 }
 
