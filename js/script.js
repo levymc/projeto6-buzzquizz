@@ -786,11 +786,11 @@ function renderizarTelaNivel(elemento, dadosQuiz) {
     }
     
     container.innerHTML +=
-    `<button id="botao-nivel" type="submit" onclick="btnFinalizarQuizz()">Finalizar Quizz</button>`
+    `<button id="botao-nivel" type="submit" onclick="btnFinalizarQuizz(${dadosQuiz})">Finalizar Quizz</button>`
 
 }
 
-function btnFinalizarQuizz(){
+function btnFinalizarQuizz(dadosQuiz){
     let validarTitulo, validarPercentual, validarImagem, validarDescriçãoNivel;
 
     
