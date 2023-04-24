@@ -721,7 +721,7 @@ function salvarPerguntasQuiz (){
 }
 
 let renderizarTela3_4 = (id) => {
-    listaIds.push(id);
+    listaIds.push({id: id});
     localStorage.setItem('ids', JSON.stringify(listaIds));
     console.log(listaIds);
     container.innerHTML = '';
@@ -936,14 +936,14 @@ let userQuizzes = document.querySelector(".userQuizzes");
 let renderizaQuizzes = (listaQuizzes) => {
     index = listaQuizzes;
     let divPrincipal = document.querySelector(".container-todos");
-    console.log("Memoria: ",localStorage.getItem("ids"))
+    console.log("Memoria: ",JSON.parse(localStorage.getItem("ids")))
     if (localStorage.getItem("ids")){
        userIds = JSON.parse(localStorage.getItem("ids"));
     }
     divPrincipal.innerHTML = "";
     listaQuizzes.forEach(quiz => {
         userIds.forEach(id => {
-            if (quiz.id == id){
+            if (quiz.id == id["id"]){
                 trocarDivUsuario();
                 userQuizzes.innerHTML+=`<div class="quiz" data-test="my-quiz" style="
                 background:linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.1%, #000000 100%), url(${quiz.image});
