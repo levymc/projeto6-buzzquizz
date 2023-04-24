@@ -859,25 +859,7 @@ function btnFinalizarQuizz(){
             validarDescriçãoNivel = true
         }
         
-        // Verificando se o percentual é igual a 0
-        if (percentual === 0) {
-            valorPercentual = true;
-        }
-    });
-
-    // Verificando se pelo menos um nível tem percentual igual a 0
-    if (!valorPercentual) {
-        alert("Pelo menos um nível deve ter percentual igual a 0");
-        contador++;
-    }
-
-    // Verificando se há pelo menos dois níveis com o mesmo percentual
-    const percentuais = Array.from(niveis, n => parseInt(n.querySelector("#percentual").value));
-    const percentuaisDuplicados = percentuais.filter((p, i) => percentuais.indexOf(p) !== i);
-    if (percentuaisDuplicados.length > 0) {
-        alert("Dois ou mais níveis não podem ter o mesmo percentual");
-        contador++;
-    }
+    })
 
 
     
