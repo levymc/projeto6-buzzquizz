@@ -904,6 +904,7 @@ if((validarTitulo && validarImagem && validarPercentual && validarDescriçãoNiv
     }) 
     dadosQuiz.levels = levels;
     // Aqui que deve enviar o dadosQUiz para o servidor https://mock-api.driven.com.br/api/vm/buzzquizz/quizzes
+    console.log(dadosQuiz)
     axios.post("https://mock-api.driven.com.br/api/vm/buzzquizz/quizzes", dadosQuiz).then(response => {
         console.log(response.data);
         renderizarTela3_4();
