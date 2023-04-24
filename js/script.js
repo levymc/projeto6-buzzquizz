@@ -917,8 +917,6 @@ function expandirNivel(event) {
 }
 recebeQuizzes();
 renderizarTela1();
-// localStorage.setItem('newUser', newUser); // armazena o nome do usuário na localStorage
-// newUser = localStorage.getItem('newUser');
 const container1 = document.querySelector('.container-usuario1');
 const container2 = document.querySelector('.container-usuario2'); // Modificar para a tela 3 depois!
 let trocarDivUsuario = () => {
