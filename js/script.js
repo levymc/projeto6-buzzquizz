@@ -47,9 +47,6 @@ let renderizarTela1 = () => {
                     <div class="btn-addUserQuiz" data-test="create-btn" onclick="renderizarTela3()"><img src="./img/plussimbol.svg" alt="+"></div>
                 </div>
                 <div class="userQuizzes">
-                    <div class="quiz"><img src="./img/preg.svg" alt="preguiça"><h4>O quanto você é de boas?</h4></div>
-                    <div class="quiz"><img src="./img/preg.svg" alt="preguiça"><h4>O quanto você é de boas?</h4></div>
-                    <div class="quiz"><img src="./img/preg.svg" alt="preguiça"><h4>O quanto você é de boas?</h4></div>
                 </div>
             </div>
             <div class="todosQuiz"><h3>Todos os Quizzes</h3></div>
@@ -61,7 +58,6 @@ let renderizarTela1 = () => {
             </div>`
 }
 
-let userQuizzes = document.querySelector(".userQuizzes");
 /*function jogarQuizz(){
 
 
@@ -902,9 +898,20 @@ function expandirNivel(event) {
     pergunta.parentNode.classList.toggle('escondida');
     pergunta.parentNode.classList.toggle('expandida');
 }
-
+recebeQuizzes();
+renderizarTela1();
 // localStorage.setItem('newUser', newUser); // armazena o nome do usuário na localStorage
 // newUser = localStorage.getItem('newUser');
+const container1 = document.querySelector('.container-usuario1');
+const container2 = document.querySelector('.container-usuario2'); // Modificar para a tela 3 depois!
+let trocarDivUsuario = () => {
+    container1.classList.remove('mostrar');
+    container1.classList.add('esconder');
+    container2.classList.remove('esconder');
+    container2.classList.add('mostrar');
+}
+
+let userQuizzes = document.querySelector(".userQuizzes");
 
 let renderizaQuizzes = (listaQuizzes) => {
     index = listaQuizzes;
@@ -930,13 +937,4 @@ let renderizaQuizzes = (listaQuizzes) => {
         }
     });
 }
-const container1 = document.querySelector('.container-usuario1');
-const container2 = document.querySelector('.container-usuario2'); // Modificar para a tela 3 depois!
-let trocarDivUsuario = () => {
-    container1.classList.remove('mostrar');
-    container1.classList.add('esconder');
-    container2.classList.remove('esconder');
-    container2.classList.add('mostrar');
-}
-recebeQuizzes();
-renderizarTela1();
+
