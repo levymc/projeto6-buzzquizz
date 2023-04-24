@@ -555,7 +555,7 @@ margin-bottom: 20px;
         width: 100vw; */
     /* } */
 
-.pergunta{
+/*.pergunta{
         width: 100vw;
         display: flex;
         align-items: center;
@@ -570,7 +570,7 @@ margin-bottom: 20px;
 .conteudo-nivel{
         width: 95%;
     }
-
+*/
 
 .acerto h4{
     color: #009C22;
@@ -678,6 +678,10 @@ margin-bottom: 20px;
 @media screen and (max-width: 1100px) {
     body{
         overflow-x: hidden;
+    }
+
+    main{
+        width: 100vw;
     }
 
     .todosQuiz{
