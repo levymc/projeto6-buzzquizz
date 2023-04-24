@@ -14,6 +14,7 @@ let qntNiveis;
 let levels = []
 let dadosQuiz ;
 let userIds = [];
+let contador = 0
 
 
 let pontosMaximo = 0;
@@ -21,7 +22,7 @@ let pontosFeitos = 0;
 
 let imgstring="";
 let index;
-let userQuizzes ;
+
 
 let infoCriarQuiz = {
     title: "",
@@ -47,9 +48,6 @@ let renderizarTela1 = () => {
                     <div class="btn-addUserQuiz" data-test="create-btn" onclick="renderizarTela3()"><img src="./img/plussimbol.svg" alt="+"></div>
                 </div>
                 <div class="userQuizzes">
-                    <div class="quiz"><img src="./img/preg.svg" alt="preguiça"><h4>O quanto você é de boas?</h4></div>
-                    <div class="quiz"><img src="./img/preg.svg" alt="preguiça"><h4>O quanto você é de boas?</h4></div>
-                    <div class="quiz"><img src="./img/preg.svg" alt="preguiça"><h4>O quanto você é de boas?</h4></div>
                 </div>
             </div>
             <div class="todosQuiz"><h3>Todos os Quizzes</h3></div>
@@ -60,7 +58,6 @@ let renderizarTela1 = () => {
                 <div class="quiz" onclick="jogarQuizz()"><img src="./img/preg.svg" alt=""><h4>O quanto você é de boas?</h4></div>
             </div>`
 }
-
 
 /*function jogarQuizz(){
 
@@ -425,14 +422,7 @@ let recebeQuizzes = () => {
 }
 
 
-const container1 = document.querySelector('.container-usuario1');
-const container2 = document.querySelector('.container-usuario2'); // Modificar para a tela 3 depois!
-let trocarDivUsuario = () => {
-    container1.classList.remove('mostrar');
-    container1.classList.add('esconder');
-    container2.classList.remove('esconder');
-    container2.classList.add('mostrar');
-}
+
 
 
 let aguarde = () => {
@@ -817,9 +807,10 @@ function btnFinalizarQuizz(){
     const niveis = document.querySelectorAll(".conteudo-nivel");
     const titulo = document.querySelectorAll("#titulo");
 
-    console.log(titulo);
-
+    //console.log(titulo);
+    contador=0;
     niveis.forEach((index1) =>{
+
         const valorTitulo = index1.querySelector("#titulo").value;
         const valorPercentual = index1.querySelector("#percentual").value;
         parseInt(valorPercentual) 
@@ -827,10 +818,12 @@ function btnFinalizarQuizz(){
         const valorDescricaoNivel = index1.querySelector("#descriptionLevel").value
         
         console.log(valorPercentual);
+
         // Validando título do nível
         if( valorTitulo === "" || valorTitulo === null || valorTitulo === undefined ||  valorTitulo.length < 10){
             alert("Valor do título incorreto")
             validarTitulo = false
+            contador++
         } else{
             validarTitulo = true
         }
@@ -838,6 +831,8 @@ function btnFinalizarQuizz(){
         if( valorPercentual === "" || valorPercentual === null || valorPercentual === undefined ||  valorPercentual < 0 || valorPercentual > 100){
             alert("Valor do percentual incorreto")
             validarPercentual = false
+            contador++
+
         } else{
             validarPercentual = true
         }
@@ -845,6 +840,8 @@ function btnFinalizarQuizz(){
         if( valorImagem === "" || valorImagem === null || valorImagem === undefined || (!valorImagem.startsWith("http://") && !valorImagem.startsWith("https://") )){
             alert("Imagem incorreta")
             validarImagem = false
+            contador++
+
         } else{
             validarImagem = true
         }
@@ -852,16 +849,15 @@ function btnFinalizarQuizz(){
         if( valorDescricaoNivel === "" || valorDescricaoNivel === null || valorDescricaoNivel === undefined || valorDescricaoNivel.length < 30){
             alert("descrição incorreta")
             validarDescriçãoNivel = false
+            contador++
+
         } else{
             validarDescriçãoNivel = true
         }
         
     }) 
     
-    console.log(validarTitulo)
-    console.log(validarPercentual)
-    console.log(validarImagem)
-    console.log(validarDescriçãoNivel)
+   
 
 
 
@@ -870,7 +866,9 @@ function btnFinalizarQuizz(){
     levels = [];
     
     
-if((validarTitulo && validarImagem && validarPercentual && validarDescriçãoNivel) === true){
+if(contador === 0){
+    console.log("valido")
+    
     niveis.forEach((nivel) =>{
         
         const objNivel = {
@@ -888,7 +886,8 @@ if((validarTitulo && validarImagem && validarPercentual && validarDescriçãoNiv
     console.log(dadosQuiz)
     axios.post("https://mock-api.driven.com.br/api/vm/buzzquizz/quizzes", dadosQuiz).then(response => {
         console.log(response.data);
-        localStorage.setItem('id', response.data.id);
+        userIds.push(response.data.id)
+        localStorage.setItem('ids', userIds);
         renderizarTela3_4();
     }).catch(error => {
         console.log(error);
@@ -909,32 +908,46 @@ function expandirNivel(event) {
     pergunta.parentNode.classList.toggle('escondida');
     pergunta.parentNode.classList.toggle('expandida');
 }
-
+recebeQuizzes();
+renderizarTela1();
 // localStorage.setItem('newUser', newUser); // armazena o nome do usuário na localStorage
 // newUser = localStorage.getItem('newUser');
+const container1 = document.querySelector('.container-usuario1');
+const container2 = document.querySelector('.container-usuario2'); // Modificar para a tela 3 depois!
+let trocarDivUsuario = () => {
+    container1.classList.remove('mostrar');
+    container1.classList.add('esconder');
+    container2.classList.remove('esconder');
+    container2.classList.add('mostrar');
+}
+
+let userQuizzes = document.querySelector(".userQuizzes");
 
 let renderizaQuizzes = (listaQuizzes) => {
     index = listaQuizzes;
     let divPrincipal = document.querySelector(".container-todos");
     divPrincipal.innerHTML = "";
+    console.log("Aqui")
     listaQuizzes.forEach(quiz => {
-        if (userIds.includes(quiz.id)){
-            trocarDivUsuario();
-            container2.innerHTML+=`<div class="quiz" data-test="others-quiz" style="
-            background:linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.1%, #000000 100%), url(${quiz.image});
-            background-size: cover; 
-            background-position: center;
-            background-repeat:no-repeat;"
-            onclick="jogarQuizz(${quiz.id})"><h4>${quiz.title}</h4></div>`;
-        }else{
-            divPrincipal.innerHTML += `<div class="quiz" data-test="others-quiz" style="
-            background:linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.1%, #000000 100%), url(${quiz.image});
-            background-size: cover; 
-            background-position: center;
-            background-repeat:no-repeat;"
-            onclick="jogarQuizz(${quiz.id})"><h4>${quiz.title}</h4></div>`;
-        }
+        userIds.forEach(id => {
+            if (quiz.id == id){
+                trocarDivUsuario();
+                userQuizzes.innerHTML+=`<div class="quiz" data-test="others-quiz" style="
+                background:linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.1%, #000000 100%), url(${quiz.image});
+                background-size: cover; 
+                background-position: center;
+                background-repeat:no-repeat;"
+                onclick="jogarQuizz(${quiz.id})"><h4>${quiz.title}</h4></div>`;
+            }
+        })
+        
+        divPrincipal.innerHTML += `<div class="quiz" data-test="others-quiz" style="
+        background:linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.1%, #000000 100%), url(${quiz.image});
+        background-size: cover; 
+        background-position: center;
+        background-repeat:no-repeat;"
+        onclick="jogarQuizz(${quiz.id})"><h4>${quiz.title}</h4></div>`;
+        
     });
 }
-recebeQuizzes();
-renderizarTela1();
+
