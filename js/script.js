@@ -877,7 +877,8 @@ if((validarTitulo && validarImagem && validarPercentual && validarDescriçãoNiv
     console.log(dadosQuiz)
     axios.post("https://mock-api.driven.com.br/api/vm/buzzquizz/quizzes", dadosQuiz).then(response => {
         console.log(response.data);
-        localStorage.setItem('id', response.data.id);
+        userIds.push(response.data.id)
+        localStorage.setItem('ids', userIds);
         renderizarTela3_4();
     }).catch(error => {
         console.log(error);
@@ -919,22 +920,25 @@ let renderizaQuizzes = (listaQuizzes) => {
     divPrincipal.innerHTML = "";
     console.log("Aqui")
     listaQuizzes.forEach(quiz => {
-        if (localStorage.getItem('id') && quiz.id == localStorage.getItem('id')){
-            trocarDivUsuario();
-            userQuizzes.innerHTML+=`<div class="quiz" data-test="others-quiz" style="
-            background:linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.1%, #000000 100%), url(${quiz.image});
-            background-size: cover; 
-            background-position: center;
-            background-repeat:no-repeat;"
-            onclick="jogarQuizz(${quiz.id})"><h4>${quiz.title}</h4></div>`;
-        }else{
-            divPrincipal.innerHTML += `<div class="quiz" data-test="others-quiz" style="
-            background:linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.1%, #000000 100%), url(${quiz.image});
-            background-size: cover; 
-            background-position: center;
-            background-repeat:no-repeat;"
-            onclick="jogarQuizz(${quiz.id})"><h4>${quiz.title}</h4></div>`;
-        }
+        userIds.forEach(id => {
+            if (quiz.id == id){
+                trocarDivUsuario();
+                userQuizzes.innerHTML+=`<div class="quiz" data-test="others-quiz" style="
+                background:linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.1%, #000000 100%), url(${quiz.image});
+                background-size: cover; 
+                background-position: center;
+                background-repeat:no-repeat;"
+                onclick="jogarQuizz(${quiz.id})"><h4>${quiz.title}</h4></div>`;
+            }
+        })
+        
+        divPrincipal.innerHTML += `<div class="quiz" data-test="others-quiz" style="
+        background:linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.1%, #000000 100%), url(${quiz.image});
+        background-size: cover; 
+        background-position: center;
+        background-repeat:no-repeat;"
+        onclick="jogarQuizz(${quiz.id})"><h4>${quiz.title}</h4></div>`;
+        
     });
 }
 
