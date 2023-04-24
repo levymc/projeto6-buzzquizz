@@ -744,7 +744,7 @@ function salvarPerguntasQuiz (){
     renderizarTelaNivel(perguntasQuiz);
 }
 
-let renderizarTela3_3 = () => {
+let renderizarTela3_4 = () => {
     container.innerHTML = '';
     container.innerHTML += `
     <div class="tela3_3 flex">
@@ -904,8 +904,12 @@ if((validarTitulo && validarImagem && validarPercentual && validarDescriçãoNiv
     }) 
     dadosQuiz.levels = levels;
     // Aqui que deve enviar o dadosQUiz para o servidor https://mock-api.driven.com.br/api/vm/buzzquizz/quizzes
-    renderizarTela3_3();
-    console.log(dadosQuiz);
+    axios.post("https://mock-api.driven.com.br/api/vm/buzzquizz/quizzes", dadosQuiz).then(response => {
+        console.log(response.data);
+        renderizarTela3_4();
+    }).catch(error => {
+        console.log(error);
+    })
 } 
     // aguarde();
 }
