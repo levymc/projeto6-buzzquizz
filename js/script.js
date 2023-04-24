@@ -869,7 +869,7 @@ function btnFinalizarQuizz(){
         }
         
         if( valorDescricaoNivel === "" || valorDescricaoNivel === null || valorDescricaoNivel === undefined || valorDescricaoNivel.length < 30){
-            alert("Imagem incorreta")
+            alert("descrição incorreta")
             validarDescriçãoNivel = false
         } else{
             validarDescriçãoNivel = true
