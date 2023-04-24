@@ -904,16 +904,15 @@ if(contador === 0){
     console.log(dadosQuiz)
     axios.post("https://mock-api.driven.com.br/api/vm/buzzquizz/quizzes", dadosQuiz).then(response => {
         console.log(response.data.id);
-        userIds.push(response.data.id)
-        localStorage.setItem('ids', JSON.stringify(userIds));
+        console.log("IDS:::: ", listaIds)
+        localStorage.setItem('ids', JSON.stringify(listaIds));
+        armazenarId(response.data.id);
         renderizarTela3_4(response.data.id);
     }).catch(error => {
         console.log(error);
     })
 } 
-    // aguarde();
 }
-
 
 
 function expandirNivel(event) {
@@ -948,7 +947,7 @@ let renderizaQuizzes = (listaQuizzes) => {
        listaIds.push(JSON.parse(localStorage.getItem("ids")));
     }
     divPrincipal.innerHTML = "";
-    console.log("Aqui", userIds)
+    console.log("Aqui", listaIds)
     listaQuizzes.forEach(quiz => {
         listaIds.forEach(id => {
             if (quiz.id == id){
